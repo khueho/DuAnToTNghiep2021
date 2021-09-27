@@ -1,0 +1,29 @@
+<br>
+<ul class="nav nav-tabs navbar-dark bg-dark" id="myTab" role="tablist">
+	<li class="nav-item btn-outline-light font-weight-bold" role="presentation"><a
+		class="nav-link active" id="edit-tab" data-toggle="tab"
+		data-target="#edit" role="tab" aria-controls="edit"
+		aria-selected="true">EDIT SALE</a></li>
+	<li class="nav-item btn-outline-light font-weight-bold" role="presentation"><a class="nav-link"
+		id="listsales-tab" data-toggle="tab" data-target="#listsales" role="tab"
+		aria-controls="listsales" aria-selected="false">LIST SALES</a></li>
+	<li class="nav-item btn-outline-light font-weight-bold" role="presentation"><a class="nav-link"
+		id="list-tab" data-toggle="tab" data-target="#list" role="tab"
+		aria-controls="listfoods" aria-selected="false">LIST FOODS</a></li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade show active" id="edit" role="tabpanel"
+		aria-labelledby="edit-tab">
+		<div ng-include="'/assets/admin/sale/_form.html'"></div>
+	</div>
+	<div class="tab-pane fade" id="listsales" role="tabpanel"
+		aria-labelledby="listsales-tab">
+		<div ng-include="'/assets/admin/sale/_table.html'"></div>
+	</div>
+	<div class="tab-pane fade" id="list" role="tabpanel"
+		aria-labelledby="list-tab">
+		<div ng-include="'/assets/admin/sale/_table2.html'"></div>
+	</div>
+
+</div>

@@ -18,14 +18,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-<link rel="icon" href="/assets/images/LOGO.png">
+<link rel="icon" href="/assets/images/icon.png">
+<link rel="icon" href="/assets/admin/food.css">
 
 </head>
-<body ng-app="admin-app"  >
+<body ng-app="admin-app" style="background-color: skyblue;" >
      <main class="container-fluid"  >
         <nav class="row">
             <nav class="navbar navbar-expand-sm navbar-light bg-light col">
-                <a class="navbar-brand" href="#"> <img alt="" src="/assets/images/LOGO.png" style="width: 100px"> QUẢN LÝ</a>
+                <a class="navbar-brand" href="#">QUẢN LÝ</a>
                 <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -33,37 +34,37 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="http://localhost:8080/assets/admin/index.html"><i class='fas fa-home'></i>Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="#"><i class='fas fa-home'></i>Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#!cinema"><i class='fas fa-gopuram'></i>  Rạp</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!movie"> <i class='fas fa-film'></i>Phim</a>
+                            <a class="nav-link" href="#"> <i class='fas fa-film'></i>Phim</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!show"><i class='fas fa-calendar-alt'></i>Suất Chiếu </a>
+                            <a class="nav-link" href="#"><i class='fas fa-calendar-alt'></i>Suất Chiếu </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!authorize"><i class='fas fa-user-cog'></i>Phân Quyền</a>
+                            <a class="nav-link" href="#"><i class='fas fa-user-cog'></i>Nhân Viên</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#!account"><i class='fas fa-users'></i>Khách Hàng</a>
+                            <a class="nav-link" href="#"><i class='fas fa-users'></i>Khách Hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class='fas fa-pizza-slice'></i>Food</a>
+                            <a class="nav-link" href="#!foods"><i class='fas fa-pizza-slice'></i>Food</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class='fas fa-bookmark'></i>Mã khuyến mãi </a>
+                            <a class="nav-link" href="#!sales"><i class='fas fa-bookmark'></i>Mã khuyến mãi </a>
                         </li>
                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class='fas fa-file-alt'></i>Hóa đơn</a>
+                            <a class="nav-link" href="#!orders"><i class='fas fa-file-alt'></i>Hóa đơn</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class='fas fa-money-check'></i>Vé</a>
+                            <a class="nav-link" href="#!tickets"><i class='fas fa-money-check'></i>Vé</a>
                         </li> <br>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class='fas fa-chart-line'></i>Thống Kê</a>
+                            <a class="nav-link" href="#!statistics"><i class='fas fa-chart-line'></i>Thống Kê</a>
                         </li>
                         
                         
@@ -72,27 +73,37 @@
                 </div>
             </nav>
         </nav>
-        <section class="row">
-        <div class="col mt-4" >
-        
+        <div>
             <p class="ng-view"></p>
-            </div>
-        </section>
-        
-	<footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-dark" href="">VS Cinema</a>
-  </div>
-  <!-- Copyright -->
-</footer>
+        </div>
+        <footer class="row"></footer>
 
      </main>
-  
+<!--     <div class="row"> -->
+<!--         <nav class="navbar navbar-inverse" style="font-variant: small-caps;"> -->
+<!--             <div class="container-fluid"> -->
+<!--                 <ul class="nav navbar-nav"> -->
+<!--                     <li><a href="/">Home</a> </li> -->
+<!--                     <li><a href="#!product">Sản Phẩm</a></li> -->
+<!--                     <li><a href="#!account">Người Dùng</a></li> -->
+<!--                     <li><a href="#!authorize">Phân Quyền</a></li> -->
+<!--                     <li><a href="/security/logoff">SignOut</a></li> -->
+<!--                 </ul> -->
+<!--             </div>   -->
+<!--         </nav> -->
+
+       
+
+<!--      </div> -->
    
    
-   
+<!--     <footer class="row"> -->
+<!--         <div class="panel panel-defauld"> -->
+<!--             <div class="panel-body text-center"> -->
+<!--                 <h3>Khuehnpc00516</h3> -->
+<!--             </div> -->
+<!--         </div> -->
+    <!-- </footer>  -->
     <script src="/assets/admin/admin-app.js"></script>
     <script src="/assets/admin/product/product-ctrl.js"></script>
     <script src="/assets/admin/account/account-ctrl.js"></script>
