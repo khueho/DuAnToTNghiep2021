@@ -1,0 +1,63 @@
+
+<form action="" method="post">
+	<div class="card">
+
+		<div class="card-body">
+			<div class="row">
+	
+				<div class="col-6 ">
+					<div class="form-group ">
+						<label>Movie</label> 
+						<select  class="form-control ">
+                                <option >Siêu Nhân Gao</option>
+                                <option >Siêu Nhân Cuồng Phong</option>
+                            </select>
+
+					</div>
+					<div class="form-group">
+						<label >Cinema</label> 
+						<select  class="form-control ">
+                                <option >VS NINH KIỀU</option>
+                                <option >VS XUÂN KHÁNH</option>
+                            </select>
+					</div>
+					<div class="form-group" >
+						<label >Room</label> 
+						<select  class="form-control ">
+                                <option >P1</option>
+                                <option >P2</option>
+                            </select>
+					</div>
+					
+				</div>
+				<div class="col-6">
+				<div class="form-group" >
+						<label >Date</label> 
+						<input type="date" class="form-control">
+					</div>
+				<div class="form-group" >
+						<label >Start time</label> 
+						<input type="time" class="form-control">
+					</div>
+					<div class="form-group" >
+						<label >End time</label> 
+						<input type="time" class="form-control">
+					</div>
+				
+				</div>
+			</div>
+
+		</div>
+		<div class="card-footer text-muted">
+			<button class="btn btn-primary"
+				formaction="Admin/VideosManagement/create">Create</button>
+			<button class="btn btn-warning"
+				formaction="Admin/VideosManagement/update">Update</button>
+			<button class="btn btn-danger"
+				formaction="Admin/VideosManagement/delete">Delete</button>
+			<button class="btn btn-info"
+				formaction="Admin/VideosManagement/reset">Reset</button>
+		</div>
+	</div>
+</form>
+

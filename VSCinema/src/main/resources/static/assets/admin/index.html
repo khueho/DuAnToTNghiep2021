@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Website AdminisTrantation</title>
+<!-- Latest compiled and minified CSS -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/assets/css/bootstrap-4.5.3-dist/css/bootstrap.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<link rel="icon" href="/assets/images/LOGO.png">
+
+</head>
+<body ng-app="admin-app"  >
+     <main class="container-fluid"  >
+        <nav class="row">
+            <nav class="navbar navbar-expand-sm navbar-light bg-light col">
+                <a class="navbar-brand" href="#"> <img alt="" src="/assets/images/LOGO.png" style="width: 100px"> QUẢN LÝ</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://localhost:8080/assets/admin/index.html"><i class='fas fa-home'></i>Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!cinema"><i class='fas fa-gopuram'></i>  Rạp</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!movie"> <i class='fas fa-film'></i>Phim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!show"><i class='fas fa-calendar-alt'></i>Suất Chiếu </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!authorize"><i class='fas fa-user-cog'></i>Phân Quyền</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!account"><i class='fas fa-users'></i>Khách Hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class='fas fa-pizza-slice'></i>Food</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class='fas fa-bookmark'></i>Mã khuyến mãi </a>
+                        </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="#"><i class='fas fa-file-alt'></i>Hóa đơn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class='fas fa-money-check'></i>Vé</a>
+                        </li> <br>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class='fas fa-chart-line'></i>Thống Kê</a>
+                        </li>
+                        
+                        
+                    </ul>
+                    
+                </div>
+            </nav>
+        </nav>
+        <section class="row">
+        <div class="col mt-4" >
+        
+            <p class="ng-view"></p>
+            </div>
+        </section>
+        
+	<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="">VS Cinema</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+     </main>
+  
+   
+   
+   
+    <script src="/assets/admin/admin-app.js"></script>
+    <script src="/assets/admin/product/product-ctrl.js"></script>
+    <script src="/assets/admin/account/account-ctrl.js"></script>
+    <script src="/assets/admin/authority/authority-ctrl.js"></script>
+    
+</body> 
+</html>
