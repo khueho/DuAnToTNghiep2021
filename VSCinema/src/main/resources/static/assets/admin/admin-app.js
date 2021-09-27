@@ -6,7 +6,26 @@ app.config(function($routeProvider){
         templateUrl :"/assets/admin/cinema/index.html",
         
     })
-    .when("/foods" ,{
+    .when("/room" ,{
+        templateUrl :"/assets/admin/room/index.html",
+        
+    })
+     .when("/movie" ,{
+        templateUrl :"/assets/admin/movie/index.html",
+     })
+     .when("/show" ,{
+        templateUrl :"/assets/admin/show/index.html",
+         
+     })
+     .when("/account" ,{
+        templateUrl :"/assets/admin/account/index.html",
+         
+     })
+     .when("/authorize" ,{
+        templateUrl :"/assets/admin/authority/index.html",
+        
+    })
+      .when("/foods" ,{
         templateUrl :"/assets/admin/food/index.html",
     })
     .when("/sales" ,{
