@@ -10,4 +10,8 @@ public class HomeController {
 	public String admin () {
 		return "redirect:/assets/admin/index.html";
 	}
+	@RequestMapping("/index")
+	public String index() {
+		return "home/index";
+	}
 }
