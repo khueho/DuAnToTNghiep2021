@@ -4,13 +4,12 @@
             <thead class="bg-success" style="font-variant: small-caps;">
                 <tr>
                     <th></th>
-                   
                     <th ng-repeat="role in roles" class="text-center">{{role.name}}</th>
                 </tr>
             </thead>
         
         <tbody>
-            <tr ng-repeat="acc in admins "  >
+            <tr ng-repeat="acc in users "  >
                 <td>{{acc.fullname}}</td>
                 
                 <th ng-repeat="role in roles" class="text-center">
@@ -21,6 +20,4 @@
             </tr>
         </tbody>
     </table>
-   
-  
-    </div>
+</div>

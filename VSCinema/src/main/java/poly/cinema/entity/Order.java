@@ -44,5 +44,9 @@ public class Order  implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
-	List<OrderDetail> orderDetails ;
+	List<OrderFood> orderDetails ;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "order")
+	List<Ticket> tickets ;
 }

@@ -42,9 +42,7 @@ public class Sale  implements Serializable{
 	@JoinColumn(name = "Foodsid")
 	Food food;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "sale")
-	List<OrderDetail> orderDetails ;
+	
 	
 
 

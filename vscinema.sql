@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 07, 2021 lúc 10:50 AM
+-- Thời gian đã tạo: Th10 16, 2021 lúc 10:09 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `vscinema`
 --
-create database vscinema;
-use vscinema;
 
 -- --------------------------------------------------------
 
@@ -40,12 +38,25 @@ CREATE TABLE `authorities` (
 --
 
 INSERT INTO `authorities` (`Id`, `Username`, `Roleid`) VALUES
-(1, 'hieunnpc00795', 'MOD'),
-(2, 'khuehnpc00516', 'MOD'),
-(3, 'nhieuntpc00810', 'STA'),
-(4, 'huyntpc00617', 'STA'),
-(5, 'thainmpc00782', 'US'),
-(6, 'hainnpc00645', 'US');
+(3, 'hieunnpc00795', 'MOD'),
+(4, 'khuehnpc00516', 'MOD'),
+(5, 'nhieuntpc00810', 'STA'),
+(6, 'huyntpc00617', 'STA'),
+(7, 'thainmpc00782', 'US'),
+(8, 'hainnpc00645', 'US');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `censors`
+--
+
+CREATE TABLE `censors` (
+  `Id` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Showid` int(11) NOT NULL,
+  `Createdate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -57,7 +68,7 @@ CREATE TABLE `cinemas` (
   `Id` int(11) NOT NULL,
   `Cityid` varchar(6) NOT NULL,
   `Name` varchar(100) NOT NULL,
-  `Address` varchar(50) NOT NULL
+  `Address` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -65,11 +76,11 @@ CREATE TABLE `cinemas` (
 --
 
 INSERT INTO `cinemas` (`Id`, `Cityid`, `Name`, `Address`) VALUES
-(1, '02HCM', 'CGV Hùng Vương Plaza', 'Tầng 7 | Hùng Vương Plaza 126 Hùng Vương Quận 5 Tp'),
-(2, '02HCM', 'CGV Aeon Tân Phú', 'Lầu 3, Aeon Mall 30 Bờ Bao Tân Thắng, P. Sơn Kỳ Qu'),
+(2, '02HCM', 'CGV Aeon Tân Phú', 'Lầu 3, Aeon Mall 30 Bờ Bao Tân Thắng, P. Sơn Kỳ Quận Tân Phú TP. Hồ Chí Minh'),
 (3, '55CT', 'CGV Vincom Hùng Vương', '02 Hùng Vương, Quận Ninh Kiều, TP. Cần Thơ'),
-(4, '55CT', 'CGV Vincom Xuân Khánh', 'Tầng 5, Tòa nhà 209, Đường 30/04, Phường Xuân Khán'),
-(5, '55CT', 'CGV Sense Cities', 'Lầu 3, Sense Cities 1 Đại Lộ Hòa Bình Quận Ninh Ki');
+(4, '55CT', 'CGV Vincom Xuân Khánh', 'Tầng 5, Tòa nhà 209, Đường 30/04, Phường Xuân Khánh, Quận Ninh Kiều, Tp. Cần Thơ'),
+(5, '55CT', 'CGV Sense Cities', 'Lầu 3, Sense Cities 1 Đại Lộ Hòa Bình Quận Ninh Kiều TP. Cần Thơ'),
+(6, '02HCM', 'CGV Hùng Vương Plaza', 'Tầng 7 | Hùng Vương Plaza 126 Hùng Vương Quận 5 Tp. Hồ Chí Minh');
 
 -- --------------------------------------------------------
 
@@ -155,7 +166,7 @@ CREATE TABLE `foods` (
 --
 
 INSERT INTO `foods` (`Id`, `Cinemasid`, `Name`, `Price`, `Createdate`, `Description`, `Active`, `Image`) VALUES
-(1, 1, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', 'SNACK_COMBO.png'),
+(1, 2, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', 'SNACK_COMBO.png'),
 (2, 5, 'MILO COMBO 2021', 99000, '2021-05-10', '1 bắp Caramel lớn + 1 Milo hộp giấy + 1 nước ngọt', b'1', 'MILO_COMBO_2021.png'),
 (3, 2, 'MY COMBO', 79000, '2021-05-10', '1 bắp vừa + 1 nước siêu lớn.', b'1', 'MY_COMBO.png'),
 (4, 3, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', 'SNACK_COMBO.png'),
@@ -226,14 +237,14 @@ INSERT INTO `movies` (`Id`, `Genresid`, `Ratedsid`, `Name`, `Director`, `Cast`, 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orderdetails`
+-- Cấu trúc bảng cho bảng `orderfoods`
 --
 
-CREATE TABLE `orderdetails` (
+CREATE TABLE `orderfoods` (
   `Id` int(11) NOT NULL,
-  `OrderId` varchar(10) NOT NULL,
+  `Orderid` varchar(10) NOT NULL,
   `Foodsid` int(11) NOT NULL,
-  `Salesid` int(11) NOT NULL,
+  `Discount` float NOT NULL,
   `Price` int(11) NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -250,7 +261,7 @@ CREATE TABLE `orders` (
   `Createdate` date NOT NULL,
   `Time` time NOT NULL,
   `Totalmoney` int(11) NOT NULL,
-  `Active` bit(1) NOT NULL
+  `Active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -266,6 +277,21 @@ CREATE TABLE `price_history` (
   `Price` int(11) NOT NULL,
   `Createdate` date NOT NULL,
   `Time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `price_shows`
+--
+
+CREATE TABLE `price_shows` (
+  `Id` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `Createdate` date NOT NULL,
+  `Expiry` date NOT NULL,
+  `Timeslot` time NOT NULL,
+  `Activity` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -398,11 +424,14 @@ INSERT INTO `seats` (`Id`, `Roomsid`, `Typesid`, `Rowposition`, `Colposition`) V
 
 CREATE TABLE `shows` (
   `Id` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
   `Moviesid` int(11) NOT NULL,
   `Roomsid` int(11) NOT NULL,
+  `Priceid` int(11) NOT NULL,
   `Showdate` date NOT NULL,
   `Starttime` time NOT NULL,
-  `Endtime` time NOT NULL
+  `Endtime` time NOT NULL,
+  `Activity` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -413,7 +442,7 @@ CREATE TABLE `shows` (
 
 CREATE TABLE `tickets` (
   `Id` varchar(10) NOT NULL,
-  `Username` varchar(30) NOT NULL,
+  `Orderid` varchar(10) NOT NULL,
   `Showsid` int(11) NOT NULL,
   `Seatid` int(11) NOT NULL,
   `Createdate` date NOT NULL,
@@ -431,7 +460,7 @@ CREATE TABLE `tickets` (
 
 CREATE TABLE `tickets_coupons` (
   `Id` int(11) NOT NULL,
-  `Ticketsid` varchar(10) NOT NULL,
+  `Username` varchar(30) NOT NULL,
   `Couponsid` varchar(15) NOT NULL,
   `Dateuse` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -511,6 +540,14 @@ ALTER TABLE `authorities`
   ADD KEY `Roleid` (`Roleid`);
 
 --
+-- Chỉ mục cho bảng `censors`
+--
+ALTER TABLE `censors`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Username` (`Username`),
+  ADD KEY `Showid` (`Showid`);
+
+--
 -- Chỉ mục cho bảng `cinemas`
 --
 ALTER TABLE `cinemas`
@@ -547,16 +584,15 @@ ALTER TABLE `genres`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `Ratedsid` (`Ratedsid`),
-  ADD KEY `Genresid` (`Genresid`);
+  ADD KEY `Genresid` (`Genresid`),
+  ADD KEY `Ratedsid` (`Ratedsid`);
 
 --
--- Chỉ mục cho bảng `orderdetails`
+-- Chỉ mục cho bảng `orderfoods`
 --
-ALTER TABLE `orderdetails`
+ALTER TABLE `orderfoods`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `Salesid` (`Salesid`),
-  ADD KEY `OrderId` (`OrderId`),
+  ADD KEY `Orderid` (`Orderid`),
   ADD KEY `Foodsid` (`Foodsid`);
 
 --
@@ -573,6 +609,12 @@ ALTER TABLE `price_history`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `Username` (`Username`),
   ADD KEY `Foodsid` (`Foodsid`);
+
+--
+-- Chỉ mục cho bảng `price_shows`
+--
+ALTER TABLE `price_shows`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Chỉ mục cho bảng `rateds`
@@ -613,15 +655,17 @@ ALTER TABLE `seats`
 --
 ALTER TABLE `shows`
   ADD PRIMARY KEY (`Id`),
+  ADD KEY `Username` (`Username`),
   ADD KEY `Moviesid` (`Moviesid`),
-  ADD KEY `Roomsid` (`Roomsid`);
+  ADD KEY `Roomsid` (`Roomsid`),
+  ADD KEY `Priceid` (`Priceid`);
 
 --
 -- Chỉ mục cho bảng `tickets`
 --
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `Username` (`Username`),
+  ADD KEY `Orderid` (`Orderid`),
   ADD KEY `Showsid` (`Showsid`),
   ADD KEY `Seatid` (`Seatid`);
 
@@ -630,7 +674,7 @@ ALTER TABLE `tickets`
 --
 ALTER TABLE `tickets_coupons`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `Ticketsid` (`Ticketsid`),
+  ADD KEY `Username` (`Username`),
   ADD KEY `Couponsid` (`Couponsid`);
 
 --
@@ -660,7 +704,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `authorities`
 --
 ALTER TABLE `authorities`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `censors`
+--
+ALTER TABLE `censors`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `cinemas`
@@ -681,15 +731,21 @@ ALTER TABLE `movies`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `orderdetails`
+-- AUTO_INCREMENT cho bảng `orderfoods`
 --
-ALTER TABLE `orderdetails`
+ALTER TABLE `orderfoods`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `price_history`
 --
 ALTER TABLE `price_history`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `price_shows`
+--
+ALTER TABLE `price_shows`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -740,6 +796,13 @@ ALTER TABLE `authorities`
   ADD CONSTRAINT `authorities_ibfk_2` FOREIGN KEY (`Roleid`) REFERENCES `roles` (`Id`);
 
 --
+-- Các ràng buộc cho bảng `censors`
+--
+ALTER TABLE `censors`
+  ADD CONSTRAINT `censors_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
+  ADD CONSTRAINT `censors_ibfk_2` FOREIGN KEY (`Showid`) REFERENCES `shows` (`Id`);
+
+--
 -- Các ràng buộc cho bảng `cinemas`
 --
 ALTER TABLE `cinemas`
@@ -755,16 +818,15 @@ ALTER TABLE `foods`
 -- Các ràng buộc cho bảng `movies`
 --
 ALTER TABLE `movies`
-  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`Ratedsid`) REFERENCES `rateds` (`Id`),
-  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`Genresid`) REFERENCES `genres` (`Id`);
+  ADD CONSTRAINT `movies_ibfk_1` FOREIGN KEY (`Genresid`) REFERENCES `genres` (`Id`),
+  ADD CONSTRAINT `movies_ibfk_2` FOREIGN KEY (`Ratedsid`) REFERENCES `rateds` (`Id`);
 
 --
--- Các ràng buộc cho bảng `orderdetails`
+-- Các ràng buộc cho bảng `orderfoods`
 --
-ALTER TABLE `orderdetails`
-  ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`Salesid`) REFERENCES `sales` (`Id`),
-  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`Id`),
-  ADD CONSTRAINT `orderdetails_ibfk_3` FOREIGN KEY (`Foodsid`) REFERENCES `foods` (`Id`);
+ALTER TABLE `orderfoods`
+  ADD CONSTRAINT `orderfoods_ibfk_1` FOREIGN KEY (`Orderid`) REFERENCES `orders` (`Id`),
+  ADD CONSTRAINT `orderfoods_ibfk_2` FOREIGN KEY (`Foodsid`) REFERENCES `foods` (`Id`);
 
 --
 -- Các ràng buộc cho bảng `orders`
@@ -802,14 +864,16 @@ ALTER TABLE `seats`
 -- Các ràng buộc cho bảng `shows`
 --
 ALTER TABLE `shows`
-  ADD CONSTRAINT `shows_ibfk_1` FOREIGN KEY (`Moviesid`) REFERENCES `movies` (`Id`),
-  ADD CONSTRAINT `shows_ibfk_2` FOREIGN KEY (`Roomsid`) REFERENCES `rooms` (`Id`);
+  ADD CONSTRAINT `shows_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
+  ADD CONSTRAINT `shows_ibfk_2` FOREIGN KEY (`Moviesid`) REFERENCES `movies` (`Id`),
+  ADD CONSTRAINT `shows_ibfk_3` FOREIGN KEY (`Roomsid`) REFERENCES `rooms` (`Id`),
+  ADD CONSTRAINT `shows_ibfk_4` FOREIGN KEY (`Priceid`) REFERENCES `price_shows` (`Id`);
 
 --
 -- Các ràng buộc cho bảng `tickets`
 --
 ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`Orderid`) REFERENCES `orders` (`Id`),
   ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`Showsid`) REFERENCES `shows` (`Id`),
   ADD CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`Seatid`) REFERENCES `seats` (`Id`);
 
@@ -817,7 +881,7 @@ ALTER TABLE `tickets`
 -- Các ràng buộc cho bảng `tickets_coupons`
 --
 ALTER TABLE `tickets_coupons`
-  ADD CONSTRAINT `tickets_coupons_ibfk_1` FOREIGN KEY (`Ticketsid`) REFERENCES `tickets` (`Id`),
+  ADD CONSTRAINT `tickets_coupons_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `users` (`Username`),
   ADD CONSTRAINT `tickets_coupons_ibfk_2` FOREIGN KEY (`Couponsid`) REFERENCES `coupons` (`Id`);
 
 --

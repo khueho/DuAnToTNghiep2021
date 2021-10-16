@@ -45,8 +45,8 @@ public class Ticket  implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "Username")
-	User user;
+	@JoinColumn(name = "Orderid")
+	Order order;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "ticket")

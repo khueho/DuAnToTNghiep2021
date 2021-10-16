@@ -30,7 +30,7 @@ public class User  implements Serializable{
 	Boolean gender ;
 	String cmnd ;
 	String address ;
-	String photo;
+	String image;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -40,9 +40,6 @@ public class User  implements Serializable{
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	List<Authority> authorities;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	List<Ticket> tickets;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -51,6 +48,14 @@ public class User  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	List<PriceHistory> priceHistories ;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	List<Censor> censors;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	List<Show> shows ;
 	
 	
 	

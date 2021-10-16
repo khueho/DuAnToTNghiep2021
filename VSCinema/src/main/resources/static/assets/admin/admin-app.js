@@ -19,11 +19,11 @@ app.config(function($routeProvider){
      })
      .when("/account" ,{
         templateUrl :"/assets/admin/account/index.html",
-         
+
      })
      .when("/authorize" ,{
         templateUrl :"/assets/admin/authority/index.html",
-        
+        controller: "authority-ctrl"
     })
       .when("/foods" ,{
         templateUrl :"/assets/admin/food/index.html",
@@ -36,6 +36,12 @@ app.config(function($routeProvider){
     })
 	.when("/tickets" ,{
         templateUrl :"/assets/admin/ticket/index.html",
+    })
+    .when("/censors" ,{
+        templateUrl :"/assets/admin/censor/index.html",
+    })
+    .when("/prices" ,{
+        templateUrl :"/assets/admin/price/index.html",
     })
 	.when("/statistics" ,{
         templateUrl :"/assets/admin/statistics/index.html",

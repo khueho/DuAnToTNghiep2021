@@ -29,6 +29,7 @@ public class Show  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
+	Boolean activity;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Showdate")
@@ -52,10 +53,22 @@ public class Show  implements Serializable{
 	@JoinColumn(name = "Roomsid")
 	Room room;
 	
+	@ManyToOne
+	@JoinColumn(name = "Username")
+	User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "Priceid")
+	PriceShow priceShow;
+	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "show")
 	List<Ticket> tickets;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "show")
+	List<Censor> censors ;
 
 	
 	
