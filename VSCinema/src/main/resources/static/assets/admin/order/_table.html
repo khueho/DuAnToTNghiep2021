@@ -9,8 +9,8 @@
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
 		    </h5>
 			<h5 class="form-inline my-2 my-lg-0 col-3">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      <input class="form-control mr-sm-2" type="search" ng-model="id"  placeholder="Search" aria-label="Search">
+		      <button   class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		    </h5>
 		</div>
 	</div>
@@ -27,53 +27,13 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">AB090900</th>
-		      <td>hieunnpc00795</td>
-		      <td>26/09/2021</td>
-		      <td>188.000đ</td>
-		      <td>Đã nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">AB999999</th>
-		      <td>nhieunt</td>
-		      <td>26/09/2021</td>
-		      <td>288.000đ</td>
-		      <td>Chưa nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">AA000000</th>
-		      <td>khuehn</td>
-		      <td>26/09/2021</td>
-		      <td>190.000đ</td>
-		      <td>Đã nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">CV111000</th>
-		      <td>thainm</td>
-		      <td>26/09/2021</td>
-		      <td>200.000đ</td>
-		      <td>Đã nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">NT222222</th>
-		      <td>hainn</td>
-		      <td>26/09/2021</td>
-		      <td>88.000đ</td>
-		      <td>Chưa nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">HH666999</th>
-		      <td>huynt</td>
-		      <td>26/09/2021</td>
-		      <td>100.000đ</td>
-		      <td>Chưa nhận</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
+		    <tr ng-repeat="or in pager.items| filter:{id:id}">
+		      <td scope="row">{{or.id}}</td>
+		      <td>{{or.user.username}}</td>
+		      <td>{{or.createdate}}</td>
+		      <td>{{or.totalmoney | currency:"":0}}VNĐ</td>
+		      <td>{{or.active?'Đã nhận':'Chưa nhận'}}</td>
+		      <td><button ng-click="edit(or)" type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
 		    </tr>
 		  </tbody>
 		</table>

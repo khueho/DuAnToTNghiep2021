@@ -33,7 +33,7 @@ public class OrderFood  implements Serializable{
 	Food food;
 	
 	@ManyToOne
-	@JoinColumn(name = "OrderId")
+	@JoinColumn(name = "Orderid")
 	Order order;
 	
 	

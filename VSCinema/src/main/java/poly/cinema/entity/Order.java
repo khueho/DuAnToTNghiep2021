@@ -40,11 +40,11 @@ public class Order  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
-	List<OrderFood> orderDetails ;
+	List<OrderFood> orderDetails;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")

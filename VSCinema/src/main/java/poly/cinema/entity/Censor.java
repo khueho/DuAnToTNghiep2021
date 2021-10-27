@@ -42,7 +42,7 @@ public class Censor  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 	
 
 

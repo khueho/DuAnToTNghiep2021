@@ -3,25 +3,20 @@ package poly.cinema.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import poly.cinema.entity.Account;
-import poly.cinema.service.UserService;
+import poly.cinema.entity.Cinema;
+import poly.cinema.service.CinemaService;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/users")
-public class UserRestController {
-
+@RequestMapping("rest/cinemas")
+public class CinemaRestController {
 	@Autowired
-	UserService userService;
-	
-	@GetMapping()
-	public List<Account> getUsers() {
-		return userService.finAll();
+	CinemaService cinemaService;
+	@GetMapping
+	public List<Cinema> getAll(){
+		return cinemaService.findAll();
 	}
-	
 }

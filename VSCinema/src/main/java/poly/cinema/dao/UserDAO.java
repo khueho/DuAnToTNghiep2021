@@ -2,8 +2,8 @@ package poly.cinema.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import poly.cinema.entity.User;
+import poly.cinema.entity.Account;
 
-public interface UserDAO extends JpaRepository<User, String>{
+public interface UserDAO extends JpaRepository<Account, String>{
 
 }

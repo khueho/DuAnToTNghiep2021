@@ -23,55 +23,47 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "shows")
-public class Show  implements Serializable{
+public class Show implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 	Boolean activity;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Showdate")
 	Date showDate = new Date();
-	
+
 	@Temporal(TemporalType.TIME)
 	@Column(name = "Starttime")
 	Date startTime = new Date();
-	
+
 	@Temporal(TemporalType.TIME)
 	@Column(name = "Endtime")
 	Date endTime = new Date();
 
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "Moviesid")
 	Movie movie;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "Roomsid")
 	Room room;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
-	
+	Account user;
+
 	@ManyToOne
 	@JoinColumn(name = "Priceid")
 	PriceShow priceShow;
-	
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "show")
 	List<Ticket> tickets;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "show")
-	List<Censor> censors ;
-
-	
-	
-
-	
+	List<Censor> censors;
 }

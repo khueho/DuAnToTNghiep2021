@@ -8,6 +8,7 @@ app.config(function($routeProvider){
     })
     .when("/room" ,{
         templateUrl :"/assets/admin/room/index.html",
+		controller:"room-ctrl"
         
     })
      .when("/movie" ,{
@@ -33,6 +34,7 @@ app.config(function($routeProvider){
     })
     .when("/orders" ,{
         templateUrl :"/assets/admin/order/index.html",
+		controller: "order-ctrl"
     })
 	.when("/tickets" ,{
         templateUrl :"/assets/admin/ticket/index.html",

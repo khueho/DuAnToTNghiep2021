@@ -20,7 +20,7 @@ import poly.cinema.entity.Authority;
 @Data
 @Entity 
 @Table(name = "users")
-public class User  implements Serializable{
+public class Account  implements Serializable{
 	@Id
 	String username;
 	String password;

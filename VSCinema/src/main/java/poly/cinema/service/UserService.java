@@ -2,10 +2,10 @@ package poly.cinema.service;
 
 import java.util.List;
 
-import poly.cinema.entity.User;
+import poly.cinema.entity.Account;
 
 public interface UserService {
 
-	List<User> finAll();
+	List<Account> finAll();
 
 }

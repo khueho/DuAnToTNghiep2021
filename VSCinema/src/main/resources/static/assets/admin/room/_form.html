@@ -1,134 +1,120 @@
 <div class="card">
 	<div class="card-header">
 		<div class="card-title row">
-			<h5 class="col-10">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-						d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    <path
-						d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                    <path
-						d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                  </svg>
+			<h5 class="col-12">
+				<ion-icon name="information-outline" style="font-size:25px"></ion-icon>
 				THÔNG TIN PHÒNG CHIẾU
 			</h5>
 		</div>
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-3">
-				<div class="form-group">
-				    <input type="text" class="form-control" placeholder="Tên phòng">
+			<div class="col-3 form-group">				
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Tên phòng"
+							ng-model="form.name" ng-class="error.name?'border-danger':' '"> 
+						<div class="input-group-append" ng-show="error.name">
+							<span class="input-group-text fa fa-times bg-danger text-light"></span>
+						</div>
+					</div>
+					<span class="text-danger" ng-show="error.name">{{error.name}}</span>
+			</div>
+			<div class="col-3 form-group">
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Số lượng cột ghế" ng-model="form.totalcolumn" ng-class="error.totalcolumn?'border-danger':' '">
+					<div class="input-group-append" ng-show="error.totalcolumn">
+						<span class="input-group-text fa fa-times bg-danger text-light"></span>
+					</div>
 				</div>
+				<span class="text-danger" ng-show="error.totalrow">{{error.totalcolumn}}</span>
+			</div>
+			<div class="col-3 form-group">
+				<div class="input-group">
+					<input type="text" class="form-control"
+						placeholder="Số lượng hàng ghế" ng-model="form.totalrow" ng-class="error.totalrow?'border-danger':' '">
+					<div class="input-group-append" ng-show="error.totalrow">
+						<span class="input-group-text fa fa-times bg-danger text-light"></span>
+					</div>	
+				</div>
+				<span class="text-danger" ng-show="error.totalrow">{{error.totalrow}}</span>
 			</div>
 			<div class="col-3">
 				<div class="form-group">
-				    <input type="text" class="form-control" placeholder="Số lượng cột ghế">
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="form-group">
-				    <input type="text" class="form-control" placeholder="Số lượng cột ghế">
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
+					<button type="button" ng-click="create()"
+						class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+						<img alt="" src="/assets/images/edit.png"> Create
+					</button>
+					<button type="button" ng-click="update()"
+						class="btn btn-outline-dark border border-warning text-warning font-weight-bold">
+						<img alt="" src="/assets/images/write.png"> Update
+					</button>
 				</div>
 			</div>
 			<br> <br>
-			<div class="col-3">
-				<select class="custom-select">
-					<option selected>Tỉnh/Thành phố</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select>
-			</div>
-			<div class="col-3">
-				<div class="form-group">
-					<select class="custom-select">
-						<option selected>Rạp chiếu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
+			<div class="col-3 form-group">
+				<div class="input-group">
+					<select class="custom-select" ng-model="form.cinema.id">
+						<option value="">Rạp chiếu</option>
+						<option ng-repeat="c in cinemas" ng-value="c.id">{{c.name}}</option>
 					</select>
+					<div class="input-group-append" ng-show="error.cinema">
+								<span class="input-group-text fa fa-times bg-danger text-light"></span>
+					</div> 
+				</div>
+				<span class="text-danger" ng-show="error.cinema">{{error.cinema}}</span>
+			</div>
+			<div class="col-6">
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="radio"
+						class="form-check-input" ng-model="form.activity" ng-value="true" name="activity">Hoạt động
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label"> <input type="radio"
+						class="form-check-input" ng-model="form.activity" ng-value="false" name="activity">Bảo Trì
+					</label>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="form-group">
-					<select class="custom-select">
-						<option selected>Trạng thái phòng</option>
-						<option value="1">Hoạt động</option>
-						<option value="2">Bảo trì</option>
-					</select>
+					<button type="button" ng-click="delete(form.id)"
+						class="btn btn-outline-dark border border-danger text-danger font-weight-bold">
+						<img alt="" src="/assets/images/trash.png">Delete
+					</button>
+					<button type="button" ng-click="reset()"
+						class="btn btn-outline-dark border border-success text-success font-weight-bold">
+						<img alt="" src="/assets/images/updated.png">Reset
+					</button>
 				</div>
 			</div>
-			<div class="col-3">
-				<div class="form-group">
-				     <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				     <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
+			<div class="card-body" ng-show="seatpager.seats.length >0">
+				<table class="table table-dark">
+			  		<thead>
+			    		<tr>
+							<th>Tên Phòng</th>
+							<th>Loại ghế</th>
+							<th>Vị trí hàng</th>
+							<th>Vị trí cột</th>	
+			    		</tr>
+			  		</thead>
+			  		<tbody>
+			  			<tr ng-repeat="s in seatpager.seats">
+			  				<td>{{s.room.name}}</td>
+			  				<td>{{s.type.name}}</td>
+			  				<td>{{s.colposition}}</td>
+			  				<td>{{s.rowposition}}</td>
+			  			</tr>  	
+			  		</tbody>
+				</table>
+				<div class="d-flex justify-content-center">
+					<button ng-click="seatpager.first()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
+					<button ng-click="seatpager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
+					<button ng-click="seatpager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> {{seatpager.page+1}} of {{seatpager.count}}</button>
+					<button ng-click="seatpager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
+					<button ng-click="seatpager.last()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
 				</div>
 			</div>
-		</div>	
-		<br>
-		<div style="height: 2px; background-color: black;"></div> <br>
-		<div class="row">
-			<table class="table table-dark">
-				<thead>
-				    <tr>
-				      <th scope="col">ID</th>
-				      <th scope="col">Mã phòng</th>
-				      <th scope="col">Vị trí cột</th>
-				      <th scope="col">Vị trí hàng</th>
-				      <th scope="col">Ghế thường</th>
-				      <th scope="col">Ghế VIP</th>
-				      <th scope="col">Edit</th>
-				    </tr>
-			  </thead>
-			  <tbody>
-			  		<tr>
-			  			<td>1</td>
-			  			<td>1</td>
-			  			<td>1</td>
-			  			<td>A</td>
-			  			<td>
-			  				<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline1">Ghế thường</label>
-							</div>		  			
-			  			</td>
-			  			<td>
-			  				<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline2">Ghế VIP</label>
-							</div>
-			  			</td>
-			  			<td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> Submit</button></td>
-			  		</tr>
-			  		<tr>
-			  			<td>2</td>
-			  			<td>2</td>
-			  			<td>5</td>
-			  			<td>C</td>
-			  			<td>
-			  				<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline1">Ghế thường</label>
-							</div>		  			
-			  			</td>
-			  			<td>
-			  				<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline2">Ghế VIP</label>
-							</div>
-			  			</td>
-			  			<td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> Submit</button></td>
-			  		</tr>
-			  </tbody>
-			</table>
 		</div>
 	</div>
 	<div class="card-footer">Thông tin chi tiết hóa đơn.</div>

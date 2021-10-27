@@ -29,6 +29,6 @@ public class Token  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 }
 
