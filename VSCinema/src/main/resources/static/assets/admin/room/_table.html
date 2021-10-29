@@ -8,23 +8,18 @@
 				DANH SÁCH PHÒNG CHIẾU
 			</h5>
 			<h5 class="form-inline my-2 my-lg-0 col-4">
-				<select class="custom-select mr-sm-2">
-					<option selected>Tỉnh/Thành phố</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
-				</select> 
-				<select class="custom-select mr-sm-2">
-					<option selected>Rạp chiếu</option>
-					<option value="1">One</option>
-					<option value="2">Two</option>
-					<option value="3">Three</option>
+				<select class="custom-select mr-sm-2" ng-model="form.cinema.id" ng-change="filter()">
+					<option ng-repeat="c in cinemas" ng-value="c.id">{{c.name}}</option>
 				</select>
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+				<button ng-click="reset()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Reset</button>
 		    </h5>
 			<h5 class="form-inline my-2 my-lg-0 col-3">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      <input class="form-control mr-sm-2"  type="search" placeholder="Search" ng-model="search[columns]" aria-label="Search">
+   			  <select ng-model="columns" class="form-control" id="exampleFormControlSelect1">
+      			<option value="id">Id</option>
+      			<option value="name">Name</option>
+    		  </select>
+  </div>
 		    </h5>
 		</div>
 	</div>
@@ -32,46 +27,35 @@
 		<table class="table table-dark">
 		  <thead>
 		    <tr>
-		      	<th rowspan="2">Mã rạp</th>
-				<th rowspan="2">Tên rạp</th>
-				<th rowspan="2">Mã phòng</th>
-				<th rowspan="2">Tên phòng</th>
-				<th rowspan="2">Trạng thái</th>	
-				<th rowspan="2">Chi tiết</th>
+		      	<th>Id phòng</th>
+				<th>Tên rạp</th>
+				<th>Tên Phòng</th>
+				<th>Tổng cột</th>
+				<th>Tổng hàng</th>	
+				<th>Trạng thái</th>
+				<th></th>
+				<th></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">AB090900</th>
-		      <td>Vincom Xuân Khánh</td>
-		      <td>1</td>
-		      <td>Phòng 1</td>
-		      <td>Hoạt động</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">CB000000</th>
-		      <td>Vincom Hùng Vương</td>
-		      <td>2</td>
-		      <td>Phòng 2</td>
-		      <td>Hoạt động</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">DS11111</th>
-		      <td>Sense City</td>
-		      <td>3</td>
-		      <td>Phòng 3</td>
-		      <td>Hoạt động</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
+		  		<tr ng-repeat="item in pager.items | filter:search">
+		  			<td>{{item.id}}</td>
+		  			<td>{{item.cinema.name}}</td>
+		  			<td>{{item.name}}</td>
+		  			<td>{{item.totalcolumn}}</td>
+		  			<td>{{item.totalrow}}</td>
+		  			<td>{{item.activity?'Hoạt Động':'Bảo Trì'}}</td>
+		  			<td><button type="button" ng-click="edit(item)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <ion-icon name="create-outline"></ion-icon> View</button></td>
+		  			<td><button type="button" ng-click="delete(item.id)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <ion-icon name="trash-outline"></ion-icon> Delete</button></td>
+		  		</tr>  	
 		  </tbody>
 		</table>
-		<div style="float: right;">
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
+		<div class="d-flex justify-content-center">
+			<button ng-click="pager.first()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
+			<button ng-click="pager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
+			<button ng-click="pager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> {{pager.page+1}} of {{pager.count}}</button>
+			<button ng-click="pager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
+			<button ng-click="pager.last()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
 		</div>
 	</div>
 	<div class="card-footer">Danh sách phòng chiếu</div>

@@ -23,4 +23,26 @@ public class City  implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "city")
 	List<Cinema> cinemas;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public List<Cinema> getCinemas() {
+		return cinemas;
+	}
+	public void setCinemas(List<Cinema> cinemas) {
+		this.cinemas = cinemas;
+	}
+	
+	
 }

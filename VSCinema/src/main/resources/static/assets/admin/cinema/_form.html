@@ -4,45 +4,58 @@
 	<div class="card-header">
 		<div class="card-title">
 			<h5>
-				<i class='fas fa-book'></i>
-				QUẢN LÝ THÔNG TIN RẠP 
+				<i class='fas fa-book'></i> QUẢN LÝ THÔNG TIN RẠP
 			</h5>
 		</div>
 	</div>
 	<div class="card-body">
 		<div class="row">
 			<div class="col ">
-					<div class="form-group ">
-						<label>Tên Rạp</label> <input type="text" class="form-control"
-							placeholder="Cinema Name">
-
-					</div>
-					<div class="form-group">
-						<label >Địa chỉ</label> <input type="text"
-							class="form-control" placeholder="Address">
-					</div>
-					<div class="form-group" >
-						<label >Thành phố</label> 
-						<select  class="form-control col-4">
-                                <option >Cần Thơ</option>
-                                <option >Hậu Giang</option>
-                            </select>
-					</div>
-					
+				<div class="form-group ">
+					<label>Tên Rạp</label> <input type="text" ng-model="form.name"
+						class="form-control" placeholder="Cinema Name" id="name">
 				</div>
-
+				<div class="form-group">
+					<label>Địa chỉ</label> <input type="text" class="form-control"
+						ng-model="form.address" placeholder="Address" id="address">
 				</div>
-				  <br> <br>
-				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
-				  </div>
+				<div class="form-group">
+					<label>Thành phố</label> <select ng-model="form.city.id"
+						class="form-control col-4" id="city">
+						<option value="">Chọn thành phố</option>
+						<option ng-repeat="c in city" ng-value="c.id">{{c.name}}</option>
+					</select>
+				</div>
 			</div>
+
+		</div>
+		<br> <br>
+		<div class="form-group">
+			<button type="button"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
+				ng-click="create()" ng-disabled="isEdit">
+				<img alt="" src="/assets/images/edit.png"> Create
+			</button>
+			<button type="button"
+				class="btn btn-outline-dark border border-warning text-warning font-weight-bold"
+				ng-click="update()" ng-disabled="isLoad">
+				<img alt="" src="/assets/images/write.png"> Update
+			</button>
+			<button type="button"
+				class="btn btn-outline-dark border border-danger text-danger font-weight-bold"
+				ng-click="delete(form)" ng-disabled="isLoad">
+				<img alt="" src="/assets/images/trash.png">Delete
+			</button>
+			<button type="button"
+				class="btn btn-outline-dark border border-success text-success font-weight-bold"
+				ng-click="reset()" title="Xóa trắng form nhập ?">
+				<img alt="" src="/assets/images/updated.png">Reset
+			</button>
 		</div>
 	</div>
-	<div class="card-footer">Vui lòng nhập thông tin các sản phẩm</div>
+</div>
+</div>
+<div class="card-footer">Vui lòng nhập thông tin các sản phẩm</div>
 </div>
 
 

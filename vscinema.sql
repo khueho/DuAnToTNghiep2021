@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 16, 2021 lúc 10:09 AM
+-- Thời gian đã tạo: Th10 29, 2021 lúc 09:27 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.10
 
@@ -43,7 +43,15 @@ INSERT INTO `authorities` (`Id`, `Username`, `Roleid`) VALUES
 (5, 'nhieuntpc00810', 'STA'),
 (6, 'huyntpc00617', 'STA'),
 (7, 'thainmpc00782', 'US'),
-(8, 'hainnpc00645', 'US');
+(8, 'hainnpc00645', 'US'),
+(9, 'khuehnpc00516', 'STA'),
+(10, 'staff', 'US'),
+(11, 'staff', 'US'),
+(12, 'staff', 'US'),
+(13, 'staff', 'US'),
+(14, 'staff', 'US'),
+(16, 'khue', 'US'),
+(17, 'nhieuntpc00810', 'US');
 
 -- --------------------------------------------------------
 
@@ -166,7 +174,7 @@ CREATE TABLE `foods` (
 --
 
 INSERT INTO `foods` (`Id`, `Cinemasid`, `Name`, `Price`, `Createdate`, `Description`, `Active`, `Image`) VALUES
-(1, 2, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', 'SNACK_COMBO.png'),
+(1, 2, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', '6377b073.jpg'),
 (2, 5, 'MILO COMBO 2021', 99000, '2021-05-10', '1 bắp Caramel lớn + 1 Milo hộp giấy + 1 nước ngọt', b'1', 'MILO_COMBO_2021.png'),
 (3, 2, 'MY COMBO', 79000, '2021-05-10', '1 bắp vừa + 1 nước siêu lớn.', b'1', 'MY_COMBO.png'),
 (4, 3, 'SNACK COMBO', 109000, '2021-05-10', '1 Bắp Lớn + 2 Nước Lớn + 1 Snack.', b'1', 'SNACK_COMBO.png'),
@@ -264,6 +272,14 @@ CREATE TABLE `orders` (
   `Active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`Id`, `Username`, `Createdate`, `Time`, `Totalmoney`, `Active`) VALUES
+('OR1', 'thainmpc00782', '2021-10-21', '08:43:24', 218000, 1),
+('OR2', 'thainmpc00782', '2021-10-21', '01:38:00', 200000, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -293,6 +309,13 @@ CREATE TABLE `price_shows` (
   `Timeslot` time NOT NULL,
   `Activity` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `price_shows`
+--
+
+INSERT INTO `price_shows` (`Id`, `Price`, `Createdate`, `Expiry`, `Timeslot`, `Activity`) VALUES
+(1, 60000, '2021-10-01', '2021-01-02', '08:30:00', b'1');
 
 -- --------------------------------------------------------
 
@@ -355,7 +378,15 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`Id`, `Cinemasid`, `Name`, `Totalcolumn`, `Totalrow`, `Activity`) VALUES
-(1, 5, 'Phòng 1', 5, 5, b'1');
+(1, 5, 'Phòng 1', 5, 5, b'1'),
+(2, 6, 'Phòng 2', 5, 5, b'1'),
+(3, 3, 'Phòng 3', 5, 5, b'1'),
+(4, 5, 'Phòng 4', 5, 5, b'1'),
+(5, 2, 'Phòng 5', 5, 5, b'1'),
+(6, 4, 'Phòng 3', 5, 5, b'1'),
+(7, 5, 'Phòng 2', 5, 5, b'1'),
+(8, 4, 'Phòng 4', 5, 5, b'1'),
+(9, 3, 'Phòng 5', 5, 5, b'1');
 
 -- --------------------------------------------------------
 
@@ -433,6 +464,79 @@ CREATE TABLE `shows` (
   `Endtime` time NOT NULL,
   `Activity` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `shows`
+--
+
+INSERT INTO `shows` (`Id`, `Username`, `Moviesid`, `Roomsid`, `Priceid`, `Showdate`, `Starttime`, `Endtime`, `Activity`) VALUES
+(1, 'huyntpc00617', 1, 1, 1, '2020-10-05', '08:30:00', '10:00:00', b'0'),
+(2, 'huyntpc00617', 5, 7, 1, '2021-10-25', '08:30:00', '10:00:00', b'0'),
+(3, 'huyntpc00617', 5, 2, 1, '2021-10-25', '08:30:00', '10:00:00', b'0'),
+(4, 'huyntpc00617', 3, 9, 1, '2021-10-25', '08:30:00', '10:00:00', b'0'),
+(5, 'huyntpc00617', 1, 2, 1, '2021-10-25', '08:30:00', '10:00:00', b'1'),
+(6, 'huyntpc00617', 1, 2, 1, '2021-10-25', '08:30:00', '10:30:00', b'1'),
+(7, 'huyntpc00617', 2, 9, 1, '2021-10-25', '14:28:27', '15:30:00', b'1'),
+(8, 'huyntpc00617', 2, 8, 1, '2021-10-25', '14:29:08', '15:30:00', b'1'),
+(9, 'huyntpc00617', 1, 8, 1, '2021-10-25', '10:30:00', '13:30:00', b'1'),
+(10, 'huyntpc00617', 1, 7, 1, '2021-10-25', '13:30:00', '15:30:00', b'1'),
+(11, 'huyntpc00617', 1, 5, 1, '2021-10-26', '08:30:00', '10:30:00', b'1'),
+(12, 'huyntpc00617', 1, 7, 1, '2021-10-26', '08:30:00', '10:30:00', b'1'),
+(13, 'huyntpc00617', 4, 2, 1, '2021-10-26', '08:30:00', '10:30:00', b'1'),
+(14, 'huyntpc00617', 4, 2, 1, '2021-10-26', '08:30:00', '10:30:00', b'1'),
+(15, 'huyntpc00617', 1, 1, 1, '2021-10-27', '08:30:00', '10:30:00', b'1'),
+(16, 'huyntpc00617', 1, 1, 1, '2021-10-27', '08:30:00', '10:30:00', b'1'),
+(17, 'huyntpc00617', 1, 1, 1, '2021-11-03', '08:30:00', '10:30:00', b'1'),
+(18, 'huyntpc00617', 1, 7, 1, '2021-11-03', '08:30:00', '10:30:00', b'1'),
+(19, 'huyntpc00617', 2, 8, 1, '2021-11-03', '08:30:00', '10:30:00', b'1'),
+(20, 'huyntpc00617', 1, 8, 1, '2021-11-03', '08:30:00', '10:30:00', b'1'),
+(21, 'huyntpc00617', 1, 4, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(22, 'huyntpc00617', 1, 6, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(23, 'huyntpc00617', 5, 6, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(24, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(25, 'huyntpc00617', 2, 7, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(26, 'huyntpc00617', 1, 3, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(27, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(28, 'huyntpc00617', 1, 3, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(29, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(30, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(31, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(32, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(33, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(34, 'huyntpc00617', 1, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(35, 'huyntpc00617', 1, 1, 1, '2021-11-04', '09:30:00', '11:00:00', b'1'),
+(36, 'huyntpc00617', 2, 3, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(37, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(38, 'huyntpc00617', 2, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(39, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(40, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(41, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(42, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(43, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(44, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(45, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(46, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(47, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(48, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(49, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(50, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(51, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(52, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(53, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(54, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(55, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(56, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(57, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(58, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(59, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(60, 'huyntpc00617', 1, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(61, 'huyntpc00617', 5, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(62, 'huyntpc00617', 5, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(63, 'huyntpc00617', 5, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(64, 'huyntpc00617', 3, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'0'),
+(65, 'huyntpc00617', 3, 2, 1, '2021-11-04', '08:30:00', '10:30:00', b'0'),
+(66, 'huyntpc00617', 3, 1, 1, '2021-11-04', '08:30:00', '10:30:00', b'1'),
+(67, 'huyntpc00617', 1, 1, 1, '2021-11-05', '08:30:00', '10:30:00', b'1');
 
 -- --------------------------------------------------------
 
@@ -512,20 +616,23 @@ CREATE TABLE `users` (
   `CMND` varchar(12) NOT NULL,
   `Address` varchar(200) NOT NULL,
   `Gender` bit(1) NOT NULL,
-  `Image` varchar(30) NOT NULL
+  `Image` varchar(30) NOT NULL,
+  `Activity` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`Username`, `Fullname`, `Password`, `Email`, `Phone`, `CMND`, `Address`, `Gender`, `Image`) VALUES
-('hainnpc00645', 'Nguyễn Ngọc Hải', '1234', 'hainnpc00645@fpt.edu.vn', '0867707413', '038159001769', 'Cần Thơ', b'0', 'avatar6.png'),
-('hieunnpc00795', 'Nguyễn Ngọc Hiếu', '1234', 'hieunnpc00795@fpt.edu.vn', '0914688501', '001089000098', 'Kiên Giang', b'0', 'avatar1.png'),
-('huyntpc00617', 'Nguyễn Thành Huy', '1234', 'huyntpc00617@fpt.edu.vn', '0767905592', '036087000067', 'Cần Thơ', b'0', 'avatar4.png'),
-('khuehnpc00516', 'Hồ Như Khuê', '1234', 'khuehnpc00516@fpt.edu.vn', '0788979575', '079201000046', 'Cần Thơ', b'0', 'avatar2.png'),
-('nhieuntpc00810', 'Nguyễn Thanh Nhiều', '1234', 'nhieuntpc00810@fpt.edu.vn', '0396634180', '001183000001', 'Sóc Trăng', b'0', 'avatar3.png'),
-('thainmpc00782', 'Nguyễn Minh Thái', '1234', 'thainmpc00782@fpt.edu.vn', '0933824823', '001304027098', 'Cần Thơ', b'0', 'avatar5.png');
+INSERT INTO `users` (`Username`, `Fullname`, `Password`, `Email`, `Phone`, `CMND`, `Address`, `Gender`, `Image`, `Activity`) VALUES
+('hainnpc00645', 'Nguyễn Ngọc Hải', '1234', 'hainnpc00645@fpt.edu.vn', '0867707413', '038159001769', 'Cần Thơ', b'0', 'a1.jpg', b'0'),
+('hieunnpc00795', 'Nguyễn Ngọc Hiếu', '1234', 'hieunnpc00795@fpt.edu.vn', '0914688501', '001089000098', 'Kiên Giang', b'0', 'a2.jpg', b'0'),
+('huyntpc00617', 'Nguyễn Thành Huy', '1234', 'huyntpc00617@fpt.edu.vn', '0767905592', '036087000067', 'Cần Thơ', b'0', 'a3.jpg', b'0'),
+('khue', 'Khuê', '2566', 'khueho11a3@gmail.com', '0788979575', '52235', 'adad', b'1', 'user.png', b'1'),
+('khuehnpc00516', 'Hồ Như Khuê', '1234', 'khuehnpc00516@fpt.edu.vn', '0788979575', '079201000046', 'Cần Thơ', b'0', 'a4.jpg', b'0'),
+('nhieuntpc00810', 'Nguyễn Thanh Nhiều', '1234', 'nhieuntpc00810@fpt.edu.vn', '0396634180', '001183000001', 'Sóc Trăng', b'0', 'a5.jpg', b'0'),
+('staff', 'Khuê', '5555', 'khuehnpc00516@fpt.edu.vn', '0788979575', '565644', '36 đường 3/2 Hưng Lợi Ninh Kiều Tp Cần Thơ', b'1', '6f48f7e8.jpg', b'1'),
+('thainmpc00782', 'Nguyễn Minh Thái', '1234', 'thainmpc00782@fpt.edu.vn', '0933824823', '001304027098', 'Cần Thơ', b'0', 'c1.jpg', b'0');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -704,7 +811,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `authorities`
 --
 ALTER TABLE `authorities`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `censors`
@@ -746,13 +853,13 @@ ALTER TABLE `price_history`
 -- AUTO_INCREMENT cho bảng `price_shows`
 --
 ALTER TABLE `price_shows`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `sales`
@@ -770,7 +877,7 @@ ALTER TABLE `seats`
 -- AUTO_INCREMENT cho bảng `shows`
 --
 ALTER TABLE `shows`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT cho bảng `tickets_coupons`

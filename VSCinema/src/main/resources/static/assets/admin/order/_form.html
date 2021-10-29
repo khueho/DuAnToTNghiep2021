@@ -14,41 +14,40 @@
 				THÔNG TIN HÓA ĐƠN
 			</h5>
 			<h5>
-			  <button class="btn btn-outline-danger" type="submit">Confirm</button>
-		      <button class="btn btn-outline-success" type="submit">Reset</button>
+		      <button class="btn btn-outline-success" ng-click="reset()" type="submit">Reset</button>
 		    </h5>
 		</div>
 	</div>
-	<div class="card-body">
+	<div class="card-body" ng-show="edited">
 		<div class="row">
 			<div class="col-12" style="text-align: center;">
 				<h2 style="font-size: 40px;">VS CINEMA</h2>
 				<p style="font-size: 30px;">HÓA ĐƠN THANH TOÁN</p>
 			</div>
 			<div class="col-3">
-				<h6>Mã hóa đơn: <strong style="color: red;">AB090900</strong> </h6>
+				<h6>Mã hóa đơn: <strong style="color: red;">{{order.id}}</strong> </h6>
 			</div>
 			<div class="col-3">
-				<h6>Ngày mua: 26/09/2021</h6>
+				<h6>Ngày mua: {{order.createdate}}</h6>
 			</div>
 			<div class="col-3">
-				<h6>Tổng tiền: 188.000đ</h6>
+				<h6>Tổng tiền: {{order.totalmoney | currency:"":0}}VNĐ</h6>
 			</div>
 			<div class="col-3">
-				<h6>Trạng thái: <strong style="color: red;">Đã nhận</strong> </h6>
+				<h6>Trạng thái: <strong style="color: red;">{{order.active?'Đã nhận':'Chưa nhận'}}</strong> </h6>
 			</div>
 			<br> <br>
 			<div class="col-3">
-				<h6>Mã khách hàng: <strong style="color: red;">hieunnpc00795</strong> </h6>
+				<h6>Mã khách hàng: <strong style="color: red;">{{order.user.username}}</strong> </h6>
 			</div>
 			<div class="col-3">
-				<h6>Họ và tên: Nguyễn Ngọc Hiếu </h6>
+				<h6>Họ và tên: {{order.user.fullname}}</h6>
 			</div>
 			<div class="col-3">
-				<h6>Số điện thoại: 0914688501</h6>
+				<h6>Số điện thoại: {{order.user.phone}}</h6>
 			</div>
 			<div class="col-3">
-				<h6>Email: hieunnpc00795@fpt.edu.vn</h6>
+				<h6>Email: {{order.user.email}}</h6>
 			</div>
 		</div>	
 		<br>
@@ -60,32 +59,21 @@
 				      <th scope="col">Mã sản phẩm</th>
 				      <th scope="col">Tên sản phẩm</th>
 				      <th scope="col">Giá</th>
-				      <th scope="col">Size</th>
+				      <th scope="col">Chi tiết</th>
 				      <th scope="col">Số lượng</th>
-				      <th scope="col">Sale</th>
 				      <th scope="col">Thành tiền</th>
 				      <th scope="col"></th>
 				    </tr>
 			  </thead>
 			  <tbody>
-			  		<tr>
-			  			<td>1</td>
-			  			<td>Bắp Ngọt</td>
-			  			<td>59.000đ</td>
-			  			<td>Lớn</td>
-			  			<td>2</td>
-			  			<td>0%</td>
-			  			<td>118.000đ</td>
-			  		</tr>
-			  		<tr>
-			  			<td>4</td>
-			  			<td>Trà Sữa Panda</td>
-			  			<td>35.000đ</td>
-			  			<td>Lớn</td>
-			  			<td>2</td>
-			  			<td>0%</td>
-			  			<td>70.000đ</td>
-			  		</tr>
+			  		<tr ng-repeat="ord in orderDetail">
+			  			<td>{{ord.food.id}}</td>
+			  			<td>{{ord.food.name}}</td>
+			  			<td>{{ord.food.price | currency:"":0}}VNĐ</td>
+			  			<td>{{ord.food.description}}</td>
+			  			<td>{{ord.quantity}}</td>
+			  			<td>{{ord.quantity*ord.food.price| currency:"":0}}VNĐ</td>
+			  		</tr>			  
 			  </tbody>
 			</table>
 		</div>

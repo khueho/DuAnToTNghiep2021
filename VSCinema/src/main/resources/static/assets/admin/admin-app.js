@@ -4,10 +4,11 @@ app.config(function($routeProvider){
     $routeProvider
     .when("/cinema" ,{
         templateUrl :"/assets/admin/cinema/index.html",
-        
+        controller: "cinema-ctrl", 
     })
     .when("/room" ,{
         templateUrl :"/assets/admin/room/index.html",
+		 controller: "room-ctrl"
         
     })
      .when("/movie" ,{
@@ -15,10 +16,12 @@ app.config(function($routeProvider){
      })
      .when("/show" ,{
         templateUrl :"/assets/admin/show/index.html",
+		 controller: "show-ctrl"
          
      })
      .when("/account" ,{
         templateUrl :"/assets/admin/account/index.html",
+		 controller: "account-ctrl"
 
      })
      .when("/authorize" ,{
@@ -27,12 +30,14 @@ app.config(function($routeProvider){
     })
       .when("/foods" ,{
         templateUrl :"/assets/admin/food/index.html",
+        controller: "food-ctrl"
     })
     .when("/sales" ,{
         templateUrl :"/assets/admin/sale/index.html",
     })
     .when("/orders" ,{
         templateUrl :"/assets/admin/order/index.html",
+		 controller: "order-ctrl"
     })
 	.when("/tickets" ,{
         templateUrl :"/assets/admin/ticket/index.html",

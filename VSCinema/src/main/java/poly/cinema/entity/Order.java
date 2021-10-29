@@ -40,7 +40,7 @@ public class Order  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")

@@ -4,59 +4,68 @@
 		<div class="card-title row">
 			<h5 class="col-10">
 				<i class='fas fa-book'></i>
-				QUẢN LÝ THÔNG TIN SUẤT CHIẾU  
+				QUẢN LÝ SUẤT CHIẾU	
 			</h5>
+		
 			<h5 class="btn btn-outline-success">Trạng Thái</h5>
 		</div>
 	</div>
 	<div class="card-body">
 		<div class="row">
-			<div class="col-6 ">
-					<div class="form-group ">
-						<label>Phim</label> 
-						<select  class="form-control ">
-                                <option >Siêu Nhân Gao</option>
-                                <option >Siêu Nhân Cuồng Phong</option>
+			<div class="col-6 row">
+					<div class="form-group col-12">
+						<label class="">Phim</label> 
+						<select ng-model="form.movie.id" class="form-control ">
+                                <option ng-repeat="m in movies" ng-value="{{m.id}}">{{m.name}}</option>               
                             </select>
 
 					</div>
-					<div class="form-group">
+					<div class="form-group col-6">
 						<label >Rạp</label> 
-						<select  class="form-control ">
-                                <option >VS NINH KIỀU</option>
-                                <option >VS XUÂN KHÁNH</option>
+						<select ng-change="findByCinema()" ng-model="form.room.cinema.id" class="form-control ">
+                                <option ng-repeat="ci in cinemas"  ng-value="{{ci.id}}">{{ci.name}}</option>               
                             </select>
 					</div>
-					<div class="form-group" >
+					<div class="form-group col-6">
+						<label >Thành phố</label> 
+						<select ng-change="findRapFromCity()" id="city" ng-model="form.room.cinema.city.id" class="form-control ">
+                                <option ng-repeat="ct in cities" ng-value="ct.id">{{ct.name}}</option>
+                                               
+                            </select>
+					</div>
+					
+					
+					
+					<div class="form-group col-12" >
 						<label >Phòng</label> 
-						<select  class="form-control ">
-                                <option >P1</option>
-                                <option >P2</option>
+						<select ng-model="form.room.id" class="form-control ">
+                                <option ng-repeat="r in rooms" ng-value="{{r.id}}" >{{r.name}}</option>
                             </select>
 					</div>
-					<div class="form-group" >
+					<div class="form-group col-12" >
 						<label >Username</label> 
-						<input type="text" class="form-control" placeholder="không nhập chỉ để hiện" disabled="disabled">
+						<input type="text" ng-model="form.user.username" class="form-control" placeholder="" disabled="disabled">
 					</div>
 				</div>
 				<div class="col-6">
 				<div class="form-group" >
 						<label >Ngày chiếu </label> 
-						<input type="date" class="form-control">
+						<input ng-model="form.showDate" ng-change="showDates()" type="date" class="form-control">
 					</div>
 				<div class="form-group" >
-						<label >Giờ bắt đầu </label> 
-						<input type="time" class="form-control">
+						<label >Giờ bắt đầu</label> 
+						<input ng-change="starttimechange()" ng-model="form.startTime" 
+						  type="time" class="form-control">
+							
 					</div>
 					<div class="form-group" >
 						<label >Giờ kết thúc</label> 
-						<input type="time" class="form-control">
+						<input ng-model="form.endTime" type="time" class="form-control">
 					</div>
 					<div class="form-group" >
 						<label >Giá</label> 
-						<select  class="form-control ">
-                                <option >49000</option>
-                                <option >65000</option>
+						<select ng-model="form.priceShow.id" class="form-control ">
+                                <option ng-repeat="rs in price_show" ng-value="{{rs.id}}">{{rs.price}}</option>           
                             </select>
 					</div>
 				
@@ -67,10 +76,10 @@
 				</div>
 				  <br> <br>
 				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
+				    <button type="button"  ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
+				    <button type="button" ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
 				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
+				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold" ng-click="reset()"> <img alt="" src="/assets/images/updated.png">Reset</button>
 				  </div>
 			</div>
 		</div>

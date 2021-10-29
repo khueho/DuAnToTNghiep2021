@@ -1,7 +1,6 @@
 package poly.cinema.entity;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -16,20 +15,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
 @Entity 
+@Setter
+@Getter
 @Table(name = "shows")
 public class Show  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	Boolean activity;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Showdate")
@@ -43,19 +45,18 @@ public class Show  implements Serializable{
 	@Column(name = "Endtime")
 	Date endTime = new Date();
 
-	
+	Boolean Activity;
 	
 	@ManyToOne
 	@JoinColumn(name = "Moviesid")
 	Movie movie;
-	
 	@ManyToOne
 	@JoinColumn(name = "Roomsid")
 	Room room;
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 	
 	@ManyToOne
 	@JoinColumn(name = "Priceid")
@@ -70,7 +71,6 @@ public class Show  implements Serializable{
 	@OneToMany(mappedBy = "show")
 	List<Censor> censors ;
 
-	
 	
 
 	

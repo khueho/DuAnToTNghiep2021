@@ -40,5 +40,5 @@ public class PriceHistory  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	User user;
+	Account user;
 }

@@ -3,6 +3,7 @@ app.controller("authority-ctrl", function($scope, $http, $location){
 	$scope.roles = [];
 	$scope.users = [];
 	$scope.authorities = [];
+	$scope.authority =[];
 	
 	$scope.initialize = function(){
 		$http.get("/rest/roles").then(resp => {
@@ -15,10 +16,20 @@ app.controller("authority-ctrl", function($scope, $http, $location){
 		
 		$http.get("/rest/authorities").then(resp => {
 			$scope.authorities=resp.data;
-			console.log($scope.authorities)
 		}).catch(error => {
 			$location.path("/unauthorized");
 		})
+	}
+	
+	$scope.search = function(username){
+		var user = $scope.users.find(ur => ur.username == username);
+		if(user == null){
+			alert("Tài khoản không tồn tại.");
+			$scope.initialize();
+		} else {
+			$scope.users = [];
+			$scope.users.push(user);
+		}
 	}
 	
 	$scope.authority_changed = function(acc, role){
@@ -26,7 +37,7 @@ app.controller("authority-ctrl", function($scope, $http, $location){
 		if(authority){
 			$scope.revoke_authority(authority);
 		} else {
-			authority = {account:acc, role:role};
+			authority = {user:acc, role:role};
 			$scope.grant_authority(authority);
 		}
 	}

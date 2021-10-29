@@ -2,8 +2,7 @@
 	<div class="card-header">
 		<div class="card-title">
 			<h5>
-				<i class='fas fa-book'></i>
-				QUẢN LÝ THÔNG TIN CÁC SẢN PHẨM
+				<i class='fas fa-book'></i> QUẢN LÝ THÔNG TIN CÁC SẢN PHẨM
 			</h5>
 		</div>
 	</div>
@@ -12,68 +11,92 @@
 			<div class="col-6">
 				<br>
 				<div class="container-fluid">
-					<br> 
-					<img class="card-img-top" alt="loading" src="/assets/images/baprangbo.jpg"> 
-					<input type="file" class="form-control" id="image">
+					<br> <label for="image"><img class="card-img-top"
+						alt="loading"
+						ng-src="{{'/assets/images/image/foods/' + form.image}}"
+						width="200px" height="500px"></label> <input type="file"
+						class="form-control" id="image"
+						onchange="angular.element(this).scope().imageChanged(this.files)">
 				</div>
 			</div>
 			<div class="col-6">
-				 <div class="form-group">
-				    <label for="exampleInputEmail1">Tên sản phẩm</label>
-				    <input type="text" class="form-control">
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Tỉnh/Thành phố</label>
-				    <select class="custom-select">
-						  <option selected>Chọn Tỉnh/Thành phố</option>
-						  <option value="1">One</option>
-						  <option value="2">Two</option>
-						  <option value="3">Three</option>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Tên sản phẩm</label> <input
+						type="text" class="form-control" ng-model="form.name" id="name">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Tỉnh/Thành phố</label> <select
+						ng-change="findRapFromCity()" ng-model="form.cinema.city.id"
+						class="form-control col-4" id="city">
+						<option ng-repeat="ct in city" ng-value="ct.id">{{ct.name}}</option>
 					</select>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Rạp</label>
-				    <select class="custom-select">
-						  <option selected>Chọn rạp chiếu</option>
-						  <option value="1">One</option>
-						  <option value="2">Two</option>
-						  <option value="3">Three</option>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Rạp</label> <select
+						ng-model="form.cinema.id" class="form-control col-4" id="cinema">
+						<option ng-repeat="cn in cinema" ng-value="cn.id">{{cn.name}}</option>
 					</select>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Giá bán</label>
-				    <input type="text" class="form-control">
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Ngày tạo</label>
-				    <input type="text" class="form-control" placeholder="dd/MM/yyyy">
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-					  <label class="form-check-label" for="inlineRadio1">Đang bán</label>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Giá bán</label> <input type="text"
+						class="form-control" ng-model="form.price" id="price">
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Ngày tạo</label>
+					<div class="form-control" id="createdate">{{form.createdate|date: 'dd/MM/yyyy'}}
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="active" ng-value="true"
+							ng-model="form.active"> <label class="form-check-label"
+							for="inlineRadio1">Đang bán</label>
 					</div>
 					<div class="form-check form-check-inline">
-					  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-					  <label class="form-check-label" for="inlineRadio2">Ngừng bán</label>
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="active" ng-value="false"
+							ng-model="form.active"> <label class="form-check-label"
+							for="inlineRadio2">Ngừng bán</label>
 					</div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				  	<textarea class="form-control" rows="3" placeholder="Mô tả:"></textarea>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
-				  </div>
+				</div>
+				<br>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Mô tả</label>
+					<textarea class="form-control" rows="3" placeholder="Mô tả:"
+						ng-model="form.description" id="description"></textarea>
+				</div>
+				<br>
+				<div class="form-group">
+					<button type="button"
+						class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
+						ng-click="create()" ng-disabled="isEdit"
+						title="Tạo sản phẩm mới ?">
+						<img alt="" src="/assets/images/edit.png"> Create
+					</button>
+					<button type="button"
+						class="btn btn-outline-dark border border-warning text-warning font-weight-bold"
+						ng-click="update()" ng-disabled="isLoad"
+						title="Chỉnh sửa thông tin sản phẩm ?">
+						<img alt="" src="/assets/images/write.png"> Update
+					</button>
+					<button type="button"
+						class="btn btn-outline-dark border border-danger text-danger font-weight-bold"
+						ng-click="delete(form)" ng-disabled="isLoad"
+						title="Xóa sản phẩm ?">
+						<img alt="" src="/assets/images/trash.png">Delete
+					</button>
+					<button type="button"
+						class="btn btn-outline-dark border border-success text-success font-weight-bold"
+						ng-click="reset()" title="Xóa trắng form nhập ?">
+						<img alt="" src="/assets/images/updated.png">Reset
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

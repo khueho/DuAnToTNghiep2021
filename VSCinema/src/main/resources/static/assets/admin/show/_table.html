@@ -1,80 +1,87 @@
+<style>
+#all{
+	cursor: pointer;
+}
+
+</style>
+
 <div class="card">
 	<div class="card-header">
 		<div class="card-title row">
-			<h5 class="col-9">
-				<i class='fas fa-book'></i> DANH SÁCH CÁC RẠP
+			<h5 class="col-3" id="all" ng-click="All()">
+				<i class='fas fa-book'></i >DANH SÁCH CÁC SUẤT
 			</h5>
-
-			<div class="col-4">
+			<h5 class="col-9"></h5>
+			<div class="col-6">
 				<form class="form-inline my-2 my-lg-0">
-					<select>
-						<option>Siêu Nhân Gao</option>
-						<option></option>
+					<select ng-model="fillmovie" id="movie" ng-change="fills()" class="btn btn-light">
+						<option value="undefined:undefined">Tất cả phim</option>
+						<option ng-repeat="m in movies" ng-value="{{m.id}}">{{m.name}}
 					</select>
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter
 						by movie</button>
 				</form>
 			</div>
-			<div class="col-4">
+			<div class="col-3">
 				<form class="form-inline my-2 my-lg-0">
-					<select>
-						<option>P1</option>
-						<option></option>
+					<select class="btn btn-light" id="room" ng-model="room" ng-change="fills()">
+						<option value="undefined:undefined">Tất cả room</option>
+						<option ng-repeat="r in roomss" ng-value="r.name">{{r.name}}</option>
 					</select>
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Filter
 						by Room</button>
 				</form>
 			</div>
-
 		</div>
 	</div>
 	<div class="card-body">
 		<table class="table table-dark">
 			<tr>
-				<th>Id</th>
+				<th style="cursor: pointer;" ng-click="fillUpAndDown('id')">Id</th>
 				<th>Phim</th>
 				<th>Rạp</th>
 				<th>Phòng</th>
-				<th>Ngày chiếu </th>
+				<th style="cursor: pointer;" ng-click="fillUpAndDown('showDate')">Ngày chiếu </th>
 				<th>Giờ bắt đầu</th>
 				<th>Giờ kết thúc</th>
 				<th>Trạng thái</th>
 			</tr>
 
-			<tr>
-				<td>1</td>
-				<td>Siêu Nhân Gao</td>
-				<td>VS Xuân Khánh</td>
-				<td>P1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><a style="color: yellow;" href=""><i class="fa fa-edit"
-						aria-hidden="true"></i>Edit</a> <a style="color: red;" href=""><i
+			<tr ng-repeat="i in pager.items">
+				<td>{{i.id}}</td>
+				<td>{{i.movie.name}}</td>
+				<td>{{i.room.cinema.name}}</td>
+				<td>{{i.room.name}}</td>
+				<td>{{i.showDate | date: 'dd/MM/yyyy'}}</td>
+				<td>{{i.startTime}}</td>
+				<td>{{i.endTime}}</td>
+				<td>{{i.activity ?'Hoạt động':'Không hoạt động'}}</td>
+				<td><a ng-click="edit(i)" style="color: yellow;" href=""><i class="fa fa-edit"
+						aria-hidden="true"></i>Edit</a> <a style="color: red;" ng-click="delete(i.id)" href=""><i
 						class="fa fa-trash" aria-hidden="true"></i>Delete</a></td>
 			</tr>
 		</table>
 		<div style="float: right;">
 			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				ng-click="pager.first()" ng-disabled="pager.page == 0" class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
 				<img alt="" src="/assets/images/left-arrow.png">
 			</button>
 			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				ng-click="pager.prev()" ng-disabled="pager.page == 0" class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
 				<img alt="" src="/assets/images/arrow-left.png">
 			</button>
-			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+			<button type="button" ng-disabled="pager.items.length < 10"
+				ng-click="pager.next()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
 				<img alt="" src="/assets/images/arrow-right.png">
 			</button>
-			<button type="button"
+			<button type="button" ng-click="pager.last()" ng-disabled="pager.items.length < 10"
 				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
 				<img alt="" src="/assets/images/right-arrow.png">
 			</button>
 		</div>
 	</div>
-	<div class="card-footer">Danh sách suất chiếu</div>
+	<div class="card-footer">Danh sách suất chiếu
+</div>
 </div>
 
 
