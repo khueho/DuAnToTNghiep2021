@@ -25,42 +25,36 @@
 				</div>
 			</div>
 			<div class="col-6">
-				 <br> <br>
+				 <br> <br> <br> <br>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Giá bán</label>
-				    <input type="text" class="form-control">
+				    <input type="text" ng-model="price.price" class="form-control">
 				  </div>
 				  <br>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Ngày tạo</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{price.createDate | date:'dd/MM/yyyy'}}</div>
 				  </div>
 				  <br>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Hạn áp dụng</label>
-				    <input type="text" class="form-control">
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Khung giờ chiếu áp dụng giá</label>
-				    <input type="text" class="form-control">
+				    <input type="date" ng-model="price.expiry" class="form-control">
 				  </div>
 				  <br>
 				  <div class="form-group">
 				    	<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline1">Ghế thường</label>
+							  <input ng-model="price.activity" ng-value="true" type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline1">Hoạt động</label>
 						</div>
 						<div class="custom-control custom-radio custom-control-inline">
-							  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-							  <label class="custom-control-label" for="customRadioInline2">Ghế VIP</label>
+							  <input ng-model="price.activity" ng-value="false" type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+							  <label class="custom-control-label" for="customRadioInline2">Ngưng hoạt động</label>
 						</div>
 				  </div>
 				  <br> <br>
 				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
+				    <button ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
+				    <button ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
 				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
 				  </div>
 			</div>

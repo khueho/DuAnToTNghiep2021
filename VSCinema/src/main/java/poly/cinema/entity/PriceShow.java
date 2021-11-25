@@ -34,17 +34,12 @@ public class PriceShow  implements Serializable{
 	
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "CreateDate")
+	@Column(name = "Createdate")
 	Date createDate = new Date();
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Expiry")
 	Date expiry= new Date();
-	
-	@Temporal(TemporalType.TIME)
-	@Column(name = "TimeSlot")
-	Date timeSlot = new Date();
-
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "priceShow")

@@ -29,11 +29,9 @@ public class Seat  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	Integer colposition ;
-	String rowposition ;
-	
-
-	
+	String name;
+	Integer position;
+	Boolean activity;
 	
 	@ManyToOne
 	@JoinColumn(name = "Roomsid")

@@ -5,12 +5,12 @@
 				<i class='fas fa-book'></i>DANH SÁCH HÓA ĐƠN
 			</h5>
 			<h5 class="form-inline my-2 my-lg-0 col-3">
-		      <input class="form-control mr-sm-2" type="date">
-		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button>
+		      <input class="form-control mr-sm-2" type="date" ng-model="createdate" ng-change="findByDate()" id="createdate">
+		      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit</button> -->
 		    </h5>
 			<h5 class="form-inline my-2 my-lg-0 col-3">
 		      <input class="form-control mr-sm-2" type="search" ng-model="id"  placeholder="Search" aria-label="Search">
-		      <button   class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		      <!-- <button   class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="submit()">Search</button> -->
 		    </h5>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 		    </tr>
 		  </tbody>
 		</table>
-		<div style="float: right;">
+		<div class="d-flex justify-content-center">
 			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
 			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
 			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>

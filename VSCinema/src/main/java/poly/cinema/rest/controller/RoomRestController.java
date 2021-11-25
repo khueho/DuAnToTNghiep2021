@@ -33,15 +33,15 @@ public class RoomRestController {
 	}
 
 	@PostMapping
-	public Room save(@RequestBody @Valid Room room) {
+	public Room save(@RequestBody Room room) {
 		return roomservice.save(room);
 	}
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		roomservice.delete(id);
 	}
-	@PutMapping("{id}")
-	public Room update(@PathVariable("id") Integer id,@RequestBody @Valid Room room) {
+	@PutMapping()
+	public Room update(@RequestBody Room room) {
 		return roomservice.update(room);
 	}
 	@GetMapping("{id}")
@@ -63,8 +63,6 @@ public class RoomRestController {
 		Room r = new Room();
 		r.setName(roomname);
 		r.setCinema(cinemaservice.getById(show.getRoom().getCinema().getId()));
-		r.setTotalcolumn(5);
-		r.setTotalrow(5);
 		r.setActivity(true);
 		return roomservice.create(r);
 	}

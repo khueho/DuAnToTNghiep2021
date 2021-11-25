@@ -1,11 +1,20 @@
-<div class="panel panel-default" >
-    <div class="panel-heading row col-6">
-		<div class="form-group mx-sm-3 mb-2">
-		    <label for="inputPassword2" class="sr-only">Password</label>
-		    <input type="text" ng-model="username" class="form-control" id="inputPassword2" placeholder="Search">
-		 </div>
-		 <button ng-click="search(username)" class="btn btn-primary mb-2">Search</button>
-	</div>
+
+		<div class="card-header">
+		<div class="card-title ">
+			
+					
+					<div class="row">
+			<label for="inputPassword2" class="sr-only">Password</label>
+		   <input ng-model="name" class="form-control mr-sm-4 " type="text"
+					placeholder="Search By Name">					
+					</div>		
+					
+				
+			
+	
+			</div>	
+			</div>
+	
     	<br>
         <table class="table table-border">
             <thead class="bg-success" style="font-variant: small-caps;">
@@ -17,7 +26,7 @@
             </thead>
         
         <tbody>
-            <tr ng-repeat="acc in users "  >
+            <tr ng-repeat="acc in users | filter:name "  >
             	<td>{{acc.username}}</td>
                 <td>{{acc.fullname}}</td>
                 <th ng-repeat="role in roles" class="text-center">
@@ -28,4 +37,3 @@
             </tr>
         </tbody>
     </table>
-</div>

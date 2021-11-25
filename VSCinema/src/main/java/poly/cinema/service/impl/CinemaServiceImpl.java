@@ -21,15 +21,12 @@ public class CinemaServiceImpl implements CinemaService {
 		return dao.findAll();
 	}
 
-	@Override
-	public List<Cinema> getAll() {
-		return dao.findAll();
-	}
+	
 
 	@Override
 	public List<Cinema> findByCity(String cityid) {
 		// TODO Auto-generated method stub
-				return dao.findByCity(cityid);
+				return dao.findCinemaByCity(cityid);
 	}
 	
 	@Override

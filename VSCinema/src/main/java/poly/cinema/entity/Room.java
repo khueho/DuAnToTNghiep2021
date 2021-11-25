@@ -31,11 +31,7 @@ public class Room  implements Serializable{
 	Integer id;
 	@NotEmpty(message = "Vui lòng nhập tên phòng")
 	String name;
-	@NotNull(message = "Vui lòng nhập tổng cột")
-	Integer totalcolumn;
-	@NotNull(message = "Vui lòng nhập tổng hàng")
-	Integer totalrow ;
-	Boolean activity ;
+	Boolean activity;
 	
 	
 	@ManyToOne

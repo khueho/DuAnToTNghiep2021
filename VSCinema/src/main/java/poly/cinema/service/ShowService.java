@@ -13,4 +13,5 @@ public interface ShowService {
 	List<Show> fillByMovie(Integer movieid);
 	List<Show> fillByMovieAndRoom(Integer movieid, String roomname);
 	List<Show> fillByRoom(String roomname);
+	List<String> listShowDate();
 }

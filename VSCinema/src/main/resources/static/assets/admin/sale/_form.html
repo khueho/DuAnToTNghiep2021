@@ -21,47 +21,57 @@
 				<br>
 				<div class="container-fluid">
 					<br> 
-					<img class="card-img-top" alt="loading" src="/assets/images/baprangbo.jpg"> 
-					<input type="file" class="form-control" id="image">
+					<img class="card-img-top" alt="loading" ng-src="{{'/assets/images/image/foods/' + form.food.image}}" />
+					
 				</div>
 			</div>
 			<div class="col-6">
 				 <br> <br>
 				 <div class="form-group">
-				    <label for="exampleInputEmail1">Mã sản phẩm</label>
-				    <input type="text" class="form-control">
+				 	<div class="form-control">
+				    	<strong>Mã sản phẩm: {{form.food.id}} </strong>
+				    </div>
 				  </div>
 				  <br>
 				 <div class="form-group">
-				    <label for="exampleInputEmail1">Tên sản phẩm</label>
-				    <input type="text" class="form-control">
+				 	<div class="form-control"> 
+				    	<strong>Tên sản phẩm: {{form.food.name}} </strong>
+				    </div>
+				  </div>
+				  <br>
+				  <div class="input-group form-group">
+				  	<div class="form-control"> 
+				    	<strong>Giá bán: {{form.food.price}} </strong>
+				    </div>
+				    <div class="input-group-append">
+					    <span class="input-group-text">VNĐ</span>
+					</div>
 				  </div>
 				  <br>
 				  <div class="form-group">
-				    <label for="exampleInputEmail1">Loại sản phẩm</label>
-				    <input type="text" class="form-control">
+				  	<div class="form-control"> 
+				    	<strong>Ngày tạo: {{form.startDate|date: 'dd/MM/yyyy'}} </strong>
+				    </div>
 				  </div>
 				  <br>
 				  <div class="form-group">
-				    <label for="exampleInputEmail1">Giá bán</label>
-				    <input type="text" class="form-control">
+				    <label for="exampleInputEmail1"><strong>Ngày kết thúc</strong></label>
+				    <input type="date" class="form-control" placeholder="yyyy-MM-dd" ng-model="form.endDate">
 				  </div>
 				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Ngày tạo</label>
-				    <input type="text" class="form-control" placeholder="dd/MM/yyyy">
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Khuyến mãi</label>
-				    <input type="text" class="form-control" placeholder="%">
+				  <label for="exampleInputEmail1"><strong>Khuyến mãi</strong></label>
+				  <div class="input-group form-group">
+				    <input type="text" class="form-control" ng-model="form.discount">
+				    <div class="input-group-append">
+					    <span class="input-group-text">%</span>
+					</div>
 				  </div>
 				  <br> <br>
 				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
+				    <button type="button" ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
+				    <button type="button" ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
+				    <button type="button" ng-click="delete(form)" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
+				    <button type="button" ng-click="reset()" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
 				  </div>
 			</div>
 		</div>

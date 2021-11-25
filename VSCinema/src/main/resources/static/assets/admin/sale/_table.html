@@ -8,7 +8,7 @@
 				DANH SÁCH CÁC CHƯƠNG TRÌNH KHUYẾN MÃI
 			</h5>
 			<h5 class="form-inline my-2 my-lg-0 col-3">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+		      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" ng-model="search">
 		      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		    </h5>
 		</div>
@@ -27,49 +27,22 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">1</th>
-		      <td>1</td>
-		      <td>Bắp Ngọt</td>
-		      <td>59.000đ</td>
-		      <td>25/09/2021</td>
-		      <td>20%</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">2</th>
-		      <td>2</td>
-		      <td>Bắp Mặn</td>
-		      <td>59.000đ</td>
-		      <td>25/09/2021</td>
-		      <td>20%</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">3</th>
-		      <td>3</td>
-		      <td>Bắp Vị Caramel</td>
-		      <td>74.000đ</td>
-		      <td>25/09/2021</td>
-		      <td>10%</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">4</th>
-		      <td>4</td>
-		      <td>Trà Sữa Panda</td>
-		      <td>35.000đ</td>
-		      <td>25/09/2021</td>
-		      <td>10%</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
+		    <tr ng-repeat="p in pager.items | filter:{startDate:search}">
+		      <th scope="row">{{p.id}}</th>
+		      <td>{{p.food.id}}</td>
+		      <td>{{p.food.name}}</td>
+		      <td>{{p.food.price}}đ</td>
+		      <td>{{p.startDate}}</td>
+		      <td>{{p.discount}}%</td>
+		      <td><button type="button" ng-click="editSale(p)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
 		    </tr>
 		  </tbody>
 		</table>
 		<div style="float: right;">
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
+			<button type="button" ng-click="pager.first()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
+			<button type="button" ng-click="pager.pre()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
+			<button type="button" ng-click="pager.next()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
+			<button type="button" ng-click="pager.last()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
 		</div>
 	</div>
 	<div class="card-footer">Danh sách các chương trình khuyến mãi</div>

@@ -26,8 +26,8 @@ import lombok.Data;
 public class Ticket  implements Serializable{
 	@Id
 	String id;
-	Integer ticketPrice;
-	Integer totalMoney ;
+	Integer ticketprice;
+	Integer totalmoney ;
 	Double discount ;
 	Boolean activity;
 	

@@ -8,114 +8,98 @@
 		</div>
 	</div>
 	<div class="card-body">
+		<br>
 		<div class="row">
-			<div class="col-3 form-group">				
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Tên phòng"
-							ng-model="form.name" ng-class="error.name?'border-danger':' '"> 
-						<div class="input-group-append" ng-show="error.name">
-							<span class="input-group-text fa fa-times bg-danger text-light"></span>
-						</div>
-					</div>
-					<span class="text-danger" ng-show="error.name">{{error.name}}</span>
+			<div class="col-3 form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Tên phòng" ng-model="room.name">
+				</div>
 			</div>
 			<div class="col-3 form-group">
 				<div class="input-group">
-					<input type="text" class="form-control"
-						placeholder="Số lượng cột ghế" ng-model="form.totalcolumn" ng-class="error.totalcolumn?'border-danger':' '">
-					<div class="input-group-append" ng-show="error.totalcolumn">
-						<span class="input-group-text fa fa-times bg-danger text-light"></span>
-					</div>
+					<select ng-change="findRapFromCity()" ng-model="room.cinema.city.id" class="custom-select">
+						<option value="">Tỉnh/ Thành phố</option>
+						<option ng-repeat="c in cities" ng-value="c.id">{{c.name}}</option>
+					</select>
 				</div>
-				<span class="text-danger" ng-show="error.totalrow">{{error.totalcolumn}}</span>
 			</div>
 			<div class="col-3 form-group">
 				<div class="input-group">
-					<input type="text" class="form-control"
-						placeholder="Số lượng hàng ghế" ng-model="form.totalrow" ng-class="error.totalrow?'border-danger':' '">
-					<div class="input-group-append" ng-show="error.totalrow">
-						<span class="input-group-text fa fa-times bg-danger text-light"></span>
-					</div>	
-				</div>
-				<span class="text-danger" ng-show="error.totalrow">{{error.totalrow}}</span>
-			</div>
-			<div class="col-3">
-				<div class="form-group">
-					<button type="button" ng-click="create()"
-						class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
-						<img alt="" src="/assets/images/edit.png"> Create
-					</button>
-					<button type="button" ng-click="update()"
-						class="btn btn-outline-dark border border-warning text-warning font-weight-bold">
-						<img alt="" src="/assets/images/write.png"> Update
-					</button>
-				</div>
-			</div>
-			<br> <br>
-			<div class="col-3 form-group">
-				<div class="input-group">
-					<select class="custom-select" ng-model="form.cinema.id">
+					<select class="custom-select" ng-model="room.cinema.id">
 						<option value="">Rạp chiếu</option>
 						<option ng-repeat="c in cinemas" ng-value="c.id">{{c.name}}</option>
 					</select>
-					<div class="input-group-append" ng-show="error.cinema">
-								<span class="input-group-text fa fa-times bg-danger text-light"></span>
-					</div> 
-				</div>
-				<span class="text-danger" ng-show="error.cinema">{{error.cinema}}</span>
-			</div>
-			<div class="col-6">
-				<div class="form-check-inline">
-					<label class="form-check-label"> <input type="radio"
-						class="form-check-input" ng-model="form.activity" ng-value="true" name="activity">Hoạt động
-					</label>
-				</div>
-				<div class="form-check-inline">
-					<label class="form-check-label"> <input type="radio"
-						class="form-check-input" ng-model="form.activity" ng-value="false" name="activity">Bảo Trì
-					</label>
 				</div>
 			</div>
 			<div class="col-3">
 				<div class="form-group">
-					<button type="button" ng-click="delete(form.id)"
+					<button ng-if="index == 0" ng-click="create()"
+						class="btn btn-outline-dark border border-primary text-primary font-weight-bold ">
+						<img alt="" src="/assets/images/edit.png"> Thêm
+					</button>
+					<button ng-if="index == 1" ng-click="update()"
+						class="btn btn-outline-dark border border-warning text-warning font-weight-bold">
+						<img alt="" src="/assets/images/write.png"> Cập nhật
+					</button>
+					<button ng-if="updateRoom.activity==true" type="button" ng-click="delete()"
 						class="btn btn-outline-dark border border-danger text-danger font-weight-bold">
-						<img alt="" src="/assets/images/trash.png">Delete
+						<img alt="" src="/assets/images/padlock.png">Bảo trì
+					</button>
+					<button ng-if="updateRoom.activity==false" type="button" ng-click="delete()"
+						class="btn btn-outline-dark border border-danger text-danger font-weight-bold">
+						<img alt="" src="/assets/images/open-lock.png">Hoạt động
 					</button>
 					<button type="button" ng-click="reset()"
 						class="btn btn-outline-dark border border-success text-success font-weight-bold">
-						<img alt="" src="/assets/images/updated.png">Reset
+						<img alt="" src="/assets/images/updated.png">Mới
 					</button>
 				</div>
 			</div>
-			<div class="card-body" ng-show="seatpager.seats.length >0">
-				<table class="table table-dark">
-			  		<thead>
-			    		<tr>
-							<th>Tên Phòng</th>
-							<th>Loại ghế</th>
-							<th>Vị trí hàng</th>
-							<th>Vị trí cột</th>	
-			    		</tr>
-			  		</thead>
-			  		<tbody>
-			  			<tr ng-repeat="s in seatpager.seats">
-			  				<td>{{s.room.name}}</td>
-			  				<td>{{s.type.name}}</td>
-			  				<td>{{s.colposition}}</td>
-			  				<td>{{s.rowposition}}</td>
-			  			</tr>  	
-			  		</tbody>
-				</table>
-				<div class="d-flex justify-content-center">
-					<button ng-click="seatpager.first()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
-					<button ng-click="seatpager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
-					<button ng-click="seatpager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> {{seatpager.page+1}} of {{seatpager.count}}</button>
-					<button ng-click="seatpager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
-					<button ng-click="seatpager.last()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
+		</div>
+		<hr style="background-color: yellow;"> 
+		<br>
+		<div ng-show="show">
+			<nav class="navbar navbar-light row" style="background-color: #e3f2fd;">
+				<div class="col-3">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Số ghế</label> 
+						<input type="text" class="form-control" ng-model="seat.name">
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Loại ghế</label>
+						 <select ng-model="seat.type.id" class="form-control">
+						 	<option value="">Chọn loại ghế</option>
+							<option ng-repeat="ty in types" ng-value="ty.id">{{ty.name}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Vị trí ghế</label>
+						<div class="form-control">{{position}}</div>
+					</div>
+				</div>
+				<button ng-click="add()" ng-if="indexButton == 0" class="btn btn-info btn-lg btn3d">Thêm</button>
+				<button ng-click="updateSeats()" ng-if="indexButton == 1" class="btn btn-warning btn-lg btn3d">Sửa</button>
+				<button ng-click="deleteSeat()" ng-if="indexButton == 1" class="btn btn-danger btn-lg btn3d">Xóa</button>
+				<button ng-click="resetSeat()" class="btn btn-success btn-lg btn3d">Mới</button>	
+			</nav>
+		</div>
+		<br>
+		<div class="row body" ng-show="show">
+			<div class="col-12">
+				<div class="rowA btn-group btn-group-toggle">
+					<label ng-repeat="p in positions" class="form-check form-check-inline"> 
+						<input class="form-check-input" type="radio" name="options" id="{{p.id}}">
+						<div class="icon-box" ng-click="editSeat(p)">
+							<span>{{p.seat.name}}</span>
+						</div>
+					</label>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="card-footer">Thông tin chi tiết hóa đơn.</div>
+	<div class="card-footer">Thông tin chi tiết phòng chiếu.</div>
 </div>

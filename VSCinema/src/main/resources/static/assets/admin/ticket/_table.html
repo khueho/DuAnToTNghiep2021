@@ -33,57 +33,24 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">MV0011</th>
-		      <td>PC00795</td>
-		      <td>Avengers: End Game</td>
-		      <td>27/09/2021</td>
-		      <td>11:25:00 - 13:07:00</td>
-		      <td>P1</td>
-		      <td>A1</td>
-		      <td>Đã chiếu</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">MV0022</th>
-		      <td>PC00810</td>
-		      <td>John Wick</td>
-		      <td>28/09/2021</td>
-		      <td>09:00:00 - 11:30:00</td>
-		      <td>P2</td>
-		      <td>H4</td>
-		      <td>Sắp chiếu</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">CB9911</th>
-		      <td>AD1133</td>
-		      <td>Bố già</td>
-		      <td>27/09/2021</td>
-		      <td>20:20:00 - 21:40:00</td>
-		      <td>P5</td>
-		      <td>A9</td>
-		      <td>Sắp chiếu</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
-		    </tr>
-		    <tr>
-		      <th scope="row">AM5555</th>
-		      <td>CV9999</td>
-		      <td>Bàn tay diệt quỷ</td>
-		      <td>09/04/2021</td>
-		      <td>19:00:00 - 21:08:00</td>
-		      <td>P1</td>
-		      <td>E4</td>
-		      <td>Đã chiếu</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
+		    <tr ng-repeat="p in pager.items">
+		      <th scope="row">{{p.id}}</th>
+		      <td>{{p.show.id}}</td>
+		      <td>{{p.show.movie.name}}</td>
+		      <td>{{p.show.showDate}}</td>
+		      <td>{{p.show.startTime}}</td>
+		      <td>{{p.show.room.name}}</td>
+		      <td>{{p.seat.rowposition+p.seat.colposition}}</td>
+		      <td>{{p.order.active ?'Đã chiếu' : 'Chưa chiếu'}}</td>
+		      <td><button type="button" ng-click="editTicket(p)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
 		    </tr>
 		  </tbody>
 		</table>
 		<div style="float: right;">
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
-			<button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
+			<button type="button" ng-click="pager.first()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
+			<button type="button" ng-click="pager.pre()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
+			<button type="button" ng-click="pager.next()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
+			<button type="button" ng-click="pager.last()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
 		</div>
 	</div>
 	<div class="card-footer">Danh sách vé đã bán</div>

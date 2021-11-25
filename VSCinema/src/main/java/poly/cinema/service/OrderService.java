@@ -1,5 +1,6 @@
 package poly.cinema.service;
 
+import java.util.Date;
 import java.util.List;
 
 import poly.cinema.entity.Order;
@@ -11,4 +12,5 @@ public interface OrderService  {
 	List<OrderFood> findByOrderId(String orderid);
 	
 	Order updateActive(String id,Order order);
+	List<Order> findByDate(Date createdate);
 }

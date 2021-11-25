@@ -6,4 +6,8 @@ import poly.cinema.entity.PriceShow;
 
 public interface PriceShowService {
 	List<PriceShow> getAll();
+
+	PriceShow create(PriceShow priceShow);
+
+	PriceShow update(PriceShow priceShow);
 	}

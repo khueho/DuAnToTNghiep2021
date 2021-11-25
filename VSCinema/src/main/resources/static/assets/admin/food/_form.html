@@ -1,104 +1,99 @@
-<div class="card">
-	<div class="card-header">
-		<div class="card-title">
-			<h5>
-				<i class='fas fa-book'></i> QUẢN LÝ THÔNG TIN CÁC SẢN PHẨM
-			</h5>
-		</div>
-	</div>
+<br>
+
 	<div class="card-body">
 		<div class="row">
-			<div class="col-6">
-				<br>
-				<div class="container-fluid">
-					<br> <label for="image"><img class="card-img-top"
-						alt="loading"
-						ng-src="{{'/assets/images/image/foods/' + form.image}}"
-						width="200px" height="500px"></label> <input type="file"
-						class="form-control" id="image"
-						onchange="angular.element(this).scope().imageChanged(this.files)">
+			<div class="col-3">
+				<div class="border p-3">
+					<div class="container-fluid">
+						<br> <label for="image"><img class="card-img-top"
+							alt="loading"
+							ng-src="{{'/assets/images/image/foods/' + form.image}}"
+							width="200px" height="200px"></label> <input type="file"
+							class="form-control" id="image"
+							onchange="angular.element(this).scope().imageChanged(this.files)">
+					</div>
 				</div>
 			</div>
-			<div class="col-6">
+			<div class="col-5">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tên sản phẩm</label> <input
-						type="text" class="form-control" ng-model="form.name" id="name">
+						type="text" class="form-control" ng-model="form.name" id="name"
+						placeholder="Tên sản phẩm">
 				</div>
-				<br>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Tỉnh/Thành phố</label> <select
-						ng-change="findRapFromCity()" ng-model="form.cinema.city.id"
-						class="form-control col-4" id="city">
+						ng-change="findCinemaFromCity()" ng-model="form.cinema.city.id"
+						class="form-control" id="city">
+						<option value="">Chọn Tỉnh/Thành phố</option>
 						<option ng-repeat="ct in city" ng-value="ct.id">{{ct.name}}</option>
 					</select>
 				</div>
-				<br>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Rạp</label> <select
-						ng-model="form.cinema.id" class="form-control col-4" id="cinema">
-						<option ng-repeat="cn in cinema" ng-value="cn.id">{{cn.name}}</option>
-					</select>
-				</div>
-				<br>
-				<div class="form-group">
-					<label for="exampleInputEmail1">Giá bán</label> <input type="text"
-						class="form-control" ng-model="form.price" id="price">
-				</div>
-				<br>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Ngày tạo</label>
-					<div class="form-control" id="createdate">{{form.createdate|date: 'dd/MM/yyyy'}}
-					</div>
+					<div class="form-control" id="createdate">{{form.createdate|date:
+						'dd/MM/yyyy'}}</div>
 				</div>
-				<br>
-				<div class="form-group">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="inlineRadioOptions" id="active" ng-value="true"
-							ng-model="form.active"> <label class="form-check-label"
-							for="inlineRadio1">Đang bán</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio"
-							name="inlineRadioOptions" id="active" ng-value="false"
-							ng-model="form.active"> <label class="form-check-label"
-							for="inlineRadio2">Ngừng bán</label>
-					</div>
-				</div>
-				<br>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Mô tả</label>
-					<textarea class="form-control" rows="3" placeholder="Mô tả:"
+					<textarea class="form-control" rows="2" placeholder="Mô tả:"
 						ng-model="form.description" id="description"></textarea>
 				</div>
-				<br>
+
+			</div>
+			<div class="col-4">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Giá bán</label> <input type="text"
+						class="input-price form-control" ng-model="form.price" id="price"
+						placeholder="Giá sản phẩm">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Rạp</label> <select
+						ng-model="form.cinema.id" class="form-control" id="cinema">
+						<option value="">Chọn rạp phim</option>
+						<option ng-repeat="cn in cinema" ng-value="cn.id">{{cn.name}}</option>
+					</select>
+
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Trạng thái</label>
+					<div class="form-control">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="active" ng-value="true"
+								ng-model="form.active"> <label class="form-check-label"
+								for="inlineRadio1">Đang bán</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio"
+								name="inlineRadioOptions" id="active" ng-value="false"
+								ng-model="form.active"> <label class="form-check-label"
+								for="inlineRadio2">Ngừng bán</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 				<div class="form-group">
 					<button type="button"
 						class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
 						ng-click="create()" ng-disabled="isEdit"
 						title="Tạo sản phẩm mới ?">
-						<img alt="" src="/assets/images/edit.png"> Create
+						<img alt="" src="/assets/images/edit.png"> Thêm mới
 					</button>
 					<button type="button"
 						class="btn btn-outline-dark border border-warning text-warning font-weight-bold"
 						ng-click="update()" ng-disabled="isLoad"
 						title="Chỉnh sửa thông tin sản phẩm ?">
-						<img alt="" src="/assets/images/write.png"> Update
-					</button>
-					<button type="button"
-						class="btn btn-outline-dark border border-danger text-danger font-weight-bold"
-						ng-click="delete(form)" ng-disabled="isLoad"
-						title="Xóa sản phẩm ?">
-						<img alt="" src="/assets/images/trash.png">Delete
+						<img alt="" src="/assets/images/write.png"> Cập nhật
 					</button>
 					<button type="button"
 						class="btn btn-outline-dark border border-success text-success font-weight-bold"
 						ng-click="reset()" title="Xóa trắng form nhập ?">
-						<img alt="" src="/assets/images/updated.png">Reset
+						<img alt="" src="/assets/images/updated.png">Làm mới
 					</button>
 				</div>
-			</div>
 		</div>
 	</div>
+
 	<div class="card-footer">Vui lòng nhập thông tin các sản phẩm</div>
-</div>

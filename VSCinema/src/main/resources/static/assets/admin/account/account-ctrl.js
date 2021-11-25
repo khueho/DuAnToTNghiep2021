@@ -16,10 +16,9 @@ app.controller("account-ctrl" , function($scope ,$http){
     }
 
 	  //hien thi len form 
-    $scope.edit = function(item){
-    
-        $scope.form= angular.copy(item);
-        $(".nav-tabs a:eq(0)" ).tab('show');
+    	$scope.edit = function(item) {
+		$scope.form = angular.copy(item);
+		$(".nav-tabs a:eq(0)").tab('show');
 		$scope.isLoad = true;
 		
     }
@@ -149,10 +148,9 @@ app.controller("account-ctrl" , function($scope ,$http){
     $scope.imageChange = function(files){
         var data = new FormData();
         data.append('file' ,files[0]);
-        $http.post('/rest/upload/images' , data ,{
+        $http.post('/rest/upload/images/' , data ,{
             transformRequest : angular.identity,
             headers: {'Content-Type' : undefined}
-
         }).then(resp =>{
             $scope.form.image = resp.data.name;
 
@@ -197,8 +195,4 @@ app.controller("account-ctrl" , function($scope ,$http){
 
 
     }
-
-
-
-
-});
+    });

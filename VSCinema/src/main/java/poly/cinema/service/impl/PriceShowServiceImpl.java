@@ -11,11 +11,23 @@ import poly.cinema.service.PriceShowService;
 
 @Service
 public class PriceShowServiceImpl implements PriceShowService{
-@Autowired Price_ShowDAO priceshowdao;
+	
+	@Autowired 
+	Price_ShowDAO priceshowdao;
+
 	@Override
 	public List<PriceShow> getAll() {
-		// TODO Auto-generated method stub
 		return priceshowdao.findAll();
+	}
+
+	@Override
+	public PriceShow create(PriceShow priceShow) {
+		return priceshowdao.save(priceShow);
+	}
+
+	@Override
+	public PriceShow update(PriceShow priceShow) {
+		return priceshowdao.save(priceShow);
 	}
 
 }

@@ -30,7 +30,13 @@ public class ShowRestController {
 	public List<Show> getAll(){
 		return showservice.getAll();
 	}
-
+	
+	
+	@GetMapping("/listshowdate")
+	public List<String> listshowdate(){
+		return showservice.listShowDate();
+	}
+	
 	@PostMapping("")
 	public Show create(@Valid @RequestBody Show show){
 	Show create = showservice.create(show);

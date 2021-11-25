@@ -1,7 +1,8 @@
-
 app.controller("cinema-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
+	$scope.isEdit = undefined;
+	$scope.isLoad = undefined;
 
 	$scope.initialize = function() {
 		// load cinema
@@ -18,9 +19,6 @@ app.controller("cinema-ctrl", function($scope, $http) {
 	$http.get("/rest/city").then(resp => {
 		$scope.city = resp.data;
 	});
-
-	$scope.isEdit = undefined;
-	$scope.isLoad = undefined;
 
 	// refresh form
 	$scope.reset = function() {
@@ -43,24 +41,54 @@ app.controller("cinema-ctrl", function($scope, $http) {
 	// create cinema
 	$scope.create = function() {
 		var item = angular.copy($scope.form); // Lấy thông tin của cinema
-		var x = document.getElementById("name").value;
-		var y = document.getElementById("address").value;
-		var z = document.getElementById("city").value;
-		if (x == "" || x == null) {
-			alert("Vui lòng nhập tên rạp !");
-		} else if (y == "" || y == null) {
-			alert("Vui lòng nhập địa chỉ !");
-		} else if (z == "" || z == null) {
-			alert("Vui lòng chọn thành phố !");
-		}else {
+		var cname = document.getElementById("name").value;
+		var caddress = document.getElementById("address").value;
+		var ccity = document.getElementById("city").value;
+		if (cname == "" || cname == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập tên rạp phim !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (caddress == "" || caddress == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập địa chỉ !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (ccity == "" || ccity == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng chọn thành phố !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else {
 			$http.post(`/rest/cinemas`, item).then(resp => {
 				$scope.items.push(resp.data);
 				$scope.reset();
-				alert("Thêm mới rạp phim thành công !");
+				Swal.fire({
+					icon: 'success',
+					title: 'Thành công !',
+					text: 'Thêm rạp phim thành công !',
+					width: '500px',
+					heightAuto: true
+				})
+
 				$scope.initialize();
 			}).catch(error => {
-				alert("Error", error);
-				console.log("Không thể thêm mới rạp phim !");
+				Swal.fire({
+					icon: 'error',
+					title: 'Thất bại !',
+					text: 'Thêm rạp phim thất bại !',
+					width: '500px',
+					heightAuto: true
+				})
 			});
 		}
 	}
@@ -68,41 +96,106 @@ app.controller("cinema-ctrl", function($scope, $http) {
 	// update cinema
 	$scope.update = function() {
 		var item = angular.copy($scope.form); // Lấy thông tin của cinema
-		var x = document.getElementById("name").value;
-		var y = document.getElementById("address").value;
-		var z = document.getElementById("city").value;
-		if (x == "" || x == null) {
-			alert("Vui lòng nhập tên rạp !");
-		} else if (y == "" || y == null) {
-			alert("Vui lòng nhập địa chỉ !");
-		} else if (z == "" || z == null) {
-			alert("Vui lòng chọn thành phố !");
-		}else {
-			$http.put(`/rest/cinemas`, item).then(resp => {
-				var index = $scope.items.findIndex(p => p.id == item.id); // tìm cinema trong csdl và thay đổi thông tin
-				//resp.data.createDate = new Date(resp.data.createDate) sau khi server trả dữ liệu về -> chuyển ngày sang javascript 
-				$scope.items[index] = item;
-				alert("Cập nhật rạp phim thành công !");
-			}).catch(error => {
-				alert("Không thể cập nhật rạp phim");
-				console.log("Error", error);
-			});
+		var cname = document.getElementById("name").value;
+		var caddress = document.getElementById("address").value;
+		var ccity = document.getElementById("city").value;
+		if (cname == "" || cname == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập tên rạp phim !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (caddress == "" || caddress == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập địa chỉ !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (ccity == "" || ccity == null) {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Thất bại !',
+				text: 'Vui lòng chọn thành phố !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else {
+			Swal.fire({
+				title: 'Cập nhật rạp phim',
+				icon: 'question',
+				text: "Bạn có muốn cập nhật rạp phim không ? ",
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Có'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					$http.put(`/rest/cinemas`, item).then(resp => {
+						var index = $scope.items.findIndex(p => p.id == item.id); // tìm cinema trong csdl và thay đổi thông tin
+						$scope.items[index] = item;
+						Swal.fire({
+							icon: 'success',
+							title: 'Thành công !',
+							text: 'Cập nhật rạp phim thành công !',
+							width: '500px',
+							heightAuto: true
+						})
+					}).catch(error => {
+						Swal.fire({
+							icon: 'error',
+							title: 'Thất bại !',
+							text: 'Cập nhật rạp phim thất bại !',
+							width: '500px',
+							heightAuto: true
+						})
+						console.log("Error", error);
+					});
+				}
+			})
 		}
 	}
 
-
 	// remove cinema
-	$scope.delete = function(item) {
-		$http.delete(`/rest/cinemas/${item.id}`).then(resp => {
-			var index = $scope.items.findIndex(p => p.id == item.id); // tìm cinema trong csdl và thay đổi thông tin
-			$scope.items.splice(index, 1); // xóa phần tử tại index - xóa 1 phần tử
-			$scope.reset();
-			alert("Xóa rạp phim thành công !");
-		}).catch(error => {
-			alert("Không thể xóa rạp phim");
-			console.log("Error", error);
-		});
+	/* $scope.delete = function(item) {
+		Swal.fire({
+			title: 'Xóa rạp phim',
+			text: "Bạn có muốn xóa rạp phim không ? ",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Có'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				$http.delete(`/rest/cinema/${item.id}`).then(resp => {
+					var index = $scope.items.findIndex(p => p.id == item.id); // tìm cinema trong csdl và thay đổi thông tin
+					$scope.items.splice(index, 1); // xóa phần tử tại index - xóa 1 phần tử
+					$scope.reset();
+					Swal.fire({
+						icon: 'success',
+						title: 'Thành công !',
+						text: 'Xóa rạp phim thành công !',
+						width: '500px',
+						heightAuto: true
+					})
+				}).catch(error => {
+					Swal.fire({
+						icon: 'error',
+						title: 'Thất bại !',
+						text: 'Xóa rạp phim thất bại !',
+						width: '500px',
+						heightAuto: true
+					})
+					console.log("Error", error);
+				});
+			}
+		})
 	}
+	*/
 
 	$scope.pager = {
 		page: 0,

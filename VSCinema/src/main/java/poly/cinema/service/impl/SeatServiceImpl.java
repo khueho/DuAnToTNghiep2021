@@ -12,12 +12,21 @@ import poly.cinema.service.SeatService;
 @Service
 public class SeatServiceImpl implements SeatService {
 	@Autowired
-	SeatDAO dao;
+	SeatDAO seatDAO;
 
 	@Override
-	public List<Seat> findByRoomIds(Integer roomid) {
-		// TODO Auto-generated method stub
-		return dao.findByRoomId(roomid);
+	public List<Seat> findByRoomId(Integer roomid) {
+		return seatDAO.findByRoomId(roomid);
+	}
+
+	@Override
+	public Seat create(Seat seat) {
+		return seatDAO.save(seat);
+	}
+
+	@Override
+	public Seat update(Seat seat) {
+		return seatDAO.save(seat);
 	}
 
 }

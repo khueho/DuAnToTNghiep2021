@@ -21,7 +21,7 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public Room save(Room room) {
-		// TODO Auto-generated method stub
+		room.setActivity(true);
 		return dao.save(room);
 	}
 

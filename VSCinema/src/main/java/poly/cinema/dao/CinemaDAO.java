@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import poly.cinema.entity.Cinema;
 
 public interface CinemaDAO extends JpaRepository<Cinema, Integer> {
-	@Query("Select c from Cinema c where c.city.id = :cityid")
-	List<Cinema> findByCity(String cityid);
+	// Tìm Rạp phim theo thành phố
+		@Query("SELECT c FROM Cinema c WHERE c.city.id = :cityid")
+		List<Cinema> findCinemaByCity(String cityid);
 }

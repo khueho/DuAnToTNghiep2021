@@ -97,9 +97,11 @@ public class TokenServiceImpl implements TokenService{
 	@Override
 	public Token forgot(TokenRequest tokenRequest) {
 		String AlphaNumericStringCode = "0123456789";
+		
 		String AlphaNumericStringPass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
+		
 		StringBuilder cd = new StringBuilder(6);
 		StringBuilder pw = new StringBuilder(6);
 		for (int i = 0; i < 6; i++) {
@@ -113,7 +115,9 @@ public class TokenServiceImpl implements TokenService{
 		String pass = pw.toString();
 		Token token = new Token(pass, code, tokenRequest.getExpiry(), tokenRequest.getExpiry(), tokenRequest.getCategory(), tokenRequest.getActivity(), tokenRequest.getUser());
 		session.setAttribute("username", tokenRequest.getUser().getUsername());
+		
 		List<Token> list = tokenDAO.findByUsername(tokenRequest.getUser().getUsername());
+		
 		list.forEach(t -> {
 			if(t.getActivity() == true && t.getCategory() == 1) {
 				t.setActivity(false);

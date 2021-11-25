@@ -1,5 +1,6 @@
 package poly.cinema.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class OrderService implements poly.cinema.service.OrderService {
 		order=dao.findById(id).get();
 		order.setActive(true);
 		return dao.save(order);
+	}
+	@Override
+	public List<Order> findByDate(Date createdate) {
+		return dao.findByDate(createdate);
 	}
 
 }

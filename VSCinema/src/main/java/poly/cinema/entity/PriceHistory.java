@@ -18,27 +18,38 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-@Entity 
+@Entity
 @Table(name = "price_history")
-public class PriceHistory  implements Serializable{
+public class PriceHistory implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	Integer price ;
-	
+	Integer price;
+
 	@Temporal(TemporalType.TIME)
 	@Column(name = "Time")
 	Date time = new Date();
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	Date createdate = new Date();
-	
+
 	@ManyToOne
 	@JoinColumn(name = "Foodsid")
 	Food food;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "Username")
 	Account user;
+
+	public PriceHistory(Account user,Food food, Integer price, Date createdate, Date time ) {
+		super();
+		this.user = user;
+		this.food = food;
+		this.price = price;
+		this.createdate = createdate;
+		this.time = time;
+		
+	}
+
 }

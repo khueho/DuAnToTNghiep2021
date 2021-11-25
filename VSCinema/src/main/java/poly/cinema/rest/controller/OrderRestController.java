@@ -1,5 +1,5 @@
 package poly.cinema.rest.controller;
-
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +30,10 @@ public class OrderRestController {
 	@PutMapping("{id}")
 	public Order updateActive(@PathVariable("id") String id,@RequestBody Order order) {
 		return orderService.updateActive(id,order);
+	}
+	
+	@GetMapping("/findbydate/{createdate}")
+	public List<Order> findByDate(@PathVariable("createdate")Date createdate) {
+		return orderService.findByDate(createdate);
 	}
 }

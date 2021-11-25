@@ -17,5 +17,6 @@ public interface ShowDAO extends JpaRepository<Show, Integer>{
 	List<Show> findByRoom(String roomname);
 	@Query("Select s from Show s where s.Activity = true and s.movie.id = :movieid and s.room.name = :roomname")
 	List<Show> findByMovieAndRoom(Integer movieid, String roomname);
-	
+	@Query("Select s.showDate from Show s where s.Activity = true group by s.showDate")
+	List<String> listShowDate();
 }

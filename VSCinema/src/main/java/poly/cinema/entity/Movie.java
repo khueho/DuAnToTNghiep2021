@@ -53,7 +53,7 @@ public class Movie  implements Serializable{
 	Genre genre;
 	
 	@ManyToOne
-	@JoinColumn(name = "Ratedid")
+	@JoinColumn(name = "Ratedsid")
 	Rated rated;
 	
 

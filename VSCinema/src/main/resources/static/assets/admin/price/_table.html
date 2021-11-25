@@ -20,21 +20,19 @@
 		      	<th rowspan="2">ID</th>
 				<th rowspan="2">Giá bán</th>
 				<th rowspan="2">Ngày tạo</th>
-				<th rowspan="2">Hạn áp dụng</th>
-				<th rowspan="2">Khung giờ chiếu</th>	
+				<th rowspan="2">Hạn áp dụng</th>	
 				<th rowspan="2">Trạng thái</th>
 				<th rowspan="2"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
-		      <th scope="row">1</th>
-		      <td>50000</td>
-		      <td>Hôm qua</td>
-		      <td>Ngày mai</td>
-		      <td>Buổi tối</td>
-		       <td>Đang áp dụng</td>
-		      <td><button type="button" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
+		    <tr ng-repeat="item in priceShows">
+		      <th>{{item.id}}</th>
+		      <th>{{item.price}}</th>
+		      <td>{{item.createDate|date:'dd/MM/yyyy'}}</td>
+		      <td>{{item.expiry|date:'dd/MM/yyyy'}}</td>
+		      <td>{{item.activity?'Hoạt động':'Ngừng hoạt động'}}</td>
+		      <td><button ng-click="edit(item)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/file.png"> View</button></td>
 		    </tr>
 		  </tbody>
 		</table>

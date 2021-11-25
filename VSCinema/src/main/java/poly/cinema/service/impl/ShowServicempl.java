@@ -60,6 +60,9 @@ public class ShowServicempl implements ShowService{
 		return showdao.findByMovieAndRoom(movieid, roomname);
 	}
 	
-	
+	@Override
+	public List<String> listShowDate(){
+		return showdao.listShowDate();
+	}
 	
 }

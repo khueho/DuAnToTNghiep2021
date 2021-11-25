@@ -1,3 +1,4 @@
+
 <div class="card">
 	<div class="card-header">
 		<div class="card-title">
@@ -15,142 +16,51 @@
 			</h5>
 		</div>
 	</div>
-	<div class="card-body">
-		<div class="row">
-			<br>
-			<div class="col-3">
-				<br>
-				<div class="container-fluid">
-					<img class="card-img-top" alt="loading" src="/assets/images/1-201810404.jpg"> 
+	<div class="card-body bodyA">
+		<div class="wrapper">
+			<div class="movie_card">
+				<div class="left">
+					<div class="datails">
+						<h1>{{form.show.movie.name}}</h1>
+						<br>
+						<div class="head">
+							<p class="rated">{{form.seat.room.name}} - {{form.seat.rowposition+form.seat.colposition}}</p>
+							<p class="year">{{form.ticketprice}} VND</p>
+							<p class="genre">{{form.show.showDate}} {{  form.show.startTime}}</p>
+							<p class="time">{{form.show.showDate}} {{form.endtime| date:'HH:mm:ss'}}</p>
+						</div>
+						<br>
+						<a class="read_more a" href="https://codewithbishal.com"
+							target="_blank" title="Read More">{{form.seat.room.cinema.name}}</a>
+						<p class="description">{{form.seat.room.cinema.address}}</p>
+						<div class="buttons">
+							<button class="button" title="Click to view trailer">
+								<i>MÃ VÉ: </i> {{form.id}}
+							</button>
+							<button class="button" title="Download the trailer">
+								<i>Khách Hàng: </i> {{form.order.user.fullname}}
+							</button>
+							<button class="button" title="Rating">
+								<i>Discount:</i> {{form.discount}}
+							</button>
+							<button class="button" title="Bookmark">
+								<i>Tổng tiền:</i> {{form.totalmoney}} VND
+							</button>
+						</div>
+					</div>
 				</div>
-				<br>
-				<div class="form-group container-fluid">
-				    <button type="button" class="btn btn-outline-dark form-control border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
-				 </div>
-			</div>
-			<div class="col-3">
-				 <br>
-				 <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã hóa đơn: </strong>
-				    </div>
-				  </div>
-				 <br>
-				 <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã vé: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã suất chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã suất chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Số điện thoại: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Ngày mua: </strong>
-				    </div>
-				  </div>
-				  <br>
-				   <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Khuyến mãi: </strong>
-				    </div>
-				  </div>
-			</div>
-			<div class="col-3">
-				<br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã phim: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Tên phim: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Giá vé: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Ngày chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Giờ khởi chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Giờ kết thúc: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Trạng thái: </strong>
-				    </div>
-				  </div>
-			</div>
-			<div class="col-3"> 
-				 <br>
-				 <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Mã rạp chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Tên rạp chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <textarea class="form-control" rows="4" placeholder="Địa chỉ:"></textarea>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Phòng chiếu: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Ghế ngồi: </strong>
-				    </div>
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <div class="form-control">
-				    	<strong>Tổng tiền: </strong>
-				    </div>
-				  </div>
+				<div class="c_right">
+					<div class="img_c">
+						<img
+							src="{{'/assets/images/image/movies/' + form.show.movie.poster}}"
+							alt="Movie IMG">
+					</div>
+					<div class="play_btn">
+						<a class="a" href="https://codewithbishal.com" target="_blank"
+							title="Play Trailer"> <i class="fas fa-play-circle"></i>
+						</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

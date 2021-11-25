@@ -31,7 +31,7 @@ public class Cinema  implements Serializable{
 			
 	@JsonIgnore
 	@OneToMany(mappedBy = "cinema")
-	List<Room> rooms ;
+	List<Room> rooms;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cinema")

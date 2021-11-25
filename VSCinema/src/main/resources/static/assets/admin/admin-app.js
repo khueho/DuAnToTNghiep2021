@@ -13,6 +13,7 @@ app.config(function($routeProvider){
     })
      .when("/movie" ,{
         templateUrl :"/assets/admin/movie/index.html",
+        controller: "movie-ctrl"
      })
      .when("/show" ,{
         templateUrl :"/assets/admin/show/index.html",
@@ -34,6 +35,7 @@ app.config(function($routeProvider){
     })
     .when("/sales" ,{
         templateUrl :"/assets/admin/sale/index.html",
+        controller:"sale-ctrl"
     })
     .when("/orders" ,{
         templateUrl :"/assets/admin/order/index.html",
@@ -41,15 +43,21 @@ app.config(function($routeProvider){
     })
 	.when("/tickets" ,{
         templateUrl :"/assets/admin/ticket/index.html",
+        controller: "ticket-ctrl"
     })
     .when("/censors" ,{
         templateUrl :"/assets/admin/censor/index.html",
     })
     .when("/prices" ,{
         templateUrl :"/assets/admin/price/index.html",
+        controller: "price-ctrl"
     })
 	.when("/statistics" ,{
         templateUrl :"/assets/admin/statistics/index.html",
+    })
+    .when("/coupons" ,{
+        templateUrl :"/assets/admin/coupon_code/index.html",
+        controller: "coupon-ctrl"
     })
     .otherwise({
         template :"<h1 class='text-center' ></h1>"
