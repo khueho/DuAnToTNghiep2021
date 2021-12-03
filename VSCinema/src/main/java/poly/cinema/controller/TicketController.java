@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class TicketController {
-	@RequestMapping("ticket/book")
+	@RequestMapping("ticket/book-tickets")
 	public String ticket() {
 		return "ticket/book_tickets";
 	}

@@ -142,4 +142,14 @@ public class AccountServiceImpl implements AccountService{
 	public Account save( Account account) {
 		return accountDAO.save(account);
 	}
+
+	@Override
+	public Account getUserLogin() {
+		String username = request.getRemoteUser();
+		if(username == null) {
+			return null;
+		} else {
+			return accountDAO.findById(username).get();
+		}
+	}
 }

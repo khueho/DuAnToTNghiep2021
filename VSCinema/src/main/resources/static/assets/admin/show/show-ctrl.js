@@ -20,7 +20,7 @@ app.controller('show-ctrl', function($scope, $http) {
 		priceShow: {
 			id: 1
 		},
-		activity: true
+		activity: 1
 	}
 	$scope.endtime = $scope.form.endTime;
 				$scope.errors = {
@@ -112,12 +112,16 @@ $scope.changeTimeTogetTime = function(time){
         userData = userData.replace("<","")
         userData = userData.replace(" ","")
 		userData = userData.replace("-","")
+		userData = userData.replace("=","")
+		userData = userData.replace("`","")
+		userData = userData.replace("~","")
 		userData = userData.replace(/[a-zA-Z]{1,100}/,"")
 		return userData;
 	}
 	$scope.Search = function(){
 		const searchWrapper = document.querySelector(".excame");
-		const inputBox = searchWrapper.querySelector("input");
+		//alert(searchWrapper)
+		const inputBox = searchWrapper.querySelector("input");	
 		const suggBox = searchWrapper.querySelector(".autocom-box");
 		let userData = document.getElementById('inputsearch').value; //cho userData bằng giá trị nhập vào input
 		//let userData = $scope.inputsearch;
@@ -127,31 +131,26 @@ $scope.changeTimeTogetTime = function(time){
 	for(let i=0; i < userData.length;i++){  
             tr += $scope.replace(userData[i]); 
           }
-	userData = tr;
+userData = tr;
+		
+//alert("Usedata: "+userData)
 //		console.log(userData)
 		 var str = '';
 		if(userData){
             for(let i=0;i<userData.length;i++){
                 str += userData[i];
-                if(i == 7){
-					str = str.slice(0,8)+ str.slice(8,11)
-					//console.log(userData[i])
-                }
-                if(i == 6){
-                    if(userData[i] != 0){
-					str = str.slice(0,7) +"-0"+str.slice(7,10)
-						}
-					if(userData[i] == 0){
-					str = str.slice(0,7)+"-"+str.slice(7,10)
-						}
-                }
+               	if(i == 7){
+					str =str.slice(1,2)+str.slice(3,4)+"-"+str.slice(4,5)+str.slice(6,7)+"-"+str.slice(7,11);
+				}
+				if(i ==6){
+					str = "0"  +str.slice(0,1)+"-"+str.slice(1,2)+str.slice(3,4)+"-"+str.slice(4,8);
+				}
                 if(i == 5){
-                  //  str.splice(5, 1)
-                  str =  str.slice(0,5) + str.slice(6,10);
-                }
-                if(i == 4){
-                    str = str.slice(0,4)+"-0"+str.slice(4,5);
-                }    
+                    str = str.slice(1,2)+str.slice(3,4)+"-"+str.slice(4,8);
+                }	
+				if(i == 4){
+					str = +"0"+str.slice(0,1)+"-"+str.slice(1,5);
+				}    
             }
 			if(userData.length == 8){
 				$scope.fills();
@@ -162,7 +161,12 @@ $scope.changeTimeTogetTime = function(time){
 			if(userData.length < 10){
 				emptyArray.push("Có phải ý bạn là: "+str)
 			}
-			
+			if(userData.length >= 6 && userData.length < 8){
+				userData = userData.slice(3,7)+"-"+userData.slice(0,2)
+			}
+			if(userData.length >= 8){
+				userData.slice(6,10)+"-"+userData.slice(3,5)+"-"+userData.slice(0,2)
+			}
 			$scope.listshowdate.filter(function(value){
 				var exites = '';
 				for(var i = 0; i < value.length;i++){
@@ -171,19 +175,20 @@ $scope.changeTimeTogetTime = function(time){
 				//	console.log(exites)
 					if(userData == exites){
 		//				console.log(userData+"|"+exites)
+						value = value[8].toString()+value[9].toString()+"-"+value[5].toString()+value[6].toString()+"-"+value[0].toString()+value[1].toString()+value[2].toString()+value[3].toString();
 						emptyArray.push(value)
 					}
 				}
-				
+			//	console.log(emptyArray)
 			})
 		//	console.log("emptyArray.length: "+emptyArray.length,emptyArray)
 		$scope.SeachList = emptyArray;
 			emptyArray = emptyArray.map((data) =>{		
-				data = '<li>'+data+'</li>'
+				data = '<option>'+data+'</option>'
 				//console.log(data)
 				return data;
 			});
-			
+			console.log(emptyArray)
 			if(emptyArray.length == 0){
 				//alert("Đúng")
 				document.querySelector(".excame").classList.remove("active")
@@ -206,6 +211,7 @@ $scope.changeTimeTogetTime = function(time){
 		selectUserData = selectUserData.replace("Có phải ý bạn là: ","")
 		let searchWrapper = document.querySelector(".excame");
 		searchWrapper.querySelector("input").value = selectUserData;
+		$scope.fills();
 		document.querySelector(".excame").classList.remove("active") //hide autocombox
 	}
 	
@@ -277,18 +283,6 @@ $scope.changeTimeTogetTime = function(time){
 		$scope.listshowdaterutgon = [];
 		$http.get("/rest/show/listshowdate").then(resp => {
 			$scope.listshowdate = resp.data;
-			var now = new Date();
-			$scope.listshowdate.filter(function(element){
-				
-			 var d = new Date(element+"T08:00:00")
-				//	console.log(element	)
-				//console.log(d.getDate()+">="+now.getDate()+"\n"+d.getMonth()+">="+now.getMonth()+"\n"+d.getFullYear()+">="+now.getFullYear())
-				if(d.getDate()>=now.getDate()&&d.getMonth()>=now.getMonth()&&d.getFullYear()>=now.getFullYear()){
-				//	console.log(element)
-					$scope.listshowdaterutgon.push(element)
-				}
-			})
-			
 		})
 		//console.log($scope.listshowdaterutgon.length)
 	}
@@ -306,40 +300,60 @@ $scope.changeTimeTogetTime = function(time){
 	}
 	//fillshowdate
 	$scope.fillshowdate = function(showdate){
-	//	alert(showdate.length)
+	//alert(showdate)
 	var tr = '';	 
 	for(let i=0; i < showdate.length;i++){  
             tr += $scope.replace(showdate[i]); 
           }
 	showdate = tr;
+	//alert(showdate.length)
+	
 	if(showdate.length>=8){
 		showdate = showdate.slice(0,8)
 	}
+	//alert(showdate.length,showdate)
 	var str = '';
 		for(let i=0;i<showdate.length;i++){
                 str += showdate[i];
-                if(i == 7){
-					str = str.slice(0,8)+ str.slice(8,10)
+				console.log(showdate[i])
+				/*if(i==8){
+					str = str.slice(0,8)+str.slice(9,10)+str.slice(10,11)
+					console.log(str)
+				}*/
+				if(i == 7){
+					if(str.length ==9){
+						str = str.slice(0,7)+"-"+str.slice(7,9);
+					}
+					if(str.length == 8){
+						str = str.slice(0,7)+"-0"+str.slice(8,9);
+					}
+				
+				//	str = str.slice(0,8)+str.slice(9,10)+str.slice(10,11);
 					//console.log(userData[i])
+					console.log(str)
                 }
-                if(i == 6){
+               /* if(i == 6){
                     if(showdate[i] != 0){
-					str = str.slice(0,7) +"-0"+str.slice(7,10)
-						}
+					str = str.slice(0,7)
+						console.log(str)
+					}
 					if(showdate[i] == 0){
 					str = str.slice(0,7)+"-"+str.slice(7,10)
+					console.log(str)
 						}
-                }
+                }*/
                 if(i == 5){
                   //  str.splice(5, 1)
-                  str =  str.slice(0,5) + str.slice(6,10);
+                  str =  str.slice(0,5) + str.slice(6,8);
+				console.log(str.length)
                 }
                 if(i == 4){
                     str = str.slice(0,4)+"-0"+str.slice(4,5);
+				console.log(str)
                 }    
             }
 	showdate = str;
-	alert(showdate)
+	//alert(showdate)
 		if(showdate.length == 4){
 			 for(var i = 0; i < $scope.items.length; i++){
 			if(new Date($scope.items[i].showDate).getFullYear() == showdate){
@@ -372,7 +386,7 @@ $scope.changeTimeTogetTime = function(time){
 		$scope.items = $scope.fill;
 	}
 	}
-	//fillmovie()
+	//fillmovie()	
 	$scope.fillroom = function(roomid){
 		//console.log(movieid);
 		 for(var i = 0; i < $scope.items.length; i++){
@@ -405,7 +419,8 @@ $scope.changeTimeTogetTime = function(time){
 		$scope.allSave();
 		$scope.fill = [];
 		$scope.pager.page = 0;
-		
+		searchWrapper = document.querySelector(".excame");
+		searchWrapper.classList.remove("active");
 		var roomid = document.getElementById('room').value;
 		roomid = $scope.replaceString(roomid)
 		var movieid = document.getElementById('movie').value;
@@ -416,6 +431,12 @@ $scope.changeTimeTogetTime = function(time){
 		if(document.getElementById('inputsearch').value){
 			listshowdate = document.getElementById('inputsearch').value;
 	//		console.log(listshowdate)
+			if(listshowdate.length >= 6 && listshowdate.length < 8){
+				 listshowdate = listshowdate.slice(2,6)+listshowdate.slice(0,2);
+			}
+		if(listshowdate.length >= 8){
+				listshowdate = listshowdate.slice(6,10)+listshowdate.slice(3,5)+listshowdate.slice(0,2);
+			}
 		}
 		if(roomid != '' && movieid != '' && listshowdate != ''){
 			$scope.fill = [];
@@ -448,7 +469,7 @@ $scope.changeTimeTogetTime = function(time){
 		if(movieid != '' && listshowdate != ''){
 			$scope.fill = [];
 			if(listshowdate.length == 4){
-				alert("==4")
+			//	alert("==4")
 				for(var i = 0; i < $scope.items.length; i++){
 				if($scope.items[i].movie.id == movieid && new Date($scope.items[i].showDate).getFullYear() == listshowdate){	
 						$scope.fill.push($scope.items[i])				
@@ -456,7 +477,7 @@ $scope.changeTimeTogetTime = function(time){
 			}
 			}
 			if(listshowdate.length != 4){
-				alert("!=4")
+				//alert("!=4")
 			for(var i = 0; i < $scope.items.length; i++){
 				if($scope.items[i].movie.id == movieid && $scope.items[i].showDate == listshowdate){	
 						$scope.fill.push($scope.items[i])				
@@ -530,7 +551,23 @@ $scope.changeTimeTogetTime = function(time){
 	//	console.log(datess.getTime())
 		return datess.getTime();
 	}
-	
+	//Đảo mảng
+	 $scope.reverseString = function(str) {
+    // Step 1. Use the split() method to return a new array
+    var splitString = str.split(""); // var splitString = "hello".split("");
+    // ["h", "e", "l", "l", "o"]
+ 
+    // Step 2. Use the reverse() method to reverse the new created array
+    var reverseArray = splitString.reverse(); // var reverseArray = ["h", "e", "l", "l", "o"].reverse();
+    // ["o", "l", "l", "e", "h"]
+ 
+    // Step 3. Use the join() method to join all elements of the array into a string
+    var joinArray = reverseArray.join(""); // var joinArray = ["o", "l", "l", "e", "h"].join("");
+    // "olleh"
+    
+    //Step 4. Return the reversed string
+    return joinArray; // "olleh"
+}
 	//Loc trùng truoc khi create
 	$scope.fillCoincide = function(item){
 		$scope.errors = {
@@ -595,24 +632,19 @@ $scope.changeTimeTogetTime = function(time){
 		$scope.itemss = angular.copy($scope.items);
 		//console.log($scope.changedate(dates))
 		for(let i=0; i < $scope.itemss.length; i++){	
-			//console.log($scope.itemss[i].room.id +"=="+ item.room.id +" \n&&"+ $scope.itemss[i].showDate +"=="+ $scope.changedate(item.showDate))
-			if($scope.itemss[i].room.id == item.room.id && $scope.itemss[i].showDate == $scope.changedate(item.showDate)){
-				console.log($scope.changeTimeTogetTime($scope.itemss[i].startTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"<="+ item.endTime.getTime() +"\n||"+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +"<="+ item.endTime.getTime())
-				//console.log(item.startTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"\n&&"+ item.startTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +"\n||"+ item.endTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"\n&&"+ item.endTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].endTime))
-						
-				if($scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) >= item.startTime.getTime() && $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) <= item.endTime.getTime() || $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) >= item.startTime.getTime() && $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) <= item.endTime.getTime())
-				//alert("$scope.itemss[i].room.id:P "+$scope.itemss[i].room.id+"\n"+"$scope.changedate(item.showDate): "+$scope.changedate(item.showDate))
+			/*console.log($scope.itemss[i].room.id +"=="+ item.room.id +"\n&&"+ $scope.itemss[i].showDate+" == "+$scope.changedate(item.showDate))*/
+			if($scope.itemss[i].room.id == item.room.id && $scope.itemss[i].showDate == $scope.changedate(item.showDate) || item.startTime.getTime() >= $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) && item.startTime.getTime() <= $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) || item.endTime.getTime() >= $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) && item.endTime.getTime() <= $scope.changeTimeTogetTime($scope.itemss[i].endTime)){
 				{
-					console.log($scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"<="+ item.endTime.getTime() +"\n||"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +"<="+ item.endTime.getTime())
-					return 'trung'
-				}
-				if(item.startTime.getTime() >= $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) && item.startTime.getTime() <= $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) || item.endTime.getTime() >= $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) && item.endTime.getTime() <= $scope.changeTimeTogetTime($scope.itemss[i].endTime))
-				{
-					console.log(item.startTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"\n&&"+ item.startTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +"\n||"+ item.endTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"\n&&"+ item.endTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime))
+					console.log($scope.itemss[i].room.id+"=="+ item.room.id +"\n&&"+ $scope.itemss[i].showDate +"=="+ $scope.changedate(item.showDate) +"\n||"+ item.startTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime)+"&&"+ item.startTime.getTime() +"<="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +"\n||"+ item.endTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"\n&&"+ item.endTime.getTime() +"<="+ $scope.changeTimeTogetTime($scope.itemss[i].endTime))
+					//alert(item.showDate)
+					//console.log($scope.changeTimeTogetTime($scope.itemss[i].startTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"<="+ item.endTime.getTime() +"\n||"+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +"<="+ item.endTime.getTime())
+					//console.log(item.startTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"\n&&"+ item.startTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].endTime) +"\n||"+ item.endTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].startTime) +"\n&&"+ item.endTime.getTime() +">="+ $scope.changeTimeTogetTime($scope.itemss[i].endTime))						
+					//console.log($scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"<="+ item.endTime.getTime() +"\n||"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +">="+ item.startTime.getTime() +"\n&&"+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +"<="+ item.endTime.getTime())
+					//console.log(item.startTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"\n&&"+ item.startTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) +"\n||"+ item.endTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) +"\n&&"+ item.endTime.getTime() +">="+ $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime))
 					return 'trung'
 				}
 			}
-			if($scope.itemss[i].room.id == item.room.id && $scope.itemss[i].showDate == $scope.changedate(item.showDate) && item.startTime.getTime()-$scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) >= -900000 && item.startTime.getTime() - $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) < 900000){
+			if($scope.itemss[i].room.id == item.room.id && $scope.itemss[i].showDate == $scope.changedate(item.showDate) && item.startTime.getTime()-$scope.changeTimeFromStringtoTime($scope.itemss[i].startTime) >= -900000 && item.startTime.getTime() - $scope.changeTimeFromStringtoTime($scope.itemss[i].endTime) < 900000 || item.endTime.getTime()-changeTimeFromStringtoTime($scope.itemss.startTime() >= -900000)){
 				console.log($scope.changeTimeFromStringtoTime($scope.itemss[i].startTime))
 				return 'dunggio' //đụng giờ
 				//thời gian bắt đầu cách kết thúc trước 15p
@@ -678,20 +710,20 @@ console.log(ite)
 	}
 		$scope.edit = function(item){
 			var showDate = new Date(item.showDate);
-//			console.log(item.showDate)
-		
-		$scope.reset();
-		$scope.init();
-		$scope.form = angular.copy(item);
-			$scope.form.startTime =  new Date("1974-03-12T"+$scope.form.startTime)			
+			$scope.reset();
+			$scope.init();
+			
+			$scope.form = angular.copy(item);
+			$scope.form.startTime =  new Date("1974-03-12T"+$scope.form.startTime)		
 			$scope.endtime = new Date("1974-03-12T"+$scope.form.endTime)
-		$scope.form.showDate = showDate;
-			$scope.findRapFromCity();
-			$scope.findByCinema();
-		//console.log($scope.form)
-		
-		$(".nav-tabs a:eq(0)").tab('show')
-	//	console.log($scope.form)
+			$scope.form.endTime = new Date("1974-03-12T"+$scope.form.endTime)	
+			$scope.form.showDate = showDate;
+				$scope.findRapFromCity();
+				$scope.findByCinema();
+			//console.log($scope.form)
+			console.log($scope.endtime)
+			$(".nav-tabs a:eq(0)").tab('show')
+		//	console.log($scope.form)
 	}
 	
 	//Kiem tra chọn ngày cho showDate
@@ -715,16 +747,14 @@ console.log(ite)
 	//thêm csdl
 		$scope.create = function(){		
 			var date = new Date();
-			date.setDate(date.getDate()+7);
-			console.log($scope.form.showDate)
-			$scope.form.showDate = date;	
+			date.setDate(date.getDate()+7);	
 			var data = angular.copy($scope.form)
 			
 		//	console.log($scope.fillCoincide(data))
 	//	console.log($scope.changedate(data.showDate))
 		var test = $scope.fillCoincide(data);
 		console.log(test)
-			if(test == 'trung'){
+			/*if(test == 'trung'){
 				Swal.fire({
 				  icon: 'error',
 				  title: 'Đụng giờ đang chiếu phim!',
@@ -751,7 +781,7 @@ console.log(ite)
 					//  footer: '<a href="">Why do I have this issue?</a>'
 					})
 				return
-			}
+			}*/
 			data.movie.runningTime = new Date("1974-03-12T"+$scope.form.movie.runningTime)
 			data.priceShow.timeSlot = new Date("1974-03-12T"+$scope.form.priceShow.timeSlot)
 			data.priceShow.createDate = new Date($scope.form.priceShow.createDate)
@@ -779,6 +809,7 @@ console.log(ite)
 		//update 
 		$scope.update = function(){
 			var data = angular.copy($scope.form)
+			var dates = new Date();
 			if(data.id == undefined){
 				Swal.fire({
 				  icon: 'error',
@@ -789,17 +820,32 @@ console.log(ite)
 				return
 			}
 			var dateform = new Date(data.showDate);
-			console.log(dateform.getDate()+"<="+date.getDate()+"\n"+dateform.getMonth()+"<="+date.getMonth()+"\n"+dateform.getFullYear()+"<="+date.getFullYear())
-			if(dateform.getDate()<=date.getDate()&&dateform.getMonth()<=date.getMonth()&&dateform.getFullYear()<=date.getFullYear()){
-				date.setDate(date.getDate()-5)
+			console.log(dateform.getDate()+"<="+dates.getDate()+"\n"+dateform.getMonth()+"<="+dates.getMonth()+"\n"+dateform.getFullYear()+"<="+dates.getFullYear())
+			if(dateform.getMonth()<=dates.getMonth()&&dateform.getFullYear()<=dates.getFullYear()){
+				
+				console.log(date)
+				dates.setDate(date.getDate()-5)
+				dates.setMonth(date.getMonth()+1)
 				Swal.fire({
 				  icon: 'error',
-				  title: 'Không thể cập nhật show có ngày tạo trước ngày '+date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear()+'!',
+				  title: 'Không thể cập nhật show có ngày tạo trước ngày '+dates.getDate()+"/"+dates.getMonth()+"/"+dates.getFullYear()+'!',
 				  showConfirmButton: false,
 				  timer: 1500
 				})
 				return
 			}
+			if(dateform.getDate()<=dates.getDate()&&dateform.getMonth()<=dates.getMonth()&&dateform.getFullYear()<=dates.getFullYear()){
+				dates.setDate(date.getDate()-5)
+				dates.setMonth(date.getMonth()+1)
+				Swal.fire({
+				  icon: 'error',
+				  title: 'Không thể cập nhật show có ngày tạo trước ngày '+dates.getDate()+"/"+dates.getMonth()+"/"+dates.getFullYear()+'!',
+				  showConfirmButton: false,
+				  timer: 1500
+				})
+				return
+			}
+			console.log(dateform.getDate()+"<="+date.getDate()+"\n&&"+dateform.getMonth()+"<="+date.getMonth()+"\n&&"+dateform.getFullYear()+"<="+date.getFullYear())
 			var test = $scope.fillCoincide(data);
 		console.log(test)
 			if(test == 'trung'){
@@ -832,19 +878,18 @@ console.log(ite)
 			}
 			data.movie.runningTime = new Date("1974-03-12T"+$scope.form.movie.runningTime)
 			data.priceShow.timeSlot = new Date("1974-03-12T"+$scope.form.priceShow.timeSlot)
-			data.endTime = new Date("1974-03-12T"+$scope.form.endTime)
+			data.endTime = $scope.form.endTime
 			data.priceShow.createDate = new Date($scope.form.priceShow.createDate)
 				console.log(data.endTime)
 				$http.post(`/rest/show`, data).then(resp => {
-					$scope.items.push(resp.data);
-					$scope.init();
+					$scope.items.push(resp.data);		
 					Swal.fire({
 						  icon: 'success',
 						  title: 'Cập nhật show thành công!',
 						  showConfirmButton: false,
 						  timer: 1500
 						})
-					$scope.init()
+						window.location.reload();
 			}).catch(error =>{
 				console.log("error", error)
 				Swal.fire({

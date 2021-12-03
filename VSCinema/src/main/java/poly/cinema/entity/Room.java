@@ -31,8 +31,7 @@ public class Room  implements Serializable{
 	Integer id;
 	@NotEmpty(message = "Vui lòng nhập tên phòng")
 	String name;
-	Boolean activity;
-	
+	Boolean activity ;
 	
 	@ManyToOne
 	@JoinColumn(name = "Cinemasid")

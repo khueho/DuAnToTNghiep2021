@@ -1,68 +1,55 @@
 
-<div class="card">
-	<div class="card-header">
-		<div class="card-title">
-			<h5>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-						d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    <path
-						d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                    <path
-						d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                  </svg>
-				THÔNG TIN VÉ XEM PHIM
-			</h5>
-		</div>
-	</div>
-	<div class="card-body bodyA">
-		<div class="wrapper">
-			<div class="movie_card">
-				<div class="left">
-					<div class="datails">
-						<h1>{{form.show.movie.name}}</h1>
-						<br>
-						<div class="head">
-							<p class="rated">{{form.seat.room.name}} - {{form.seat.rowposition+form.seat.colposition}}</p>
-							<p class="year">{{form.ticketprice}} VND</p>
-							<p class="genre">{{form.show.showDate}} {{  form.show.startTime}}</p>
-							<p class="time">{{form.show.showDate}} {{form.endtime| date:'HH:mm:ss'}}</p>
-						</div>
-						<br>
-						<a class="read_more a" href="https://codewithbishal.com"
-							target="_blank" title="Read More">{{form.seat.room.cinema.name}}</a>
-						<p class="description">{{form.seat.room.cinema.address}}</p>
-						<div class="buttons">
-							<button class="button" title="Click to view trailer">
-								<i>MÃ VÉ: </i> {{form.id}}
-							</button>
-							<button class="button" title="Download the trailer">
-								<i>Khách Hàng: </i> {{form.order.user.fullname}}
-							</button>
-							<button class="button" title="Rating">
-								<i>Discount:</i> {{form.discount}}
-							</button>
-							<button class="button" title="Bookmark">
-								<i>Tổng tiền:</i> {{form.totalmoney}} VND
-							</button>
-						</div>
+<div class="card-body bodyA">
+	<div class="wrapper">
+		<div class="movie_card">
+			<div class="left col-sm-10">
+				<div class="datails">
+					<h2>{{form.show.movie.name}}</h2>
+					<br>
+					<div class="head row">
+						<p class="rated col-2">{{form.seat.room.name}} -
+							{{form.seat.rowposition+form.seat.colposition}}</p>
+						<p class="year">Giá vé: {{form.ticketprice}} VND</p>
+						<p class="genre">Bắt đầu: {{form.show.showDate|
+							date:'dd/MM/yyyy'}} {{ form.show.startTime}}</p>
+						<p class="time">Kết thúc: {{form.show.showDate|
+							date:'dd/MM/yyyy'}} {{form.endtime| date:'HH:mm:ss'}}</p>
 					</div>
-				</div>
-				<div class="c_right">
-					<div class="img_c">
-						<img
-							src="{{'/assets/images/image/movies/' + form.show.movie.poster}}"
-							alt="Movie IMG">
-					</div>
-					<div class="play_btn">
-						<a class="a" href="https://codewithbishal.com" target="_blank"
-							title="Play Trailer"> <i class="fas fa-play-circle"></i>
-						</a>
+					<br>
+					<h5 class="cinemaname">{{form.seat.room.cinema.name}}</h5>
+					<p class="description">Địa chỉ:
+						{{form.seat.room.cinema.address}}</p>
+					<div class="buttons">
+						<button class="button" title="Click to view trailer">
+							<i>MÃ VÉ: </i> {{form.id}}
+						</button>
+						<button class="button" title="Download the trailer">
+							<i>Khách Hàng: </i> {{form.order.user.fullname}}
+						</button>
+						<button class="button" title="Rating">
+							<i>Discount:</i> {{form.discount}}
+						</button>
+						<button class="button" title="Bookmark">
+							<i>Tổng tiền:</i> {{form.totalmoney}} VND
+						</button>
+
+
 					</div>
 				</div>
 			</div>
+			<div class="c_right col-sm-3">
+				<div class="img_c">
+					<img
+						src="{{'/assets/images/image/movies/' + form.show.movie.poster}}"
+						alt="Movie IMG">
+				</div>
+
+			</div>
 		</div>
 	</div>
-	<div class="card-footer">Thông tin chi tiết vé xem phim.</div>
+
 </div>
+<button type="button" ng-click="reset()" class="btn btn-info">
+	Reset</button>
+
+<div class="card-footer">Thông tin chi tiết vé xem phim.</div>

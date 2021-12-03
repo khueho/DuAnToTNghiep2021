@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout.html :: dynamic(~{::body})}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đặt đồ ăn</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row footer-links">
+			<div class="col-md-12 col-sm-6 sub-two-right mt-5">
+				<div class="row footer-about mb-3">
+					<div class="col-sm-6" style="background-color: #fff;">
+						<div class="col-sm-12 row">
+							<img class="col-sm-5" src="/assets/images/bapngo.jfif" alt=""
+								width="150" height="150">
+							<div class="col sm-7">
+								<b>CGV SNACK COMBO</b><br>
+								<p>1 Bắp Lớn + 2 Nước Lớn + 1 Snack</p>
+								<p>* Miễn phí đổi vị bắp Caramel * **Đổi vị phô mai phụ thu
+									thêm tiền**</p>
+								<p>
+									Giá: <b>109.000 VND</b>
+								</p>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="giamsl('i1')">-</button>
+								<input class="col-sm-4" id="i1" name="soluong" value="0"
+									type="number" min=0 max=99 readonly>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="tangsl('i1')">+</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" style="background-color: #fff;">
+						<div class="col-sm-12 row">
+							<img class="col-sm-5" src="/assets/images/bapngo.jfif" alt=""
+								width="150" height="150">
+							<div class="col sm-7">
+								<b>CGV SNACK COMBO</b><br>
+								<p>1 Bắp Lớn + 2 Nước Lớn + 1 Snack</p>
+								<p>* Miễn phí đổi vị bắp Caramel * **Đổi vị phô mai phụ thu
+									thêm tiền**</p>
+								<p>
+									Giá: <b>109.000 VND</b>
+								</p>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="giamsl('i1')">-</button>
+								<input class="col-sm-4" id="i1" name="soluong" value="0"
+									type="number" min=0 max=99 readonly>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="tangsl('i1')">+</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row footer-about mb-3">
+					<div class="col-md-6" style="background-color: #fff;">
+						<div class="col-sm-12 row">
+							<img class="col-sm-5" src="/assets/images/bapngo.jfif" alt=""
+								width="150" height="150">
+							<div class="col sm-7">
+								<b>CGV SNACK COMBO</b><br>
+								<p>1 Bắp Lớn + 2 Nước Lớn + 1 Snack</p>
+								<p>* Miễn phí đổi vị bắp Caramel * **Đổi vị phô mai phụ thu
+									thêm tiền**</p>
+								<p>
+									Giá: <b>109.000 VND</b>
+								</p>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="giamsl('i1')">-</button>
+								<input class="col-sm-4" id="i1" name="soluong" value="0"
+									type="number" min=0 max=99 readonly>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="tangsl('i1')">+</button>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" style="background-color: #fff;">
+						<div class="col-sm-12 row">
+							<img class="col-sm-5" src="/assets/images/bapngo.jfif" alt=""
+								width="150" height="150">
+							<div class="col sm-7">
+								<b>CGV SNACK COMBO</b><br>
+								<p>1 Bắp Lớn + 2 Nước Lớn + 1 Snack</p>
+								<p>* Miễn phí đổi vị bắp Caramel * **Đổi vị phô mai phụ thu
+									thêm tiền**</p>
+								<p>
+									Giá: <b>109.000 VND</b>
+								</p>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="giamsl('i1')">-</button>
+								<input class="col-sm-4" id="i1" name="soluong" value="0"
+									type="number" min=0 max=99 readonly>
+								<button class="btn btn-primary" style="font-size: 11px;"
+									onclick="tangsl('i1')">+</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<br> <br> <br>
+		<div class="container">
+			<div class="row footer-links">
+
+
+				<table class="table table-borderless">
+					<thead class="bg-dark text-light">
+						<tr>
+							<th scope="col">Tên</th>
+							<th scope="col">Số Lượng</th>
+							<th scope="col">Giá</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Bắp ngô</td>
+							<td><input type="number"
+								ng-change="cart.saveToLocalStorage()" ng-model="item.qty"
+								min="1" /></td>
+							<td>169.000đ</td>
+							<td>
+								<button>
+									<ion-icon name="trash-outline"></ion-icon>
+
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Bắp ngô</td>
+							<td><input type="number"
+								ng-change="cart.saveToLocalStorage()" ng-model="item.qty"
+								min="1" /></td>
+							<td>169.000đ</td>
+							<td>
+								<button>
+									<ion-icon name="trash-outline"></ion-icon>
+
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Bắp ngô</td>
+							<td><input type="number"
+								ng-change="cart.saveToLocalStorage()" ng-model="item.qty"
+								min="1" /></td>
+							<td>169.000đ</td>
+							<td>
+								<button>
+									<ion-icon name="trash-outline"></ion-icon>
+
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<button class="btn btn-danger mr-sm-2">
+					<i class=""></i>Chọn Lại</i>
+				</button>
+				<button class="btn btn-danger">
+					<i class=""></i>Mua</i>
+				</button>
+			</div>
+		</div>
+		<div>
+			<br>
+		</div>
+	</div>
+</body>
+</html>

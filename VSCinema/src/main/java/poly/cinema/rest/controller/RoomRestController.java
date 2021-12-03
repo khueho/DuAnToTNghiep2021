@@ -48,11 +48,15 @@ public class RoomRestController {
 	public List<Room> getByCinemaId(@PathVariable("id")Integer cinemaid){
 		return roomservice.findByCinemaId(cinemaid);
 	}
-	@GetMapping("/name")
-	public List<Room> getByName(@RequestParam("name")String name){
-		return roomservice.findByName(name);
-	}
+//	@GetMapping("/name")
+//	public List<Room> getByName(@RequestParam("name")String name){
+//		return roomservice.findByName(name);
+//	}
 	
+	@GetMapping("/name")
+	public List<Room> listNameRoom(){
+		return roomservice.getListName();
+	}
 	
 	
 	@PostMapping("/createfromShow")

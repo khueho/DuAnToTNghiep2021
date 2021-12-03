@@ -47,6 +47,7 @@ app.config(function($routeProvider){
     })
     .when("/censors" ,{
         templateUrl :"/assets/admin/censor/index.html",
+        controller: "censor-ctrl"
     })
     .when("/prices" ,{
         templateUrl :"/assets/admin/price/index.html",

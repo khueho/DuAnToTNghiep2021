@@ -29,11 +29,8 @@ public class Token  implements Serializable{
 	Integer id;
 	String password;
 	String code;
-	@Temporal(TemporalType.DATE)
-	@Column(name = "Expirydate")
-	Date expirydate = new Date();
 	
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "Expiry")
 	Date expiry = new Date();
 	
@@ -45,12 +42,11 @@ public class Token  implements Serializable{
 	@JoinColumn(name = "Username")
 	Account user;
 
-	public Token(String password, String code, Date expirydate, Date expiry, Integer category, Boolean activity,
+	public Token(String password, String code, Date expiry, Integer category, Boolean activity,
 			Account user) {
 		super();
 		this.password = password;
 		this.code = code;
-		this.expirydate = expirydate;
 		this.expiry = expiry;
 		this.category = category;
 		this.activity = activity;
@@ -58,4 +54,3 @@ public class Token  implements Serializable{
 	}
 	
 }
-

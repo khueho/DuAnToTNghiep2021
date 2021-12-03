@@ -2,7 +2,7 @@
  * 
  */
 
-app.controller("food-ctrl", function($scope, $http) {
+app.controller("movie-ctrl", function($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
 	$scope.isEdit = undefined;
@@ -10,23 +10,25 @@ app.controller("food-ctrl", function($scope, $http) {
 
     /*$scope.index = 0 ;*/
 
+
 	$scope.initialize = function() {
-		// load food
-		$http.get("/rest/food").then(resp => {
+		// load movie
+		$http.get("/rest/movie").then(resp => {
 			$scope.items = resp.data;
 			$scope.items.forEach(item => {
-				item.createdate = new Date(item.createdate)
+				item.releasedate = new Date(item.releasedate)
+				item.runningtime 
+				
 			});
 		});
 
-		// load city
-		$http.get("/rest/city").then(resp => {
-			$scope.city = resp.data;
+		// load genre
+		$http.get("/rest/genre").then(resp => {
+			$scope.genre = resp.data;
 		});
-
-		// load cinema
-		$http.get("/rest/cinemas").then(resp => {
-			$scope.cinema = resp.data;
+		// load rated
+		$http.get("/rest/rated").then(resp => {
+			$scope.rated = resp.data;
 		});
 		$scope.isLoad = true;
 	}
@@ -39,8 +41,8 @@ app.controller("food-ctrl", function($scope, $http) {
 	$scope.reset = function() {
 		$scope.form = {
 			createdate: new Date(),
-			image: 'upload.png',
-			active: true
+			poster: 'film.png',
+			activity: true
 		}
 		$scope.isEdit = false;
 		$scope.isLoad = true;
@@ -50,120 +52,104 @@ app.controller("food-ctrl", function($scope, $http) {
 
 	$scope.reset();
 
-	// Load Cinema theo City
-	$scope.findCinemaFromCity = function() {
-		var cityid = document.getElementById('city').value;
-		$http.post(`/rest/cinemas/findCinemaByCity/` + cityid).then(resps => {
-			$scope.cinema = resps.data;
-			console.log(resps.data);
-		}).catch(error => {
-			console.log("Error!" + error);
-		})
-	}
-
-	// Load City theo Cinema
-	/*$scope.findCityFromCinema = function() {
-		var cinemaid = document.getElementById('cinema').value;
-		$http.post(`/rest/cinemas/findCityByCinema/` + cinemaid).then(resps => {
-			$scope.city = resps.data;
-			console.log(resps.data);
-		}).catch(error => {
-			console.log("Error!" + error);
-		})
-	}*/
 	
 	// Hiển thị lên form
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
+		$scope.form.runningtime = new Date("1974-03-12T"+item.runningtime)
 		$(".nav-tabs a:eq(0)").tab('show');
 		$scope.isEdit = true;
 		$scope.isLoad = false;
-		$http.post(`/rest/cinemas/findCinemaByCity/` + $scope.form.cinema.city.id).then(resps => {
-			$scope.cinema = resps.data;
-			console.log(resps.data);
-		}).catch(error => {
-			console.log("Error!" + error); 
-		})
 		
 		/*$scope.index = 1;*/
 	}
 
 
 
-	// Thêm food mới
+	// Thêm movie mới
 	$scope.create = function() {
 		var item = angular.copy($scope.form); // Lấy thông tin của food
 		var fname = document.getElementById("name").value;
-		var fcity = document.getElementById('city').value;
-		var fcinema = document.getElementById("cinema").value;
-		var fprice = document.getElementById("price").value;
-		var fdescription = document.getElementById("description").value;
+		var fgenre = document.getElementById('genre').value;
+		var frated = document.getElementById("rated").value;
+		var fdirector = document.getElementById("director").value;
+		var fcast = document.getElementById("cast").value;
+		var flanguage = document.getElementById("language").value;
+		var ftrailer = document.getElementById("trailer").value;
+		var fsummary = document.getElementById("summary").value;
 
-		var fpriceInt = parseInt(fprice, 10); // Convert Price from String to Integer
-		//var fpriceRegex = /^\d+$/;
 
-		console.log("Fỏmm: " + $scope.form);
+		console.log("Form: " + $scope.form);
 		if (fname == "" || fname == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng nhập tên sản phẩm !',
+				text: 'Vui lòng nhập tên Phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fcity == "" || fcity == null) {
+		} else if (fgenre == "" || fgenre == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng chọn Tỉnh/Thành phố !',
+				text: 'Vui lòng chọn thể loại phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fcinema == "" || fcinema == null) {
+		} else if (frated == "" || frated == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng chọn Rạp phim !',
+				text: 'Vui lòng chọn phân loại phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fprice == "" || fprice == null) {
+		} else if (fdirector == "" || fdirector == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng nhập Giá sản phẩm !',
+				text: 'Vui lòng nhập tên đạo diễn !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (fcast == "" || fcast == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập tên diễn viên!',
+				width: '500px',
+				heightAuto: true
+			})
+		} 
+		else if (flanguage == "" || flanguage == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập ngôn ngữ',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (ftrailer == "" || ftrailer == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập trailer!',
 				width: '500px',
 				heightAuto: true
 			})
 
-		} else if (fpriceInt <= 0) {
+		}  else if (fsummary == "" || fsummary == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Giá sản phẩm phải lớn hơn 0 !',
-				width: '500px',
-				heightAuto: true
-			})
-		} else if (isNaN(fprice)) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Thất bại !',
-				text: 'Giá sản phẩm phải là số nguyên dương lớn hơn 0 !',
-				width: '500px',
-				heightAuto: true
-			})
-		} else if (fdescription == "" || fdescription == null) {
-			Swal.fire({
-				icon: 'error',
-				title: 'Thất bại !',
-				text: 'Vui lòng nhập Mô tả sản phẩm !',
+				text: 'Vui lòng nhập tóm tắt phim !',
 				width: '500px',
 				heightAuto: true
 			})
 		} else {
-			$http.post(`/rest/food`, item).then(resp => {
+			$http.post(`/rest/movie`, item).then(resp => {
 
-				resp.data.createdate = new Date(resp.data.createdate); // sau khi server trả dữ liệu về -> chuyển ngày sang javascript
+				resp.data.releasedate = new Date(resp.data.releasedate); // sau khi server trả dữ liệu về -> chuyển ngày sang javascript
 				$scope.items.push(resp.data);
 				console.log("Foood demo : " + resp.data);
 				$scope.item = resp.data;
@@ -171,29 +157,17 @@ app.controller("food-ctrl", function($scope, $http) {
 				Swal.fire({
 					icon: 'success',
 					title: 'Thành công !',
-					text: 'Thêm sản phẩm thành công !',
+					text: 'Thêm Phim thành công !',
 					width: '500px',
 					heightAuto: true
 				})
-				// Khởi tạo priceHistory, lấy thông tin food từ form, khởi tạo time
-				var priceHistoryRequest = {
-					food: resp.data,
-					price: item.price,
-					date: new Date()
-				};
-
-				console.log(item.id);
-				// gọi về server // tạo priceHistory
-				$http.post(`/rest/priceHistory`, priceHistoryRequest).then(resp => {
-				}).catch(error => {
-
-				});
+				
 
 			}).catch(error => {
 				Swal.fire({
 					icon: 'error',
 					title: 'Thất bại !',
-					text: 'Thêm sản phẩm thất bại !',
+					text: 'Thêm phim thất bại !',
 					width: '500px',
 					heightAuto: true
 				})
@@ -208,67 +182,98 @@ app.controller("food-ctrl", function($scope, $http) {
 	$scope.update = function() {
 		var item = angular.copy($scope.form); // Lấy thông tin của sp
 		var fname = document.getElementById("name").value;
-		var fcity = document.getElementById('city').value;
-		var fcinema = document.getElementById("cinema").value;
-		var fprice = document.getElementById("price").value;
-		var fdescription = document.getElementById("description").value;
-
-		var fpriceInt = parseInt(fprice, 10); // Convert Price from String to Integer
+		var fgenre = document.getElementById('genre').value;
+		var frated = document.getElementById("rated").value;
+		var fdirector = document.getElementById("director").value;
+		var fcast = document.getElementById("cast").value;
+		var flanguage = document.getElementById("language").value;
+		var ftrailer = document.getElementById("trailer").value;
+		var fsummary = document.getElementById("summary").value;
+		var freleasedate = document.getElementById("releasedate").value;
+		var frunningtime = document.getElementById("runningtime").value;
 
 		if (fname == "" || fname == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng nhập tên sản phẩm !',
+				text: 'Vui lòng nhập tên Phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fcity == "" || fcity == null) {
+		} else if (fgenre == "" || fgenre == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng chọn Tỉnh/Thành phố !',
+				text: 'Vui lòng chọn thể loại phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fcinema == "" || fcinema == null) {
+		} else if (frated == "" || frated == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng chọn Rạp phim !',
+				text: 'Vui lòng chọn phân loại phim !',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fprice == "" || fprice == null) {
+		} else if (fdirector == "" || fdirector == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng nhập Giá sản phẩm !',
+				text: 'Vui lòng nhập tên đạo diễn !',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (fcast == "" || fcast == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập tên diễn viên!',
+				width: '500px',
+				heightAuto: true
+			})
+		} 
+		else if (flanguage == "" || flanguage == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập ngôn ngữ',
+				width: '500px',
+				heightAuto: true
+			})
+		} else if (ftrailer == "" || ftrailer == null) {
+			Swal.fire({
+				icon: 'error',
+				title: 'Thất bại !',
+				text: 'Vui lòng nhập trailer!',
 				width: '500px',
 				heightAuto: true
 			})
 
-		} else if (fpriceInt <= 0) {
+		}else if (frunningtime == "" || frunningtime == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Giá sản phẩm phải lớn hơn 0 !',
+				text: 'Vui lòng nhập thời lượng!',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (isNaN(fprice)) {
+
+		}else if (freleasedate == "" || freleasedate == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Giá sản phẩm phải là số nguyên dương lớn hơn 0 !',
+				text: 'Vui lòng nhập thời lượng!',
 				width: '500px',
 				heightAuto: true
 			})
-		} else if (fdescription == "" || fdescription == null) {
+
+		}
+		  else if (fsummary == "" || fsummary == null) {
 			Swal.fire({
 				icon: 'error',
 				title: 'Thất bại !',
-				text: 'Vui lòng nhập Mô tả sản phẩm !',
+				text: 'Vui lòng nhập tóm tắt phim !',
 				width: '500px',
 				heightAuto: true
 			})
@@ -283,14 +288,14 @@ app.controller("food-ctrl", function($scope, $http) {
 				confirmButtonText: 'Có'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					$http.put(`/rest/food`, item).then(resp => {
+					$http.put(`/rest/movie`, item).then(resp => {
 						var index = $scope.items.findIndex(p => p.id == item.id); // tìm sp trong csdl và thay đổi thông tin
-						resp.data.createdate = new Date(resp.data.createdate)
+						resp.data.releasedate = new Date(resp.data.releasedate)
 						$scope.items[index] = item;
 						Swal.fire({
 							icon: 'success',
 							title: 'Thành công !',
-							text: 'Vui lòng nhập tên sản phẩm !',
+							text: 'Cập nhật phim thành công  !',
 							width: '500px',
 							heightAuto: true
 						})
@@ -298,24 +303,15 @@ app.controller("food-ctrl", function($scope, $http) {
 						Swal.fire({
 							icon: 'error',
 							title: 'Thất bại !',
-							text: 'Cập nhật sản phẩm thất bại !',
+							text: 'Cập nhật phim thất bại !',
 							width: '500px',
 							heightAuto: true
 						})
 						console.log("Error", error);
 					});
 
-					// Khởi tạo priceHistory, lấy thông tin food từ form, khởi tạo time
-					var priceHistoryRequest = {
-						food: item,
-						price: item.price,
-						date: new Date()
-					};
-					// gọi về server // tạo priceHistory
-					$http.post(`/rest/priceHistory`, priceHistoryRequest).then(resp => {
-					}).catch(error => {
-
-					});
+			
+					
 				}
 			})
 		}
@@ -364,7 +360,7 @@ app.controller("food-ctrl", function($scope, $http) {
 	$scope.imageChanged = function(files) {
 		var data = new FormData(); // tạo form data để chứa ảnh đã chọn
 		data.append('file', files[0]); // bỏ ảnh vào form data
-		$http.post('/rest/upload/foods/foods', data, {
+		$http.post('/rest/upload/movie/movies', data, {
 			transformRequest: angular.identity, headers: { 'Content-Type': undefined }
 		}).then(resp => {
 			$scope.form.image = resp.data.name;

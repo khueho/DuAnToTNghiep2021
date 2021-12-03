@@ -14,4 +14,7 @@ public interface ShowService {
 	List<Show> fillByMovieAndRoom(Integer movieid, String roomname);
 	List<Show> fillByRoom(String roomname);
 	List<String> listShowDate();
+	Show update(Show show);
+	List<Show> getShowCensor();
+	List<Show> findMovieByShowdate();
 }

@@ -1,5 +1,7 @@
 package poly.cinema.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class ShowServicempl implements ShowService{
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		Show show = showdao.findById(id).get();
-		show.setActivity(false);
+		show.setActivity(2);
 		showdao.save(show);
 	}
 
@@ -63,6 +65,32 @@ public class ShowServicempl implements ShowService{
 	@Override
 	public List<String> listShowDate(){
 		return showdao.listShowDate();
+	}
+
+
+	@Override
+	public Show update(Show show) {
+		return showdao.save(show);
+	}
+
+
+	@Override
+	public List<Show> getShowCensor() {
+		List<Show> list = new ArrayList<Show>();
+		List<Show> findAll = showdao.findAll();
+		Date date = new Date();
+		findAll.forEach(s ->{
+			if(s.getShowDate().getTime() >= date.getTime()) {
+				list.add(s);
+			}
+		});
+		return list;
+	}
+	
+	@Override
+	public List<Show> findMovieByShowdate() {
+		// TODO Auto-generated method stub
+		return showdao.findMovieByShowdate();
 	}
 	
 }

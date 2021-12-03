@@ -1,30 +1,26 @@
-<div class="card">
+
 	<div class="card-header">
-		<div class="card-title row">
-			<h5 class="col-5">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-check" viewBox="0 0 16 16">
-				  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-				</svg>
-				DANH SÁCH PHÒNG CHIẾU
-			</h5>
-			<h5 class="form-inline my-2 my-lg-0 col-4">
-				<select ng-change="findRapFromCity()" ng-model="room.cinema.city.id" class="custom-select mr-sm-2">
+		<div class="card-title row ">
+			<div class="col-4 form-group">
+				<select ng-change="findRapFromCity()" ng-model="room.cinema.city.id" class="form-control ">
 					<option value="">Tỉnh/ Thành phố</option>
 					<option ng-repeat="c in cities" ng-value="c.id">{{c.name}}</option>
 				</select>
+				</div>
+				<div class="col-4 form-group">
 				<select ng-model="search.cinema.id" class="form-control" id="exampleFormControlSelect1">
 	      			<option value="">Rạp chiếu</option>
 					<option ng-repeat="c in cinemas" ng-value="c.id">{{c.name}}</option>
 	    		  </select>
-		    </h5>
-			<h5 class="form-inline my-2 my-lg-0 col-3">
-		      <input class="form-control mr-sm-2"  type="search" placeholder="Search" ng-model="search.name" aria-label="Search">
-    		</h5>
+	    		  </div>
+			
+		      <input class="form-control  col-4 "  type="search" placeholder="Search" ng-model="search.name" aria-label="Search">
+    		
  		 </div>
 		</div>
-	</div>
+
 	<div class="card-body">
-		<table class="table table-dark">
+		<table class="table  table-bordered">
 		  <thead>
 		    <tr>
 		      	<th>Id phòng</th>
@@ -42,17 +38,32 @@
 		  			<td>{{item.cinema.city.name}}</td>
 		  			<td>{{item.cinema.name}}</td>
 		  			<td>{{item.activity?'Hoạt Động':'Bảo Trì'}}</td>
-		  			<td><button ng-click="edit(item)" class="btn btn-outline-light border border-primary text-primary font-weight-bold"> <ion-icon name="create-outline"></ion-icon> View</button></td>
+		  			<td><button ng-click="edit(item)" class="btn btn-success" style="width: 100px"> Tùy chỉnh</button></td>
 		  		</tr>  	
 		  </tbody>
 		</table>
-		<div class="d-flex justify-content-center">
-			<button ng-click="pager.first()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/left-arrow.png"></button>
-			<button ng-click="pager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-left.png"></button>
-			<button ng-click="pager.prev()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> {{pager.page+1}} of {{pager.count}}</button>
-			<button ng-click="pager.next()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/arrow-right.png"></button>
-			<button ng-click="pager.last()" type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/right-arrow.png"></button>
 		</div>
-	</div>
-	<div class="card-footer">Danh sách phòng chiếu</div>
-</div>
+	<div class="card-footer clearfix">
+		
+			<button type="button" ng-click ="pager.first()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-hand-point-left"></i>
+			</button>
+			<button type="button" ng-click ="pager.prev()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-arrow-circle-left"></i>
+			</button>
+			<button  class="btn btn-primary">
+           {{pager.page +1}} of  {{pager.count}}
+         </button>
+			<button type="button" ng-click ="pager.next()" 
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-arrow-circle-right"></i>
+			</button>
+			<button type="button" ng-click ="pager.last()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-hand-point-right"></i>
+			</button>
+		</div>
+	
+	<div class="card-footer">Danh sách phòng</div>

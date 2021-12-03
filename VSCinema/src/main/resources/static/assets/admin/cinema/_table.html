@@ -1,16 +1,12 @@
-<br>
+<div class="card-header">
+		<div class="card-title ">			
+				<input ng-model="name" class="form-control mr-sm-4 " type="text"
+					placeholder="Search By Name or City">
 
-	<div class="card-header">
-		<div class="card-title row">
-			<div class="col-5">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Tìm Rạp phim theo tên rạp, tên Thành phố" aria-label="Search"
-					ng-model="search">
-			</div>
 		</div>
 	</div>
 	<div class="card-body">
-		<table class="table table-dark">
+		<table class="table  table-bordered">
 			<tr>
 				<th class="col-1">Id</th>
 				<th class="col-3">Tên Rạp</th>
@@ -18,36 +14,36 @@
 				<th class="col-5">Địa Chỉ</th>
 			</tr>
 
-			<tr ng-repeat="item in pager.items | filter:search">
+			<tr ng-repeat="item in pager.items | filter:name">
 				<td>{{item.id}}</td>
 				<td>{{item.name}}</td>
 				<td>{{item.city.name}}</td>
 				<td>{{item.address}}</td>
-				<td><button ng-click="edit(item)" style="color: blue;" ><i class="fa fa-edit"
-						aria-hidden="true"></i>Edit</button> </td>
+				<td><button ng-click="edit(item)" class="btn btn-success" style="width: 100px"  >Tùy chỉnh</button> </td>
 			</tr>
 		</table>
-		<div style="float: right;">
-			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
-				ng-click="pager.first()" title="Trở về trang đầu ?">
-				<img alt="" src="/assets/images/left-arrow.png">
+		</div>
+		<div class="card-footer clearfix">
+		
+			<button type="button" ng-click ="pager.first()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-hand-point-left"></i>
 			</button>
-			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
-				ng-click="pager.prev()" title="Lùi về trang trước đó ?">
-				<img alt="" src="/assets/images/arrow-left.png">
+			<button type="button" ng-click ="pager.prev()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-arrow-circle-left"></i>
 			</button>
-			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
-				ng-click="pager.next()" title="Tiến lên trang trước đó ?">
-				<img alt="" src="/assets/images/arrow-right.png">
+			<button  class="btn btn-primary">
+           {{pager.page +1}} of  {{pager.count}}
+         </button>
+			<button type="button" ng-click ="pager.next()" 
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-arrow-circle-right"></i>
 			</button>
-			<button type="button"
-				class="btn btn-outline-dark border border-primary text-primary font-weight-bold"
-				ng-click="pager.last()" title="Tiến đến trang cuối ?">
-				<img alt="" src="/assets/images/right-arrow.png">
+			<button type="button" ng-click ="pager.last()"
+				class="btn btn-outline-dark border border-primary text-primary font-weight-bold">
+				<i class="fas fa-hand-point-right"></i>
 			</button>
 		</div>
-	</div>
-	<div class="card-footer">Danh sách Rạp phim</div>
+	
+	<div class="card-footer">Danh sách Rạp</div>

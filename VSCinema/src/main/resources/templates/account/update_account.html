@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>User Profile Page</title>
+<meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/assets/css/signup.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -14,7 +15,7 @@
 	href="/assets/css/update_account.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style type="text/css">
-label, a, h3, h4, h6,button, input, p {
+label, a, h3, h4, h6, button, input, p {
 	font-family: 'Dancing Script', cursive;
 }
 </style>
@@ -30,7 +31,8 @@ label, a, h3, h4, h6,button, input, p {
 						style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
 						<!-- Team Thumb-->
 						<div class="advisor_thumb">
-							<img ng-src="/assets/images/image/avatar/{{account.image}}" alt="">
+							<img ng-src="/assets/images/image/avatar/{{account.image}}"
+								alt="">
 						</div>
 						<!-- Team Details-->
 						<div class="single_advisor_details_info">
@@ -44,61 +46,63 @@ label, a, h3, h4, h6,button, input, p {
 				<div class="card h-100">
 					<div class="card-body">
 						<div class="row gutters">
-							<br> <br> <br> 
+							<br> <br> <br>
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-								<h4 class="mb-3 text-primary">Thông Tin Cá Nhân</h4>
+								<h4 class="mb-3 text-primary">Thông tin cá nhân</h4>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="fullName">Họ và tên:</label> 
-									<input type="text" ng-model="account.fullname"
-										class="form-control" id="fullName"
+									<label for="fullName">Họ và tên:</label> <input type="text"
+										ng-model="account.fullname" class="form-control" id="fullName"
 										placeholder="Nhập họ và tên">
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="eMail">Email:</label> 
-									<input type="email" ng-model="account.email"
-										class="form-control" id="eMail" placeholder="Nhập email ID">
+									<label for="eMail">Email:</label> <input type="email"
+										ng-model="account.email" class="form-control" id="eMail"
+										placeholder="Nháº­p email ID">
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="phone">Số điện thoại:</label> 
-									<input type="text" ng-model="account.phone"
-										class="form-control" id="phone"
-										placeholder="Nhập số điện thoại">
+									<label for="phone">Số điện thoại:</label> <input
+										type="text" ng-model="account.phone" class="form-control"
+										id="phone" placeholder="Nhập số điện thoại">
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="cmnd">Số CMND:</label> 
-									<input type="text" ng-model="account.cmnd"
-										 class="form-control" id="cmnd" placeholder="Nhập số CMND">
+									<label for="cmnd">Số cmnd:</label> <input type="text"
+										ng-model="account.cmnd" class="form-control" id="cmnd"
+										placeholder="Nhập số CMND">
 								</div>
 							</div>
 						</div>
 						<div class="row gutters">
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="address">Địa chỉ:</label> 
-									<input type="text" ng-model="account.address"
-										 class="form-control" id="address" placeholder="Nhập địa chỉ">
+									<label for="address">Địa chỉ:</label> <input type="text"
+										ng-model="account.address" class="form-control" id="address"
+										placeholder="Nhập địa chỉ">
 								</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 								<div class="form-group">
-									<label for="ciTy">Giới tính:</label> 
+									<label for="ciTy">Giới tính:</label>
 									<div class="form-control">
 										<div class="custom-control custom-radio custom-control-inline">
-						                    <input type="radio" name = "gender" ng-model="account.gender" ng-value="false" class="custom-control-input" id="customRadioInline1" required>
-						                    <label class="custom-control-label" for="customRadioInline1">Nam</label>
-						                </div>
-						                <div class="custom-control custom-radio custom-control-inline">
-						                    <input type="radio" name="gender" ng-model="account.gender" ng-value="true" class="custom-control-input" id="customRadioInline2">
-						                    <label class="custom-control-label" for="customRadioInline2">Nữ</label>
-						                </div>
+											<input type="radio" name="gender" ng-model="account.gender"
+												ng-value="false" class="custom-control-input"
+												id="customRadioInline1" required> <label
+												class="custom-control-label" for="customRadioInline1">Nam</label>
+										</div>
+										<div class="custom-control custom-radio custom-control-inline">
+											<input type="radio" name="gender" ng-model="account.gender"
+												ng-value="true" class="custom-control-input"
+												id="customRadioInline2"> <label
+												class="custom-control-label" for="customRadioInline2">Nữ</label>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -108,9 +112,9 @@ label, a, h3, h4, h6,button, input, p {
 							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 								<div class="text-right">
 									<button type="button" id="submit" name="submit"
-										class="btn btn-secondary">Cancel</button>
+										class="btn btn-secondary">Mới</button>
 									<button type="button" ng-click="update()"
-										class="btn btn-primary">Update</button>
+										class="btn btn-primary">Cập nhật</button>
 								</div>
 							</div>
 						</div>

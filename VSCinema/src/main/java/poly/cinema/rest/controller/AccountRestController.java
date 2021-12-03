@@ -35,6 +35,11 @@ public class AccountRestController {
 		return accountService.finAll();
 	}
 	
+	@GetMapping("/account")
+	public Account userLogin() {
+		return accountService.getUserLogin();
+	}
+	
 	@PostMapping("/signup")
 	public Account create(@RequestBody @Valid SignupRequest signup) {
 		return accountService.create(signup);

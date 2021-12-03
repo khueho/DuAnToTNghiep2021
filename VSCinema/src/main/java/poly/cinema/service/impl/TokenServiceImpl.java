@@ -1,7 +1,4 @@
 package poly.cinema.service.impl;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import poly.cinema.dao.AccountDAO;
 import poly.cinema.dao.TokenDAO;
 import poly.cinema.dto.TokenRequest;
-import poly.cinema.entity.Account;
 import poly.cinema.entity.Token;
 import poly.cinema.service.MailerService;
 import poly.cinema.service.TokenService;
@@ -45,7 +40,7 @@ public class TokenServiceImpl implements TokenService{
         }
 		String code = sb.toString();
 		
-		Token token = new Token(tokenRequest.getPassword(), code, tokenRequest.getExpiry(), tokenRequest.getExpiry(), tokenRequest.getCategory(), tokenRequest.getActivity(), tokenRequest.getUser());
+		Token token = new Token(tokenRequest.getPassword(), code, tokenRequest.getExpiry(), tokenRequest.getCategory(), tokenRequest.getActivity(), tokenRequest.getUser());
 		
 		List<Token> list = tokenDAO.findByUsername(tokenRequest.getUser().getUsername());
 		list.forEach(t -> {
@@ -67,28 +62,16 @@ public class TokenServiceImpl implements TokenService{
 		String username = request.getRemoteUser();
 		List<Token> list =  tokenDAO.findByUsername(username);
 		Token token = new Token();
-		Date now = new Date();
-		SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy"); 
-		SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+		Date now = new Date(); 
 		list.forEach(t -> {
-			try {
-				String expiryDate = formatDate.format(t.getExpirydate());
-				String expiry = formatTime.format(t.getExpiry());
-				String textDate = expiryDate+" "+expiry;
-				Date date = formatter.parse(textDate);
-				if((date.getTime()+900000) > now.getTime() && t.getActivity() && t.getCategory() == 0) {
-					token.setId(t.getId());
-					token.setPassword(t.getPassword());
-					token.setCode(t.getCode());
-					token.setExpirydate(date);
-					token.setExpiry(date);
-					token.setCategory(t.getCategory());
-					token.setActivity(t.getActivity());
-					token.setUser(t.getUser());
-				}
-			} catch (ParseException e) {
-				e.printStackTrace();
+			if((t.getExpiry().getTime()+900000) > now.getTime() && t.getActivity() && t.getCategory() == 0) {
+				token.setId(t.getId());
+				token.setPassword(t.getPassword());
+				token.setCode(t.getCode());
+				token.setExpiry(t.getExpiry());
+				token.setCategory(t.getCategory());
+				token.setActivity(t.getActivity());
+				token.setUser(t.getUser());
 			}
 		});
 		return token;
@@ -97,11 +80,9 @@ public class TokenServiceImpl implements TokenService{
 	@Override
 	public Token forgot(TokenRequest tokenRequest) {
 		String AlphaNumericStringCode = "0123456789";
-		
 		String AlphaNumericStringPass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
-		
 		StringBuilder cd = new StringBuilder(6);
 		StringBuilder pw = new StringBuilder(6);
 		for (int i = 0; i < 6; i++) {
@@ -113,11 +94,10 @@ public class TokenServiceImpl implements TokenService{
         }
 		String code = cd.toString();
 		String pass = pw.toString();
-		Token token = new Token(pass, code, tokenRequest.getExpiry(), tokenRequest.getExpiry(), tokenRequest.getCategory(), tokenRequest.getActivity(), tokenRequest.getUser());
+		Token token = new Token(pass, code, tokenRequest.getExpiry(), tokenRequest.getCategory(), tokenRequest.getActivity(), 
+				tokenRequest.getUser());
 		session.setAttribute("username", tokenRequest.getUser().getUsername());
-		
 		List<Token> list = tokenDAO.findByUsername(tokenRequest.getUser().getUsername());
-		
 		list.forEach(t -> {
 			if(t.getActivity() == true && t.getCategory() == 1) {
 				t.setActivity(false);
@@ -138,27 +118,15 @@ public class TokenServiceImpl implements TokenService{
 		List<Token> list =  tokenDAO.findByUsername(username);
 		Token token = new Token();
 		Date now = new Date();
-		SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy"); 
-		SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
 		list.forEach(t -> {
-			try {
-				String expiryDate = formatDate.format(t.getExpirydate());
-				String expiry = formatTime.format(t.getExpiry());
-				String textDate = expiryDate+" "+expiry;
-				Date date = formatter.parse(textDate);
-				if((date.getTime()+900000) > now.getTime() && t.getActivity() && t.getCategory() == 1) {
-					token.setId(t.getId());
-					token.setPassword(t.getPassword());
-					token.setCode(t.getCode());
-					token.setExpirydate(date);
-					token.setExpiry(date);
-					token.setCategory(t.getCategory());
-					token.setActivity(t.getActivity());
-					token.setUser(t.getUser());
-				}
-			} catch (ParseException e) {
-				e.printStackTrace();
+			if((t.getExpiry().getTime()+900000) > now.getTime() && t.getActivity() && t.getCategory() == 1) {
+				token.setId(t.getId());
+				token.setPassword(t.getPassword());
+				token.setCode(t.getCode());
+				token.setExpiry(t.getExpiry());
+				token.setCategory(t.getCategory());
+				token.setActivity(t.getActivity());
+				token.setUser(t.getUser());
 			}
 		});
 		return token;

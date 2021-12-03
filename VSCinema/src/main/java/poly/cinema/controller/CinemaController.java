@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class TheaterController {
-	@RequestMapping("theater/list")
+public class CinemaController {
+	@RequestMapping("cinema/cinema-list")
 	public String theaterList() {
-		return "theater/list";
+		return "cinema/cinema-list";
 	}
 }

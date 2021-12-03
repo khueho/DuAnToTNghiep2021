@@ -1,80 +1,71 @@
-<div class="card">
-	<div class="card-header">
-		<div class="card-title">
-			<h5>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-						d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    <path
-						d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                    <path
-						d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                  </svg>
-				QUẢN LÝ THÔNG TIN CHƯƠNG TRÌNH KHUYẾN MÃI
-			</h5>
-		</div>
-	</div>
+
 	<div class="card-body">
 		<div class="row">
-			<div class="col-6">
+			<div class="col-4">
+			<div class="border p-3 " >
+			
+					<img  style="height: 400px;" class="card-img-top" alt="loading"
+					 src='/assets/images/kiemduyet.png'> 
 				
-				<div class="container-fluid">
-					<br> 
-					<img class="card-img-top" alt="loading" src="/assets/images/image/movies/1-201808143.jpg"> 
-					<input type="file" class="form-control" id="image">
 				</div>
-			</div>
-			<div class="col-6">
+				</div>
+			
+			<div class="col-5">
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Mã suất chiếu</label>
-				    <input type="text" class="form-control">
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputEmail1">Người tạo</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{show.id}}</div>
 				  </div>
 				 <div class="form-group">
 				    <label for="exampleInputEmail1">Tên phim</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{show.movie.name}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Rạp chiếu</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{show.room.cinema.name}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Phòng chiếu</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{show.room.name}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Giá bán</label>
-				    <input type="text" class="form-control">
+				    <div class="form-control">{{show.priceShow.price}}</div>
 				  </div>
+				  </div>
+				  <div class="col-3">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Ngày chiếu</label>
-				    <input type="date" class="form-control">
+				    <div class="form-control">{{show.showDate | date:'dd-MM-yyyy'}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Giờ khởi chiếu</label>
-				    <input type="time" class="form-control">
+				    <div class="form-control">{{show.startTime}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Giờ kết thúc</label>
-				    <input type="time" class="form-control">
+				    <div class="form-control">{{show.endTime}}</div>
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Người tạo</label>
+				    <div class="form-control">{{show.user.fullname}}</div>
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Trạng Thái</label>
-				    <input type="text" class="form-control">
+				    <div ng-if="show.activity == 1" class="form-control">Tiếp Nhận</div>
+				    <div ng-if="show.activity == 2" class="form-control">Đã Hủy</div>
+				    <div ng-if="show.activity == 3" class="form-control">Đã Duyệt</div>
 				  </div>
-				  <br> <br>
-				  <div class="form-group">
-				    <button type="button" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
-				  </div>
+				  </div>				  
 			</div>
 		</div>
-	</div>
-	<div class="card-footer">Vui lòng nhập thông tin chương trình khuyên mãi</div>
-</div>
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="form-group col-8" >
+				    <button ng-show="buttonUpdate" ng-click="update()" type="button" class="btn btn-success font-weight-bold"> Duyệt</button>
+				    <button ng-show="buttonDelete" ng-click="delete()" type="button" class="btn btn-danger font-weight-bold"> Hủy</button>
+				    <button ng-click="reset()" type="button" class="btn btn-info font-weight-bold">Reset</button>
+				  </div>		
+		</div>
+				  
+	
+	
