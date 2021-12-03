@@ -48,7 +48,6 @@ public class CinemaRestController {
 	
 	@PostMapping("/findByCity/{cityid}")
 	public List<Cinema> findByCity(@PathVariable("cityid") String cityid){	
-		
 		cityid = cityid.replace("string:", "");
 		//System.out.println(cityid);
 		return cinemaService.findByCity(cityid);

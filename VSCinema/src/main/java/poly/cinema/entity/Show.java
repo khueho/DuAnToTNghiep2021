@@ -45,7 +45,7 @@ public class Show  implements Serializable{
 	@Column(name = "Endtime")
 	Date endTime = new Date();
 
-	Boolean Activity;
+	Integer Activity;
 	
 	@ManyToOne
 	@JoinColumn(name = "Moviesid")

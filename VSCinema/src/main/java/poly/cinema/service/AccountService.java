@@ -32,4 +32,7 @@ public interface AccountService {
 
 	Account save( Account account);
 
+	Account getUserLogin();
+
+
 }

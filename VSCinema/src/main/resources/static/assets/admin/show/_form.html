@@ -1,10 +1,4 @@
 
-<div class="card">
-	<div class="card-header">
-		<div class="card-title row">		
-			<h5 class="btn btn-outline-success">Trạng Thái</h5>
-		</div>
-	</div>
 	<div class="card-body">
 		<div class="row">
 			<div class="col-6 row">
@@ -42,7 +36,8 @@
 				<div class="col-6">
 				<div class="form-group" >
 						<label >Ngày chiếu</label> 
-						<input ng-model="form.showDate" ng-change="showDates()" type="date" class="form-control">
+						<input ng-model="form.showDate" ng-change="showDates()" 
+						type="date" class="form-control">
 					</div>
 				<div class="form-group" >
 						<label >Giờ bắt đầu</label> 
@@ -68,18 +63,13 @@
 				</div>
 				  <br> <br>
 				  <div class="form-group">
-				    <button type="button"  ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button"  ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" class="btn btn-outline-dark border border-success text-success font-weight-bold" ng-click="reset()"> <img alt="" src="/assets/images/updated.png">Reset</button>
+				    <button style="width: 90px" type="button"  ng-click="create()" class="btn btn-success font-weight-bold"> Create</button>
+				    <button style="width: 90px" type="button"  ng-click="update()" class="btn btn-info font-weight-bold"> Update</button>
+				    <button type="button" class="btn btn-danger font-weight-bold">Delete</button>
+				    <button type="button" class="btn btn-warning font-weight-bold" ng-click="reset()"> Reset</button>
 				  </div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="card-footer">Vui lòng nhập thông tin suất chiếu!</div>
 </div>
-
-
-
-
-

@@ -68,9 +68,7 @@
 	transition: 200ms ease-in-out;
 }
 
-.button:hover {
-	transform: scale(1.1);
-}
+
 .play_btn {
 	height: 100%;
 	margin: -394px auto;
@@ -85,10 +83,7 @@
 	margin-top: 110px;
 	animation: bounce 1s infinite;
 }
-.c_right:hover{
-	cursor: pointer;
-	transform: scale(1.1);
-}
+
 .credits{
   font-size: 20px;
 }

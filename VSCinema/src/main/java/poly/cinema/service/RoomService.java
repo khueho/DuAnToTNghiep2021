@@ -25,5 +25,6 @@ public interface RoomService {
 
 	Room Roomtop1();
 	Room create(Room room);
+	List<Room> getListName();
 
 }

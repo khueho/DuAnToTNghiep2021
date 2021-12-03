@@ -1,6 +1,7 @@
 app.controller('ticket-ctrl', function ($scope, $http) {
 	$scope.items = [];
 	$scope.form = {};
+	$scope.editd= false;
 	
 	$scope.initialize = function () {
 		// load products
@@ -18,10 +19,12 @@ app.controller('ticket-ctrl', function ($scope, $http) {
 
 	$scope.reset = function () {
 		$scope.form = {
-			show: {movie: { poster: 'movie.jfif'}}
+			show: {movie: { poster: 'movie.jfif'}},
+			seat: {room: {name: 'Vị Trí - |'}},
+			seat: {room: {cinema: {name: 'Tên Rạp Chiếu Phim'}}},
 		};
 		
-	}
+	} 
 	// Hiển thị sản phẩm lên form
 	$scope.editTicket = function (item) {
 		$scope.form = angular.copy(item);
@@ -36,6 +39,7 @@ app.controller('ticket-ctrl', function ($scope, $http) {
 		var endtime = new Date(gio2);
 		$scope.form.endtime = endtime.getTime();
 		console.log($scope.form);
+		$scope.editd = true;
 	}
 	
 
@@ -55,7 +59,9 @@ app.controller('ticket-ctrl', function ($scope, $http) {
 		})
 
 	}
-
+	$scope.changesize = function(size){
+		$scope.pager.size = size
+	}
 	$scope.pager = {
 		page: 0,
 		size: 5,

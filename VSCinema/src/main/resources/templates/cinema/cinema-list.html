@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/layout.html :: dynamic(~{::body})}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chọn rạp phim</title>
+</head>
+
+<body>
+	<div class="cinema-list container">
+		<br> <br>
+		<div class="row bodyS">
+			<div class="col-sm-12 rowS">
+				<label ng-repeat="d in dates" class="form-check form-check-inline"> 
+					<input class="form-check-input" type="radio" name="options" id="1">
+					<div class="icon-boxS">
+						<span>{{d | date:'dd MMM yyyy'}}</span>
+					</div>
+				</label>
+			</div>
+			<div class="col-sm-12 rowS1">
+				<label ng-repeat="c in cities" class="form-check form-check-inline"> 
+					<input class="form-check-input" type="radio" name="options1" id="1">
+					<div class="icon-boxS1" ng-click="showtimes(c)">
+						<span>{{c.name}}</span>
+					</div>
+				</label>
+			</div>
+			<div class="col-sm-12 rowS2" ng-repeat="cinema in cinemas">
+				<br>
+				<div>
+					<h5>{{cinema.name}}</h5>
+				</div>
+				<label class="form-check form-check-inline" ng-repeat="show in shows"> 
+					<input class="form-check-input" type="radio" name="options2" id="1">
+					<div class="icon-boxS2" ng-if="show.room.cinema.id == cinema.id">
+						<span>{{show.startTime}}</span>
+					</div>
+				</label>
+			</div>
+		</div>
+		<!--grids-sec2-->
+		<section class="w3l-grids">
+			<div class="grids-main py-5">
+				<div class="container py-lg-3">
+					<div class="headerhny-title">
+						<div class="w3l-title-grids">
+							<div class="headerhny-left">
+								<h3 class="hny-title">Danh sách phim của rạp</h3>
+							</div>
+						</div>
+					</div>
+					<div class="owl-three owl-carousel owl-theme">
+						<div class="item vhny-grid">
+							<div class="box16 mb-0">
+								<a href="genre.html">
+									<figure>
+										<img class="img-fluid" src="/assets/images/n3.jpg" alt="">
+									</figure>
+									<div class="box-content">
+
+										<h4>
+											<span class="post"><span class="fa fa-clock-o">
+											</span> 2 giờ 4 phút </span> <span class="post fa fa-heart text-right"></span>
+										</h4>
+									</div> <span class="fa fa-play video-icon" aria-hidden="true"></span>
+								</a>
+							</div>
+							<h3>
+								<a class="title-gd" href="genre.html">Free Guy</a>
+							</h3>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+							<div class="button-center text-center mt-4">
+								<a href="#" class="btn watch-button"><i class="fa fa-ticket"
+									aria-hidden="true"></i>Mua vé</a>
+							</div>
+						</div>
+						<div class="item vhny-grid">
+							<div class="box16 mb-0">
+								<a href="genre.html">
+									<figure>
+										<img class="img-fluid" src="/assets/images/n4.jpg" alt="">
+									</figure>
+									<div class="box-content">
+										<h4>
+											<span class="post"><span class="fa fa-clock-o">
+											</span> 2 giờ 4 phút </span> <span class="post fa fa-heart text-right"></span>
+										</h4>
+									</div> <span class="fa fa-play video-icon" aria-hidden="true"></span>
+								</a>
+							</div>
+							<h3>
+								<a class="title-gd" href="genre.html">My Spy</a>
+							</h3>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+							<div class="button-center text-center mt-4">
+								<a href="#" class="btn watch-button"><i class="fa fa-ticket"
+									aria-hidden="true"></i>Mua vé</a>
+							</div>
+
+						</div>
+						<div class="item vhny-grid">
+							<div class="box16 mb-0">
+								<a href="genre.html">
+									<figure>
+										<img class="img-fluid" src="/assets/images/n5.jpg" alt="">
+									</figure>
+									<div class="box-content">
+
+										<h4>
+											<span class="post"><span class="fa fa-clock-o">
+											</span> 2 giờ 4 phút </span> <span class="post fa fa-heart text-right"></span>
+										</h4>
+									</div> <span class="fa fa-play video-icon" aria-hidden="true"></span>
+								</a>
+							</div>
+							<h3>
+								<a class="title-gd" href="genre.html">Scoob</a>
+							</h3>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+							<div class="button-center text-center mt-4">
+								<a href="#" class="btn watch-button"><i class="fa fa-ticket"
+									aria-hidden="true"></i>Mua vé</a>
+							</div>
+						</div>
+						<div class="item vhny-grid">
+							<div class="box16 mb-0">
+								<a href="genre.html">
+									<figure>
+										<img class="img-fluid" src="/assets/images/n6.jpg" alt="">
+									</figure>
+									<div class="box-content">
+										<h4>
+											<span class="post"><span class="fa fa-clock-o">
+											</span> 2 giờ 4 phút </span> <span class="post fa fa-heart text-right"></span>
+										</h4>
+									</div> <span class="fa fa-play video-icon" aria-hidden="true"></span>
+								</a>
+							</div>
+							<h3>
+								<a class="title-gd" href="genre.html">Downhill</a>
+							</h3>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+							<div class="button-center text-center mt-4">
+								<a href="#" class="btn watch-button"><i class="fa fa-ticket"
+									aria-hidden="true"></i>Mua vé</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</body>
+
+</html>

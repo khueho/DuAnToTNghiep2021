@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -46,8 +48,6 @@ public class Movie  implements Serializable{
 	@Column(name = "Runningtime")
 	Date runningTime = new Date();
 
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "Genresid")
 	Genre genre;

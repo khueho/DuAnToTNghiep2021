@@ -72,4 +72,9 @@ public class RoomServiceImpl implements RoomService {
 	public Room create(Room room) {
 		return dao.save(room);
 	}
+	@Override
+	public List<Room> getListName() {
+		// TODO Auto-generated method stub
+		return dao.ListNameRoom(); 
+	}
 }

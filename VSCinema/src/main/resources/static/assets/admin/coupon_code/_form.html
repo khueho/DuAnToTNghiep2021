@@ -1,51 +1,44 @@
-<div class="card">
-	<div class="card-header">
-		<div class="card-title">
-			<h5>
-				<i class='fas fa-book'></i>
-				THÔNG TIN MÃ GIẢM GIÁ
-			</h5>
-		</div>
-	</div>
+
 	<div class="card-body">
 		<div class="row">
-			<div class="col-6">
-				<br>
+			<div class="col-4">
+				
 				<div class="container-fluid">
-					<br> 
+					
 					<img class="card-img-top" alt="loading" src="/assets/images/coupon-code-listing.png"> 
 				</div>
 			</div>
-			<div class="col-6">
-					<br> <br> <br>
-				  <div class="form-group row">
-				  	<label class="col-12" for="exampleInputCode">Mã giảm giá</label>
-				    <div class="col-10">
+			<div class="col-4">
+					<label class="" for="exampleInputCode">Mã giảm giá</label>
+				  <div class="form-group row ">				  	
+				    <div class="col-7">
 				    	<input type="text" ng-model="coupon.id" class="form-control"> 
 				    </div>
-				    <button ng-click="autoCreate()" class="btn btn-outline-success">Tự Tạo Mã</button>
+				    <button ng-click="autoCreate()" class="btn btn-success col-4">Tự Tạo Mã</button>
 				  </div>
-				  <br>
+				  
 				  <div class="form-group">
 				    <label for="exampleInputCreateDate">Ngày tạo</label>
 				    <div class="form-control">{{coupon.createdate|date:'dd/MM/yyyy'}}</div>
 				  </div>
-				  <br>
+				  
 				  <div class="form-group">
 				    <label for="exampleInputExpiry">Hạn sử dụng</label>
 				    <input ng-model="coupon.expiry" type="date" class="form-control">
 				  </div>
-				  <br>
+				  </div>
+				  
+				  <div class="col-4">
 				  <div class="form-group">
 				    <label for="exampleInputDiscount">Discount</label>
 				    <input ng-model="coupon.discount" type="text" class="form-control" placeholder="%">
 				  </div>
-				  <br>
+				  
 				  <div class="form-group">
 				    <label for="exampleInputQuantity">Số lượng nhập</label>
 				    <input ng-model="coupon.quantity" type="text" class="form-control">
 				  </div>
-				  <br>
+				  
 				  <div class="form-group">
 				  	<label class="mr-sm-2" for="exampleInputActivity">Trạng thái: </label>
 				    <div class="form-check form-check-inline">
@@ -57,14 +50,15 @@
 					  <label class="form-check-label" for="inlineRadio2">Ngừng hoạt động</label>
 					</div>
 				  </div>
-				  <br>
-				  <div class="form-group">
-				    <button ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button ng-click="reset()" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
 				  </div>
+				  <br><br />
+				  
 			</div>
 		</div>
-	</div>
+		<div class="form-group">
+				    <button style="width: 90px" type="button" ng-click="create()" class="btn btn-success font-weight-bold">Thêm</button>
+				    <button style="width: 90px" type="button" ng-click="update()" class="btn btn-info font-weight-bold">Cập nhật</button>
+				    <button type="button" ng-click="reset()" class="btn btn-warning font-weight-bold">Mới</button>
+				  </div>
+	
 	<div class="card-footer">Vui lòng nhập thông tin của mã giảm giá</div>
-</div>

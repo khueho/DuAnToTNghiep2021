@@ -67,11 +67,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().cors().disable();
 		
-//		http.authorizeRequests()
-//			.antMatchers("/rest/authorities").hasRole("AD")
-//			.antMatchers("/admin/**").hasAnyRole("MOD", "AD")
-//			.antMatchers("/security/changePassword/form", "/security/updateAccount/form", "/order/**").authenticated()
-//			.anyRequest().permitAll();
+		http.authorizeRequests()
+			.antMatchers("/rest/authorities").hasRole("MOD")
+			.antMatchers("/admin/**").hasAnyRole("MOD", "STA")
+			.antMatchers("/security/changePassword/form", "/security/updateAccount/form", "/order/**").authenticated()
+			.anyRequest().permitAll();
 		
 		http.formLogin()
 			.loginPage("/security/login/form")
@@ -80,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.failureUrl("/security/login/error");
 		
 		http.exceptionHandling()
-			.accessDeniedPage("/security/unauthoried");
+			.accessDeniedPage("/security/login/form");
 		
 		http.logout()
 			.logoutUrl("/security/logoff")

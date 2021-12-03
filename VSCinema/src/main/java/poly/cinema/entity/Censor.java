@@ -34,7 +34,7 @@ public class Censor  implements Serializable{
 	@Column(name = "Createdate")
 	Date createDate = new Date();
 	
-
+	Integer status;
 	
 	@ManyToOne
 	@JoinColumn(name = "Showid")
@@ -42,12 +42,6 @@ public class Censor  implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "Username")
-	Account user;
-	
-
-
-	
-	
-
+	Account user;	
 	
 }

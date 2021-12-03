@@ -1,44 +1,27 @@
-<div class="card">
-	<div class="card-header">
-		<div class="card-title">
-			<h5>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-						d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                    <path
-						d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z" />
-                                    <path
-						d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z" />
-                                  </svg>
-				QUẢN LÝ THÔNG TIN CHƯƠNG TRÌNH KHUYẾN MÃI
-			</h5>
-		</div>
-	</div>
+
 	<div class="card-body">
 		<div class="row">
-			<div class="col-6">
-				<br>
+			<div class="col-4">
+				
 				<div class="container-fluid">
-					<br> 
+					
 					<img class="card-img-top" alt="loading" ng-src="{{'/assets/images/image/foods/' + form.food.image}}" />
 					
 				</div>
 			</div>
-			<div class="col-6">
-				 <br> <br>
+			<div class="col-4">
 				 <div class="form-group">
 				 	<div class="form-control">
 				    	<strong>Mã sản phẩm: {{form.food.id}} </strong>
 				    </div>
 				  </div>
-				  <br>
+				 
 				 <div class="form-group">
 				 	<div class="form-control"> 
 				    	<strong>Tên sản phẩm: {{form.food.name}} </strong>
 				    </div>
 				  </div>
-				  <br>
+				
 				  <div class="input-group form-group">
 				  	<div class="form-control"> 
 				    	<strong>Giá bán: {{form.food.price}} </strong>
@@ -47,34 +30,38 @@
 					    <span class="input-group-text">VNĐ</span>
 					</div>
 				  </div>
-				  <br>
 				  <div class="form-group">
 				  	<div class="form-control"> 
 				    	<strong>Ngày tạo: {{form.startDate|date: 'dd/MM/yyyy'}} </strong>
 				    </div>
 				  </div>
-				  <br>
+				  </div>
+				  <div class="col-4">
+				  
+				  		<br />	
 				  <div class="form-group">
-				    <label for="exampleInputEmail1"><strong>Ngày kết thúc</strong></label>
+				    <label for="exampleInputEmail1">Ngày kết thúc</label>
 				    <input type="date" class="form-control" placeholder="yyyy-MM-dd" ng-model="form.endDate">
 				  </div>
-				  <br>
-				  <label for="exampleInputEmail1"><strong>Khuyến mãi</strong></label>
+				  <br />
+				  <label for="exampleInputEmail1">Khuyến mãi</label>
 				  <div class="input-group form-group">
 				    <input type="text" class="form-control" ng-model="form.discount">
 				    <div class="input-group-append">
 					    <span class="input-group-text">%</span>
 					</div>
 				  </div>
-				  <br> <br>
-				  <div class="form-group">
-				    <button type="button" ng-click="create()" class="btn btn-outline-dark border border-primary text-primary font-weight-bold"> <img alt="" src="/assets/images/edit.png"> Create</button>
-				    <button type="button" ng-click="update()" class="btn btn-outline-dark border border-warning text-warning font-weight-bold"> <img alt="" src="/assets/images/write.png"> Update</button>
-				    <button type="button" ng-click="delete(form)" class="btn btn-outline-dark border border-danger text-danger font-weight-bold"> <img alt="" src="/assets/images/trash.png">Delete</button>
-				    <button type="button" ng-click="reset()" class="btn btn-outline-dark border border-success text-success font-weight-bold"> <img alt="" src="/assets/images/updated.png">Reset</button>
 				  </div>
+				  <br> <br>
+				
 			</div>
 		</div>
-	</div>
+		
+		  <div class="form-group ">
+				    <button style="width: 90px" type="button" ng-click="create()" class="btn btn-success font-weight-bold">Thêm</button>
+				    <button style="width: 90px" type="button" ng-click="update()" class="btn btn-info font-weight-bold">Cập nhật</button>
+				    <button type="button" ng-click="delete(form)" class="btn btn-danger font-weight-bold">Xóa</button>
+				    <button type="button" ng-click="reset()" class="btn btn-warning font-weight-bold">Mới</button>
+				  </div>
+	
 	<div class="card-footer">Vui lòng nhập thông tin chương trình khuyên mãi</div>
-</div>

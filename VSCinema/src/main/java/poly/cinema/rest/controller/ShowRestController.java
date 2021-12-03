@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,11 +27,16 @@ public class ShowRestController {
 @Autowired ShowService showservice;
 @Autowired RoomService roomservice;
 @Autowired CinemaService cinemaservice;
+
 	@GetMapping()
 	public List<Show> getAll(){
 		return showservice.getAll();
 	}
 	
+	@GetMapping("/censor")
+	public List<Show> getShow(){
+		return showservice.getShowCensor();
+	}
 	
 	@GetMapping("/listshowdate")
 	public List<String> listshowdate(){
@@ -43,7 +49,10 @@ public class ShowRestController {
 	return create;
 	}
 	
-	
+	@PutMapping()
+	public Show update(@RequestBody Show show) {
+		return showservice.update(show);
+	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable("id") Integer id) {

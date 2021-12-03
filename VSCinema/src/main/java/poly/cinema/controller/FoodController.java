@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FoodController {
-	@RequestMapping("/food")
+	@RequestMapping("/food/booking-food")
 	public String doan () {
-		return "/food/foodlist";
+		return "/food/booking-food";
 	}
 }
