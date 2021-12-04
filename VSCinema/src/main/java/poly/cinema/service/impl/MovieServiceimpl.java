@@ -65,4 +65,10 @@ public class MovieServiceimpl implements MovieService{
 		return moviedao.findComingSoonMovies();
 	}
 	
+	@Override
+	public List<Movie> listshow() {
+		// TODO Auto-generated method stub
+		return moviedao.listshow();
+	}
+	
 }

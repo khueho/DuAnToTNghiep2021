@@ -19,4 +19,5 @@ public interface MovieService {
 	
 	List<Movie> findMovieByShowdate();
 	List<Movie> findComingSoonMovies();
+	List<Movie> listshow();
 }

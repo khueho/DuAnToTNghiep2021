@@ -33,7 +33,7 @@ public class Ticket  implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
-	Date creatDate = new Date();
+	Date createDate = new Date();
 	
 	@ManyToOne
 	@JoinColumn(name = "Seatid")

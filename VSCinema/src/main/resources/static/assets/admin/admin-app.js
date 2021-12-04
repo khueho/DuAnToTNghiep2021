@@ -55,6 +55,7 @@ app.config(function($routeProvider){
     })
 	.when("/statistics" ,{
         templateUrl :"/assets/admin/statistics/index.html",
+        controller: "statistics-ctrl"
     })
     .when("/coupons" ,{
         templateUrl :"/assets/admin/coupon_code/index.html",

@@ -37,4 +37,24 @@ public class OrderService implements poly.cinema.service.OrderService {
 		return dao.findByDate(createdate);
 	}
 
+	@Override
+	public List<Object[]> listSumRevenues() {
+		// TODO Auto-generated method stub
+		return dao.getListSumRevebues();
+	}
+	@Override
+	public Long getSumRevenuesOfDay() {
+		// TODO Auto-generated method stub
+		return dao.revenueOfDay(new Date());
+	}
+	@Override
+	public Long getSumRevenuesOfMonth() {
+		// TODO Auto-generated method stub
+		return dao.revenueOfMonth(new Date());
+	}
+	@Override
+	public Long getSumRevenuesOfYear() {
+		// TODO Auto-generated method stub
+		return dao.revenueOfYears(new Date());
+	}
 }

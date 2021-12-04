@@ -2,6 +2,7 @@ package poly.cinema.rest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,21 @@ import poly.cinema.service.AccountService;
 @RestController
 @RequestMapping("/rest/users")
 public class AccountRestController {
-
+	@Autowired HttpServletRequest req;
 	@Autowired
 	AccountService accountService;
 	
 	@GetMapping()
 	public List<Account> getUsers() {
 		return accountService.finAll();
+	}
+	
+	@GetMapping("/getUser")
+	public Account getUser() {
+		System.out.println(req.getRemoteUser());
+		String id= req.getRemoteUser();
+		return accountService.findById(id);
+		//return req.getRemoteUser();
 	}
 	
 	@GetMapping("/account")

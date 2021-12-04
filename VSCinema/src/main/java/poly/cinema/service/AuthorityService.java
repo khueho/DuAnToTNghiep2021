@@ -11,5 +11,9 @@ public interface AuthorityService {
 	Authority create(Authority auth);
 
 	void delete(Integer id);
+	
+	List<Authority> getListStaf();
+
+	List<Authority> getListUser();
 
 }

@@ -13,4 +13,9 @@ public interface OrderService  {
 	
 	Order updateActive(String id,Order order);
 	List<Order> findByDate(Date createdate);
+	
+	List<Object[]> listSumRevenues();
+	Long getSumRevenuesOfDay();
+	Long getSumRevenuesOfMonth();
+	Long getSumRevenuesOfYear();
 }

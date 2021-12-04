@@ -29,5 +29,17 @@ public class AuthorityServiceImpl implements AuthorityService{
 	public void delete(Integer id) {
 		authorityDAO.deleteById(id);
 	}
+	
+	@Override
+	public List<Authority> getListStaf() {
+		// TODO Auto-generated method stub
+		return authorityDAO.getListStaf();
+	}
+
+	@Override
+	public List<Authority> getListUser() {
+		// TODO Auto-generated method stub
+		return authorityDAO.getListUser();
+	}
 
 }

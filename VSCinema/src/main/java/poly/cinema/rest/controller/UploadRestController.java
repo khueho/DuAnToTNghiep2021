@@ -6,6 +6,7 @@ import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,12 @@ import poly.cinema.service.UploadService;
 public class UploadRestController {
 	@Autowired
 	UploadService upservice ;
+	
+	@GetMapping("/rest/test/{image}")
+	public Boolean testimage(@PathVariable("image") String image) {		
+		Boolean test = upservice.test(image);
+		return test;
+	} 
 	
 	@PostMapping("/rest/upload/{folder}")
 	public JsonNode uploadimage (@PathParam("file") MultipartFile file , @PathVariable("folder") String folder) {

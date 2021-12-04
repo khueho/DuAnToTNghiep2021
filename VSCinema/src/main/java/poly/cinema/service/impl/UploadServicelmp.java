@@ -34,5 +34,10 @@ public class UploadServicelmp implements UploadService {
 			throw new RuntimeException(e);
  		}
 	}
-
+	@Override
+	public Boolean test(String image) {
+		File dir = new File(app.getRealPath("/assets/dist/img/" + image));
+		System.out.println(dir.exists());
+		return dir.exists();
+	}
 }

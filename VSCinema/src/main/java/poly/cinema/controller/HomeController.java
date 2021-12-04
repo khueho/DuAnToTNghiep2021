@@ -49,6 +49,7 @@ public class HomeController {
 		model.addAttribute("title", "Trang chủ");
 		List<Sale> sale = saleService.findAll();
 		model.addAttribute("sales", sale);
+		//model.addAttribute("comingsoon", comingsoon);
 
 		return "home/index";
 	}

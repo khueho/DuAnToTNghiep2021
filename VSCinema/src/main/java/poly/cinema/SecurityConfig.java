@@ -68,11 +68,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().cors().disable();
 		
 		http.authorizeRequests()
-			.antMatchers("/rest/authorities").hasRole("MOD")
-			.antMatchers("/admin/**").hasAnyRole("MOD", "STA")
-			.antMatchers("/security/changePassword/form", "/security/updateAccount/form", "/order/**").authenticated()
-			.anyRequest().permitAll();
-		
+		.antMatchers("/rest/authorities","/rest/statistics").hasRole("MOD")
+		.antMatchers("/admin/**","/assets/admin/**").hasAnyRole("MOD", "STA")
+		.antMatchers("/security/changePassword/form", "/security/updateAccount/form", "/order/**").authenticated()
+		.anyRequest().permitAll();
+	
 		http.formLogin()
 			.loginPage("/security/login/form")
 			.loginProcessingUrl("/security/login")
