@@ -1,0 +1,149 @@
+<meta charset="utf-8">
+<div class="card">
+	<div class="card-header">
+		<div class="card-title row">
+			<div>
+				<button ng-if="order.active == 1 || order.active == 3" ng-click="updateOrder()" class="btn btn-warning mr-sm-2" style="width: 120px;">Xuất hóa đơn</button>
+			</div>
+			<div>
+				<button class="btn btn-success" style="width: 100px;" ng-click="reset()" type="submit">Làm mới</button>
+			</div>
+		</div>
+	</div>
+	<div class="card-body" ng-show="edited">
+		<div class="row">
+			<div class="col-12" style="text-align: center;">
+				<h2 style="font-size: 40px;">VINA STAR CINEMA</h2>
+				<p style="font-size: 30px;">Hóa đơn thanh toán</p>
+			</div>
+			<div class="col-3">
+				<h6>
+					Mã hóa đơn: <strong style="color: red;">{{order.id}}</strong>
+				</h6>
+			</div>
+			<div class="col-3">
+				<h6>Ngày mua: {{order.createdate | date:'dd-MM-yyyy'}}</h6>
+			</div>
+			<div class="col-3">
+				<h6>Tổng tiền: {{order.totalmoney | currency:"":0}} VND</h6>
+			</div>
+			<div class="col-3">
+				<h6>
+					Trạng thái: <strong style="color: red;" ng-if="order.active == 1 || order.active == 3">Chưa nhận</strong>
+								<strong style="color: red;" ng-if="order.active == 0">Đang thanh toán</strong>
+								<strong style="color: red;" ng-if="order.active == 2">Chưa thanh toán</strong>
+								<strong style="color: red;" ng-if="order.active == 4">Đã nhận</strong>
+				</h6>
+			</div>
+			<br> <br>
+			<div class="col-3">
+				<h6>
+					Mã khách hàng: <strong style="color: red;">{{order.user.username}}</strong>
+				</h6>
+			</div>
+			<div class="col-3">
+				<h6>Họ - tên: {{order.user.fullname}}</h6>
+			</div>
+			<div class="col-3">
+				<h6>Số điện thoại: {{order.user.phone}}</h6>
+			</div>
+			<div class="col-3">
+				<h6>Email: {{order.user.email}}</h6>
+			</div>
+		</div>
+		<br>
+		<div style="height: 2px; background-color: black;"></div>
+		<br>
+		<div class="card-tools" style="float: left;">
+			<ul class="nav nav-tabs " id="myTab2" role="tablist">
+				<li ng-if="tickets.length > 0" class="nav-item btn-outline-light font-weight-bold"
+					role="presentation"><a href="" class="nav-link active"
+					id="edit-tab" data-toggle="tab" data-target="#editFoods"
+					style="color: black;" role="tab" aria-controls="editFoods"
+					aria-selected="true">VÉ</a></li>
+				<li ng-if="orderDetail.length > 0" class="nav-item btn-outline-light font-weight-bold"
+					role="presentation"><a class="nav-link" href="" id="list-tab"
+					style="color: black;" data-toggle="tab" data-target="#listTicket" role="tab"
+					aria-controls="listTicket" aria-selected="false">BẮP NƯỚC</a></li>
+			</ul>
+		</div>
+		<!-- /.card-header -->
+		<div class="tab-content" id="myTabContent">
+			<div ng-if="tickets.length > 0" class="tab-pane fade show active" id="editFoods" role="tabpanel" aria-labelledby="edit-tab">
+				<br> <br> <div style="height: 2px; background-color: black; width: 100%;"></div>
+				<div class="bodyA" ng-repeat="ticket in tickets">
+					<div class="wrapper">
+						<div class="movie_card">
+							<div class="left col-sm-8">
+								<div class="datails">
+									<br>
+									<h5>{{ticket.show.movie.name}}</h5>  <br> <br>
+									<div class="head row">
+										<p ng-if="ticket.activity == false" style="text-align: center;" class="rated">Đã nhận</p>
+										<p ng-if="ticket.activity == true" style="text-align: center;" class="rated">Chưa nhận</p>
+										<p class="year">{{ticket.seat.room.name}} - {{ticket.seat.name}}</p>
+										
+										<p class="genre">{{ticket.show.showDate|
+											date:'dd/MM/yyyy'}} {{ ticket.show.startTime}}</p>
+										<p class="time">Giá: {{ticket.ticketprice | number}} VND</p>
+									</div>
+									<br>
+									<h5 class="cinemaname">{{ticket.seat.room.cinema.name}}</h5>
+									<p class="description">Địa chỉ:
+										{{ticket.seat.room.cinema.address}}</p>
+									<div class="buttons">
+										<button class="button" title="Click to view trailer">
+											<i>MÃ VÉ: </i> {{ticket.id}}
+										</button>
+										<button class="button" title="Download the trailer">
+											<i>KH: </i> {{ticket.order.user.fullname}}
+										</button>
+										
+										<button class="button" title="Bookmark">
+											<i>Tổng tiền:</i> {{ticket.totalmoney}} VND
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="c_right col-sm-4">
+								<div class="img-fluid">
+									<img class="img-fluid"
+										src="{{'/assets/images/image/movies/posters/' + ticket.show.movie.poster}}"
+										alt="Movie IMG" style="height: 450px">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <br> <br>
+			<div ng-if="orderDetail.length > 0" class="tab-pane fade" id="listTicket" role="tabpanel" aria-labelledby="list-tab">
+				<br>
+				<table class="table table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Mã sản phẩm</th>
+							<th scope="col">Tên sản phẩm</th>
+							<th scope="col">Giá</th>
+							<th scope="col">Mô tả chi tiết</th>
+							<th scope="col">Số lượng</th>
+							<th scope="col">Thành tiền</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="ord in orderDetail">
+							<td>{{ord.food.id}}</td>
+							<td>{{ord.food.name}}</td>
+							<td>{{ord.food.price | currency:"":0}} VND</td>
+							<td>{{ord.food.description}}</td>
+							<td>{{ord.quantity}}</td>
+							<td>{{ord.quantity*ord.food.price| currency:"":0}} VND</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+	<div class="card-footer">Thông tin chi tiết của hóa đơn</div>
+</div>
