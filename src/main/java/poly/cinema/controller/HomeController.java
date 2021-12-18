@@ -76,7 +76,7 @@ public class HomeController {
 		return "redirect:/assets/admin/index.html";
 	}
 
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String home(Model model) { 
 		List<Movie> movie = movieService.findMovieByShowdate();
 		model.addAttribute("movies", movie);
