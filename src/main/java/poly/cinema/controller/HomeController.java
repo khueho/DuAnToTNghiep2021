@@ -78,15 +78,15 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String home(Model model) { 
-// 		List<Movie> movie = movieService.findMovieByShowdate();
-// 		model.addAttribute("movies", movie);
-// 		model.addAttribute("title", "Trang chủ");
-// 		List<Sale> sale = saleService.getSale();
-// 		model.addAttribute("sales", sale);
-// 		List<Movie> comingsoon = movieService.findComingSoonMovies();
-// 		model.addAttribute("comingsoon", comingsoon);
+		List<Movie> movie = movieService.findMovieByShowdate();
+		model.addAttribute("movies", movie);
+		model.addAttribute("title", "Trang chủ");
+		List<Sale> sale = saleService.getSale();
+		model.addAttribute("sales", sale);
+		List<Movie> comingsoon = movieService.findComingSoonMovies();
+		model.addAttribute("comingsoon", comingsoon);
 
-		return "redirect:/assets/admin/index.html";
+		return "home/index";
 	}
 	
 	@RequestMapping("/security/login/form")
