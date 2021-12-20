@@ -381,7 +381,7 @@ public class HomeController {
 		                		String time = formatterr.format(date);
 		                		model.addAttribute("time", time);
 		                        model.addAttribute("payment", payment);
-		                        return "/ticket/vnpay_return";
+		                        return "ticket/vnpay_return";
 	                        } else {
 	                        	if(payment.getVnp_Responsecode() == null && payment.getVnp_Transactionno() == null && payment.getVnp_Transactionstatus() == null) {
 		                        	order.setActive(3);
@@ -582,7 +582,7 @@ public class HomeController {
 		                		String time = formatterr.format(date);
 		                		model.addAttribute("time", time);
 		                        model.addAttribute("payment", payment);
-		                        return "/ticket/vnpay_return";
+		                        return "ticket/vnpay_return";
 	                        }
 	                    } else {
 	                        if("04".equals(request.getParameter("vnp_TransactionStatus"))){
@@ -785,7 +785,7 @@ public class HomeController {
 			                		String time = formatterr.format(date);
 			                		model.addAttribute("time", time);
 			                        model.addAttribute("payment", payment);
-			                        return "/ticket/vnpay_return";
+			                        return "ticket/vnpay_return";
 		                        } else {
 		                        	if(payment.getVnp_Responsecode() == null && payment.getVnp_Transactionno() == null && payment.getVnp_Transactionstatus() == null) {
 			                        	order.setActive(1);
@@ -986,7 +986,7 @@ public class HomeController {
 			                		String time = formatterr.format(date);
 			                		model.addAttribute("time", time);
 			                        model.addAttribute("payment", payment);
-			                        return "/ticket/vnpay_return";
+			                        return "ticket/vnpay_return";
 		                        }
 	                        } else {
 	                        	String vnp_TxnRef = request.getParameter("vnp_TxnRef");
@@ -1022,7 +1022,7 @@ public class HomeController {
 		                		String time = formatterr.format(date);
 		                		model.addAttribute("time", time);
 		                        model.addAttribute("payment", payment);
-		                        return "/ticket/vnpay_return";
+		                        return "ticket/vnpay_return";
 	                        }
 	                    }
 	                } else {
