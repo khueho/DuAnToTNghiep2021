@@ -925,15 +925,15 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 	
 	$scope.checkUrl = function(){
 		var url = window.location.href;
-		if(url == "http://localhost:8080/home"){
+		if(url.includes("home")){
 			var movieid = [];
 			localStorage.setItem("movieID", movieid);
 			$scope.clearFoodOrder();
 			$scope.clearA ();
-		} else if(url == "http://localhost:8080/cinema/cinema-list"){
+		} else if(url.includes("home")){
 			$scope.accountLogin();
 			$scope.initialize();
-		} else if(url == "http://localhost:8080/ticket/book-tickets") {
+		} else if(url.includes("home")) {
 			$scope.accountLogin();
 			var seat2 = [];
 			var listSeats = JSON.stringify(seat2);
@@ -949,7 +949,7 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 			var total = JSON.stringify([]);
 			localStorage.setItem("total", total);
 			$scope.getSeats();
-		} else if(url == "http://localhost:8080/ticket/bookfood"){
+		} else if(url.includes("home")){
 			$scope.accountLogin();
 			var listFood = [];
 			var food = JSON.stringify(listFood);
@@ -960,23 +960,23 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 			var total = JSON.stringify([]);
 			localStorage.setItem("total", total);
 			$scope.getFood();
-		} else if(url == "http://localhost:8080/ticket/checkout"){
+		} else if(url.includes("home")){
 			$scope.accountLogin();
 			$scope.createPayment();
-		} else if(url == "http://localhost:8080/home/order"){
+		} else if(url.includes("home")){
 			$scope.accountLogin();
 			$scope.clearA ();
 			$scope.getOrder();
-		} else if(url == "http://localhost:8080/food/booking-food"){
+		} else if(url == "url.includes("home")){
 			var food = JSON.stringify([]);
 			localStorage.setItem("listFoodsCinema", food);
 			var amount = JSON.stringify([]);
 			localStorage.setItem("amountFoods", amount);
 			$scope.getCities();
-		} else if(url == "http://localhost:8080/food/checkout"){
+		} else if(url.includes("home")){
 			$scope.accountLogin();
 			$scope.createPaymentFood();
-		} else if(url == "http://localhost:8080/movie/showtimes-film"){
+		} else if(url.includes("home")){
 			$scope.initialize();
 			$scope.getFilmByToday();
 		} else {
