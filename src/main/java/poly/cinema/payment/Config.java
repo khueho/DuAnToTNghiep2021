@@ -21,7 +21,7 @@ import poly.cinema.entity.Order;
 public class Config {
 
 	public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-	public static String vnp_Returnurl = "http://localhost:8080/home/success";
+	public static String vnp_Returnurl = "http://vinastarcinema.herokuapp.com/home/success";
 	public static String vnp_TmnCode = "0W8RE662";
 	public static String vnp_HashSecret = "AZANMWYMLIBUBFTTLCNPKMSQUYMPUKQS";
 	public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
