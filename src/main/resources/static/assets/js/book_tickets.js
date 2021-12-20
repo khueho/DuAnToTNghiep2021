@@ -930,10 +930,10 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 			localStorage.setItem("movieID", movieid);
 			$scope.clearFoodOrder();
 			$scope.clearA ();
-		} else if(url.includes("home")){
+		} else if(url.includes("cinema-list")){
 			$scope.accountLogin();
 			$scope.initialize();
-		} else if(url.includes("home")) {
+		} else if(url.includes("book-tickets")) {
 			$scope.accountLogin();
 			var seat2 = [];
 			var listSeats = JSON.stringify(seat2);
@@ -949,7 +949,7 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 			var total = JSON.stringify([]);
 			localStorage.setItem("total", total);
 			$scope.getSeats();
-		} else if(url.includes("home")){
+		} else if(url.includes("bookfood")){
 			$scope.accountLogin();
 			var listFood = [];
 			var food = JSON.stringify(listFood);
@@ -960,23 +960,23 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 			var total = JSON.stringify([]);
 			localStorage.setItem("total", total);
 			$scope.getFood();
-		} else if(url.includes("home")){
+		} else if(url.includes("ticket/checkout")){
 			$scope.accountLogin();
 			$scope.createPayment();
-		} else if(url.includes("home")){
+		} else if(url.includes("order")){
 			$scope.accountLogin();
 			$scope.clearA ();
 			$scope.getOrder();
-		} else if(url == "url.includes("home")){
+		} else if(url.includes("booking-food")){
 			var food = JSON.stringify([]);
 			localStorage.setItem("listFoodsCinema", food);
 			var amount = JSON.stringify([]);
 			localStorage.setItem("amountFoods", amount);
 			$scope.getCities();
-		} else if(url.includes("home")){
+		} else if(url.includes("food/checkout")){
 			$scope.accountLogin();
 			$scope.createPaymentFood();
-		} else if(url.includes("home")){
+		} else if(url.includes("showtimes-film")){
 			$scope.initialize();
 			$scope.getFilmByToday();
 		} else {
