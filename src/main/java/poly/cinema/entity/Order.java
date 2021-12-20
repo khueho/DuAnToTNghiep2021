@@ -18,7 +18,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import lombok.Data;
 
 @SuppressWarnings("serial")
@@ -45,6 +46,7 @@ public class Order  implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "order")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	List<OrderFood> orderDetails ;
 	
 	@JsonIgnore
