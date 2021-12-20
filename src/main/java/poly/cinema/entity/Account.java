@@ -12,7 +12,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -56,7 +57,8 @@ public class Account  implements Serializable{
 	List<Order> orders;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	List<Authority> authorities;
 	
 	
