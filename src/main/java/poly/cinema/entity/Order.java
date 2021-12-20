@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,6 +48,6 @@ public class Order  implements Serializable{
 	List<OrderFood> orderDetails ;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "order")
+	@OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
 	List<Ticket> tickets ;
 }
