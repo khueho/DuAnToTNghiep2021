@@ -10,12 +10,12 @@ public class FoodController {
 	public String doan (Model model) {
 		
 		model.addAttribute("title", "Đồ ăn");
-		return "/food/booking-food";
+		return "food/booking-food";
 	}
 	
 	@RequestMapping("/food/checkout")
 	public String checkout (Model model) {
 		model.addAttribute("title", "Đồ ăn");
-		return "/food/checkout";
+		return "food/checkout";
 	}
 }
