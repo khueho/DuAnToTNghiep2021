@@ -705,7 +705,7 @@ app.controller("booking-ticket-ctrl" , function($scope , $http){
 		$http.get("/rest/orders/checkOrder").then(resp => {
 			$scope.listOrder = resp.data;
 			console.log($scope.listOrder)
-		});
+		}).catch();
 	}
 	
 	$scope.pager = {
