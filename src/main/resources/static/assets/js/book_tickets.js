@@ -1,4 +1,4 @@
-const app = angular.module("booking-ticket-app",[]);
+var app = angular.module("booking-ticket-app",[]);
 app.controller("booking-ticket-ctrl" , function($scope , $http){
 	
 	$scope.dates = [];
